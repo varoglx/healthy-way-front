@@ -41,7 +41,7 @@ export class SeguimientoPage implements OnInit {
       fecha: new Date().toISOString()
     };
 
-    this.http.post('https://api-64fvvtt3nq-uc.a.run.app/api/storeBmiData', bmiData)
+    this.http.post('https://us-central1-healthy-way-f7636.cloudfunctions.net/api/storeBmiData', bmiData)
       .subscribe(
         response => console.log('Data stored successfully', response),
         error => console.error('Error storing data', error)

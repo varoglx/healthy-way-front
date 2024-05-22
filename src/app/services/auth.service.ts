@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  private baseUrl = 'https://api-64fvvtt3nq-uc.a.run.app/api';
+  private baseUrl = 'https://us-central1-healthy-way-f7636.cloudfunctions.net/api';
 
   constructor(private http: HttpClient) { }
 

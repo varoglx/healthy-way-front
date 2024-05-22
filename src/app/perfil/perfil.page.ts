@@ -14,7 +14,7 @@ export class PerfilPage implements AfterViewInit, OnInit {
   email: string = '';
   profilePicture: string | null = null;
   loadUserEmail() {
-    this.http.post<{ message: string, email: string }>('https://api-64fvvtt3nq-uc.a.run.app/api/getUserEmail', { username: this.username })
+    this.http.post<{ message: string, email: string }>('https://us-central1-healthy-way-f7636.cloudfunctions.net/api/getUserEmail', { username: this.username })
       .subscribe(
         response => {
           this.email = response.email;
