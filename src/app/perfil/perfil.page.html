@@ -1,0 +1,63 @@
+<ion-content>
+  <ion-card class="full-height-card">
+    <ion-card-content>
+      <div class="profile-container">
+        <ion-avatar class="profile-avatar">
+          <ng-container *ngIf="profilePicture; else noPicture">
+            <img [src]="profilePicture" alt="Foto de perfil">
+          </ng-container>
+          <ng-template #noPicture>
+            <ion-icon name="person-circle-outline" class="default-avatar-icon"></ion-icon>
+          </ng-template>
+          <ion-icon name="camera" class="camera-icon" (click)="updateProfilePicture()"></ion-icon>
+        </ion-avatar>
+
+        <ion-item>
+          <ion-label position="floating">Nombre de usuario</ion-label>
+          <ion-input [(ngModel)]="username"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Correo</ion-label>
+          <ion-input [(ngModel)]="email"></ion-input>
+        </ion-item>
+      </div>
+
+      <div class="chart-container">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Estadísticas mensuales</ion-card-title>
+            <ion-card-subtitle>24 Mar 2024 - 24 Abr 2024</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <canvas id="doughnutChart"></canvas>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+<ion-footer class="fixed-footer">
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="comidas" routerLink="/comidas">
+      <ion-icon name="restaurant-outline"></ion-icon>
+      <ion-label>Comidas</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="recordatorios" routerLink="/recordatorios">
+      <ion-icon name="alarm-outline"></ion-icon>
+      <ion-label>Recordatorios</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="seguimiento" routerLink="/seguimiento">
+      <ion-icon name="analytics-outline"></ion-icon>
+      <ion-label>Seguimiento</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="perfil" routerLink="/perfil">
+      <ion-icon name="person"></ion-icon>
+      <ion-label>Perfíl</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-footer>

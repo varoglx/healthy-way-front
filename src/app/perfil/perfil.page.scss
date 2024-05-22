@@ -1,0 +1,51 @@
+.full-height-card {
+  display: flex;
+  flex-direction: column;
+  height: 95%;
+}
+
+.profile-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+}
+
+.profile-avatar {
+  position: relative;
+}
+
+.default-avatar-icon {
+  font-size: 5rem;
+  color: #ccc;
+}
+
+.camera-icon {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: 2rem;
+  background: white;
+  border-radius: 50%;
+  padding: 0.2rem;
+  cursor: pointer;
+}
+
+.chart-container {
+  flex: 0 0 150px; /* Set a fixed height for the chart container */
+  width: 100%;
+  margin-top: 20px;
+}
+
+.fixed-footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+ion-content {
+  --padding-bottom: 56px;
+}

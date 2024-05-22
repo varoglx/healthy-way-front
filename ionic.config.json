@@ -1,0 +1,7 @@
+{
+  "name": "Healthy-way-frontend",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

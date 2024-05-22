@@ -1,0 +1,101 @@
+
+<ion-content>
+  <!-- Alarm Creator Card -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Recordatorios</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Recordatorio de comida</ion-label>
+
+        <ion-toggle slot="end"></ion-toggle>
+      </ion-item>
+      <ion-item>
+        <ion-label>Recordatorio de Sueño</ion-label>
+
+        <ion-toggle slot="end"></ion-toggle>
+      </ion-item>
+      <ion-item>
+        <ion-label>Recordatorio de Actividad Física</ion-label>
+
+        <ion-toggle slot="end"></ion-toggle>
+      </ion-item>
+      
+      <ion-button expand="block" color="success">Guardar</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- List of Alarms -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Lista de Alarmas</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <!-- Example of listed alarms -->
+      <ion-item>
+        <ion-label>
+          Recordatorio de comida
+          <p>6:00 AM</p>
+        </ion-label>
+        <ion-toggle slot="end" checked></ion-toggle>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          Recordatorio de Sueño
+          <p>10:00 PM</p>
+        </ion-label>
+        <ion-toggle slot="end"></ion-toggle>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          Recordatorio de Actividad Física
+          <p>6:00 AM</p>
+        </ion-label>
+        <ion-toggle slot="end"></ion-toggle>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+<!-- Footer Navigation -->
+<ion-footer class="fixed-footer">
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="comidas" routerLink="/comidas">
+      <ion-icon name="restaurant-outline"></ion-icon>
+      <ion-label>Comidas</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="recordatorios" routerLink="/recordatorios">
+      <ion-icon name="alarm-outline"></ion-icon>
+      <ion-label>Recordatorios</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="seguimiento" routerLink="/seguimiento">
+      <ion-icon name="analytics-outline"></ion-icon>
+      <ion-label>Seguimiento</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="perfil" routerLink="/perfil">
+      <ion-icon name="person"></ion-icon>
+      <ion-label>Perfíl</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-footer>
+
+<style>
+  .fixed-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 1000; /* Ensure it stays above other elements */
+  }
+
+  ion-content {
+    padding-bottom: 56px; /* Footer height to prevent content being hidden behind it */
+  }
+
+  ion-card {
+    background: #e0ffe0; /* Green theme background */
+    border-radius: 15px;
+  }
+
+ 
+</style>
