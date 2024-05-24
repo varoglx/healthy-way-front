@@ -61,7 +61,7 @@ export class PerfilPage implements AfterViewInit, OnInit {
             labels: ['Perdidos este mes'],
             datasets: [{
               label: 'Evolución',
-              data: [1256], // Valor actualizado para coincidir con la imagen
+              data: [1.256], 
               backgroundColor: ['#ff6384'],
               hoverOffset: 4
             }]

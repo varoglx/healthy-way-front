@@ -1,5 +1,6 @@
 <ion-content>
 
+
   <ion-card-content>
     <div class="profile-container">
       <ion-avatar class="profile-avatar">
@@ -12,7 +13,6 @@
         <ion-icon name="camera" class="camera-icon" (click)="updateProfilePicture()"></ion-icon>
       </ion-avatar>
 
-
       <h2>Información Personal</h2>
 
       <ion-item>
@@ -24,19 +24,22 @@
         <ion-label position="floating">Correo</ion-label>
         <ion-input [(ngModel)]="email" readonly></ion-input>
       </ion-item>
+
       <ion-item>
         <ion-label position="floating">Edad</ion-label>
         <ion-input type="number" [(ngModel)]="age"></ion-input>
       </ion-item>
 
-      <ion-item>
+      <ion-item class="genero">
         <ion-label position="floating">Género</ion-label>
-        <ion-select [(ngModel)]="gender">
+        <ion-select [(ngModel)]="gender" >
           <ion-select-option value="Masculino">Masculino</ion-select-option>
           <ion-select-option value="Femenino">Femenino</ion-select-option>
           <ion-select-option value="Otro">Otro</ion-select-option>
         </ion-select>
       </ion-item>
+
+
     </div>
     <ion-card>
       <div class="chart-container">
@@ -45,9 +48,7 @@
         <canvas id="doughnutChart"></canvas>
       </div>
     </ion-card>
-
   </ion-card-content>
-
 </ion-content>
 
 <ion-footer class="fixed-footer">

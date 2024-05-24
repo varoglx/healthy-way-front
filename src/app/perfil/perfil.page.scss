@@ -12,60 +12,6 @@
 .profile-avatar {
   position: relative;
   margin-bottom: 16px;
-}
-
-.camera-icon {
-  position: absolute;
-  bottom: -15px;  /* Mover el icono hacia abajo */
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 24px;
-  cursor: pointer;
-  background-color: white;
-  border-radius: 50%;
-  padding: 5px;
-}
-
-.default-avatar-icon {
-  font-size: 100px;
-}
-
-.chart-container {
-  width: 100%;
-  text-align: center;
-  padding: 16px;
-}
-
-.chart-container h2 {
-  font-size: 1.5em;
-  margin-bottom: 8px;
-}
-
-.chart-container p {
-  color: #28a745;
-  margin-bottom: 16px;
-}
-
-.fixed-footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-}
-
-.full-height-card {
-  height: 100%;
-}
-
-.profile-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 16px;
-}
-
-.profile-avatar {
-  position: relative;
-  margin-bottom: 16px;
   display: flex;
   justify-content: center; /* Centrar horizontalmente */
   align-items: center; /* Centrar verticalmente */
@@ -112,4 +58,9 @@
   position: fixed;
   bottom: 0;
   width: 100%;
+}
+
+.genero {
+  display: flex;
+  align-items: center;
 }
