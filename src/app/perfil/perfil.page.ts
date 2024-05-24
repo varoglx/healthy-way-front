@@ -1,4 +1,3 @@
-// perfil.page.ts
 import { Component, AfterViewInit, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import Chart from 'chart.js/auto';
@@ -9,22 +8,13 @@ import Chart from 'chart.js/auto';
   styleUrls: ['./perfil.page.scss'],
 })
 export class PerfilPage implements AfterViewInit, OnInit {
-  
-  username = localStorage.getItem('usuario');
+
+  username: string | null = '';
   email: string = '';
   profilePicture: string | null = null;
-  loadUserEmail() {
-    this.http.post<{ message: string, email: string }>('https://us-central1-healthy-way-f7636.cloudfunctions.net/api/getUserEmail', { username: this.username })
-      .subscribe(
-        response => {
-          this.email = response.email;
-          console.log('thismail: ',this.email)
-        },
-        error => {
-          console.error('Error al cargar el correo del usuario', error);
-        }
-      );
-  }
+  age: number | null = null;
+  gender: string = '';
+
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
@@ -32,17 +22,32 @@ export class PerfilPage implements AfterViewInit, OnInit {
     const userObject = userJsonString ? JSON.parse(userJsonString) : null;
     this.username = userObject ? userObject.username : null;
     console.log(this.username);
-    this.loadUserEmail()
-  
+
+    this.loadUserEmail();
   }
 
   ngAfterViewInit() {
     this.createDoughnutChart();
   }
 
+  loadUserEmail() {
+    this.http.post<{ message: string, email: string }>('https://us-central1-healthy-way-f7636.cloudfunctions.net/api/getUserEmail', { username: this.username })
+      .subscribe(
+        response => {
+          this.email = response.email;
+          console.log('Correo electrónico:', this.email);
+        },
+        error => {
+          console.error('Error al cargar el correo del usuario', error);
+        }
+      );
+  }
+
   updateProfilePicture() {
-    // Lógica para actualizar la foto de perfil
-    // this.profilePicture = 'ruta/nueva-imagen.jpg';
+    const newPicture = prompt("Ingrese la URL de la nueva foto de perfil:");
+    if (newPicture) {
+      this.profilePicture = newPicture;
+    }
   }
 
   createDoughnutChart() {
@@ -56,15 +61,24 @@ export class PerfilPage implements AfterViewInit, OnInit {
             labels: ['Perdidos este mes'],
             datasets: [{
               label: 'Evolución',
-              data: [200],
+              data: [1256], // Valor actualizado para coincidir con la imagen
               backgroundColor: ['#ff6384'],
               hoverOffset: 4
             }]
+          },
+          options: {
+            plugins: {
+              tooltip: {
+                callbacks: {
+                  label: function(tooltipItem) {
+                    return tooltipItem.raw + ' KG perdidos este mes';
+                  }
+                }
+              }
+            }
           }
         });
       }
     }
   }
-
-
 }
