@@ -1,19 +1,21 @@
 .login-content {
-  --background: linear-gradient(to right, #509661, #509661);
+  --background: #E0E3DA;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
 }
 
-.page-title {
-  color: #E0E3DA;
-  margin-bottom: 1em;
-  font-size: 2em;
-  font-weight: bold;
-  font-family: 'Arial', sans-serif;
-  text-align: center;
+div.logo {
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+  margin-bottom: 2em;
+}
+
+.logo-img {
+  width: 90px; /* Ajusta el tamaño según tus necesidades */
+  height: auto;
 }
 
 .login-container {
@@ -21,7 +23,7 @@
   justify-content: center;
   align-items: center;
   padding: 3%;
-
+ 
 }
 
 .login-box {
@@ -34,6 +36,7 @@
   text-align: center;
 }
 
+
 .tabs {
   display: flex;
   justify-content: center;
@@ -43,14 +46,14 @@
 .tabs button {
   background: none;
   border: none;
-  color: #509661;
+  color: #000;
   font-size: 1em;
   padding: 0.5em 1em;
   cursor: pointer;
 }
 
 .tabs button.active {
-  border-bottom: 2px solid #769A7F;
+  border-bottom: 2px solid #00915b;
 }
 
 .form-container {
@@ -58,48 +61,34 @@
 }
 
 ion-item {
-  --background: #509661;
-  --border-color: #c5e9ce;
+  --background: transparent;
+  --border-color: #ccc;
   margin-bottom: 0.5em;
-  border-radius: 5px;
 }
 
 ion-input {
-  --color: white;
+  --color: #000;
 }
 
 ion-label {
-  --color: #b3b3b3;
+  --color: #000;
 }
 
-.signin-button {
-  outline: none;
-  --background: #509661;
-  margin-top: 0.5em;
+.signup-button, .signin-button {
+  --background: #00915b;
+  margin-top: 1em;
+  border-radius: 25px;
+  color: #fff;
 }
 
 .forgot-password {
   display: block;
   margin-top: 1em;
-  color: #509661;
+  color: #00915b;
   text-decoration: none;
   font-size: 0.9em;
 }
 
-
-.text {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1em; 
-  margin-bottom: 1em;
-}
-
-.social {
-  display: flex;
-  justify-content: center;
-  gap: 0.5em; 
-}
 
 .social ion-button {
   --border-radius: 50%; 
@@ -122,10 +111,11 @@ ion-label {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 3%;
+  padding: 0;
 }
 
 .container ion-card {
+  background: #E0E3DA;
   width: 80%; 
   max-width: 300px; 
   padding: 0;

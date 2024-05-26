@@ -1,6 +1,4 @@
-<ion-content>
-
-
+<ion-content class="profile-content">
   <ion-card-content>
     <div class="profile-container">
       <ion-avatar class="profile-avatar">
@@ -31,17 +29,16 @@
       </ion-item>
 
       <ion-item class="genero">
-        <ion-label position="floating">Género</ion-label>
-        <ion-select [(ngModel)]="gender" >
+        <ion-label >Género</ion-label>
+        <ion-select [(ngModel)]="gender">
           <ion-select-option value="Masculino">Masculino</ion-select-option>
           <ion-select-option value="Femenino">Femenino</ion-select-option>
           <ion-select-option value="Otro">Otro</ion-select-option>
         </ion-select>
       </ion-item>
-
-
     </div>
-    <ion-card>
+
+    <ion-card class="chart-card">
       <div class="chart-container">
         <h2>Estadísticas mensuales</h2>
         <p>24 Mar 2024 - 24 Abr 2024</p>
