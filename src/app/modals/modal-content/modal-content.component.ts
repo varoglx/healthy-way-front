@@ -1,19 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
+import { LocalNotifications } from '@capacitor/local-notifications';
+import { NativeAudio } from '@capacitor-community/native-audio';
+import { Platform } from '@ionic/angular';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+
 
 @Component({
   selector: 'app-modal-content',
   templateUrl: './modal-content.component.html',
   styleUrls: ['./modal-content.component.scss'],
 })
-export class ModalContentComponent  implements OnInit {
 
+
+export class ModalContentComponent implements OnInit {
+
+  
   counter = 0;
   alarmForm: FormGroup;
   daysOfWeek = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
+  selectedSound: string = '';
 
-  constructor(private modalController: ModalController, private fb: FormBuilder) {
+  constructor(private modalController: ModalController, private fb: FormBuilder,private platform: Platform, private inAppBrowser: InAppBrowser) {
     this.alarmForm = this.fb.group({
       type: ['', Validators.required],
       time: ['', Validators.required],
@@ -34,7 +43,44 @@ export class ModalContentComponent  implements OnInit {
     this.modalController.dismiss();
   }
 
-  saveAlarm() {
+  openSoundSettings() {
+    if (this.platform.is('android')) {
+      window.open('content://settings/system/notification_sound');
+    } else if (this.platform.is('ios')) {
+      window.open('app-settings:');
+    } else {
+      // Otros sistemas operativos
+      console.error('La configuración de sonido no está disponible en este dispositivo.');
+    }
+  }
+
+  openNotificationSettings() {
+    if (this.platform.is('android') && window.Android) {
+      window.Android.openNotificationSettings();
+    } else if (this.platform.is('ios')) {
+      window.open('app-settings:');
+    } else {
+      // Otros sistemas operativos
+      console.error('La configuración de sonido no está disponible en este dispositivo.');
+    }
+  }
+
+  async chooseSound() {
+    try {
+      await NativeAudio.preload({
+        assetId: 'alarm-sound',
+        assetPath: 'assets/sounds/alarm1.wav', // Asume que tienes el archivo de sonido en esta ubicación
+        audioChannelNum: 1,
+        isUrl: false
+      });
+      this.selectedSound = 'alarm-sound'; // Guarda el assetId para su posterior uso
+    } catch (error) {
+      console.error('Error al predefinir el archivo de sonido:', error);
+    }
+  }
+
+  
+  async saveAlarm() {
     if (this.alarmForm.valid) {
       const newAlarm = {
         id: ++this.counter,
@@ -42,11 +88,56 @@ export class ModalContentComponent  implements OnInit {
         time: this.alarmForm.value.time,
         repeat: this.alarmForm.value.repeat,
         daysOfWeek: this.daysOfWeek.filter(day => this.alarmForm.get(day)?.value === true),
+        sound: this.selectedSound,
       };
-  
+
       this.modalController.dismiss(newAlarm);
       console.log(newAlarm);
+
+      try {
+        // Crear el canal de notificación
+        await LocalNotifications.createChannel({
+          id: 'channel-id',
+          name: 'Nombre del Canal',
+          description: 'Descripción del Canal',
+          importance: 5,
+          sound: newAlarm.sound, // Usar el ID del sonido cargado
+          visibility: 1,
+        });
+      } catch (error) {
+        console.error('Error al crear el canal de notificación:', error);
+      }
+
+      try {
+        // Programar la notificación local
+        await LocalNotifications.requestPermissions();
+
+        const [hours, minutes] = newAlarm.time.split(':').map(Number);
+        const now = new Date();
+        const notificationTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), hours, minutes);
+
+        await LocalNotifications.schedule({
+          notifications: [
+            {
+              title: `Recordatorio de ${newAlarm.type}`,
+              body: 'Es hora de tu actividad programada.',
+              id: newAlarm.id,
+              schedule: { at: notificationTime },
+              channelId: 'channel-id', // ID del canal creado anteriormente
+              attachments: undefined,
+              actionTypeId: '',
+              extra: null,
+            },
+          ],
+        });
+      } catch (error) {
+        console.error('Error al programar la notificación:', error);
+      }
     }
   }
-  
+
+  deleteAll() {
+    localStorage.clear();
+  }
+
 }

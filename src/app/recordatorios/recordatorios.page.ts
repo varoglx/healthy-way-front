@@ -31,6 +31,11 @@ export class RecordatoriosPage implements OnInit {
     }
   }
 
+  
+  deleteAll(){
+    localStorage.removeItem('alarms')
+  }
+
   async openModal() {
     const modal = await this.modalController.create({
       component: ModalContentComponent,

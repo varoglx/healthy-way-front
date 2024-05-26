@@ -5,6 +5,9 @@
       <ion-button fill="solid" color="danger" (click)="toggleCheckboxes()">
         <ion-icon name="trash"></ion-icon>
       </ion-button>
+      <ion-button (click)="deleteAll()">
+        Borrar todo
+      </ion-button>
     </ion-buttons>
   </div>
     
@@ -16,7 +19,7 @@
       <ion-card-content>
         <div *ngIf="alarms">
         <ion-item *ngFor="let alarm of alarms">
-          <ion-checkbox *ngIf="showCheckboxes" (click)="toggleSelection(alarm)" slot="start"></ion-checkbox>
+          <ion-checkbox *ngIf="showCheckboxes" slot="start" (click)="toggleSelection(alarm)"></ion-checkbox>
           <ion-label>
             {{ alarm.type | titlecase }} - {{ alarm.time }}
             <p *ngIf="alarm.repeat">Repetir: 

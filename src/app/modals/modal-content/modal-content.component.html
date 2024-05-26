@@ -22,7 +22,15 @@
       <ion-label>Hora</ion-label>
       <input formControlName="time" type="time" name="selectedTime">
     </ion-item>
-    
+
+    <ion-item>
+    <ion-button expand="full" (click)="openNotificationSettings()">Seleccionar Sonido</ion-button>
+  </ion-item>
+  <ion-item>
+    <ion-label>Sonido: </ion-label>
+    <ion-input [value]="selectedSound" readonly></ion-input>
+  </ion-item>
+
     <ion-item>
       <ion-label>Repetir</ion-label>
       <ion-toggle formControlName="repeat"></ion-toggle>
