@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Crear Alarma</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismissModal()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (ngSubmit)="saveAlarm()" [formGroup]="alarmForm">
+    <ion-item>
+      <ion-label>Tipo</ion-label>
+      <ion-select formControlName="type" placeholder="Seleccionar Tipo">
+        <ion-select-option value="comida">Comida</ion-select-option>
+        <ion-select-option value="sueño">Sueño</ion-select-option>
+        <ion-select-option value="actividad_fisica">Actividad Física</ion-select-option>
+      </ion-select>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label>Hora</ion-label>
+      <input formControlName="time" type="time" name="selectedTime">
+    </ion-item>
+
+    <ion-item>
+    <ion-button expand="full" (click)="openNotificationSettings()">Seleccionar Sonido</ion-button>
+  </ion-item>
+  <ion-item>
+    <ion-label>Sonido: </ion-label>
+    <ion-input [value]="selectedSound" readonly></ion-input>
+  </ion-item>
+
+    <ion-item>
+      <ion-label>Repetir</ion-label>
+      <ion-toggle formControlName="repeat"></ion-toggle>
+    </ion-item>
+    
+    <ion-list *ngIf="alarmForm?.get('repeat').value">
+      <ion-item *ngFor="let day of daysOfWeek">
+        <ion-label>{{ day }}</ion-label>
+        <ion-checkbox [formControlName]="day"></ion-checkbox>
+      </ion-item>
+    </ion-list>
+
+    <ion-button expand="full" type="submit" [disabled]="!alarmForm.valid">Guardar Alarma</ion-button>
+  </form>
+</ion-content>

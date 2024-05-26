@@ -13,4 +13,8 @@ export class HomePage {
   startApp() {
     this.router.navigate(['/registro']);
   }
+
+  go2Login() {
+    this.router.navigate(['/login']);
+  }
 }

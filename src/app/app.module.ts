@@ -6,6 +6,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { StatusBar } from '@capacitor/status-bar';
+import { LocalNotifications } from '@capacitor/local-notifications';
 
 @NgModule({
   declarations: [AppComponent],
@@ -13,9 +15,9 @@ import { AppRoutingModule } from './app-routing.module';
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [ { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
