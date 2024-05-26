@@ -34,6 +34,7 @@ export class RecordatoriosPage implements OnInit {
   
   deleteAll(){
     localStorage.removeItem('alarms')
+    this.alarms=[]
   }
 
   async openModal() {

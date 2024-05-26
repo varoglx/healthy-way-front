@@ -1,3 +1,40 @@
 .bt1{
     margin: 0.5%;
 }
+.record{
+    --background: #E0E3DA;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.title{
+    color: rgb(255, 255, 255);
+}
+ion-item.box{
+    --background:#E0E3DA;
+}
+ion-toggle.toggle{
+    --ion-color-base:: #ddffc2; // Color de la palanca cuando está activado
+    --ion-color-base-checked: #777777; // Color de la palanca cuando está desactivado
+}
+.title1{
+    color: black;
+}
+.bgcard{
+    --background: #00cc81;
+}
+.red{
+    color: rgb(109, 0, 0);
+    margin-left: auto;
+}
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .large-button {
+    --button-height: 100px; /* Ajusta el tamaño según sea necesario */
+    --button-width: 100px;  /* Ajusta el tamaño según sea necesario */
+    font-size: 28px;        /* Ajusta el tamaño de la fuente según sea necesario */
+  }

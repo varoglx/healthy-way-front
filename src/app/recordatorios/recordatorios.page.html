@@ -1,11 +1,11 @@
-  <ion-content>
+  <ion-content class="record">
   <div class="bt1">
-    <ion-buttons>
-      <ion-button fill="solid" color="primary" (click)="openModal()"><ion-icon name="add-circle"></ion-icon></ion-button>
-      <ion-button fill="solid" color="danger" (click)="toggleCheckboxes()">
+    <ion-buttons class="button-container">
+      <ion-button class="large-button" slot="start" color="primary" (click)="openModal()"><ion-icon name="add-circle"></ion-icon></ion-button>
+      <ion-button class="large-button" slot="start" color="danger" (click)="toggleCheckboxes()">
         <ion-icon name="trash"></ion-icon>
       </ion-button>
-      <ion-button (click)="deleteAll()">
+      <ion-button slot="end" (click)="deleteAll()" class="red ">
         Borrar todo
       </ion-button>
     </ion-buttons>
@@ -14,13 +14,13 @@
     <!-- List of Alarms -->
     <ion-card>
       <ion-card-header>
-        <ion-card-title>Lista de Alarmas</ion-card-title>
+        <ion-card-title class="title">Lista de Alarmas</ion-card-title>
       </ion-card-header>
-      <ion-card-content>
+      <ion-card-content >
         <div *ngIf="alarms">
-        <ion-item *ngFor="let alarm of alarms">
+        <ion-item *ngFor="let alarm of alarms"  class="box">
           <ion-checkbox *ngIf="showCheckboxes" slot="start" (click)="toggleSelection(alarm)"></ion-checkbox>
-          <ion-label>
+          <ion-label class="title1">
             {{ alarm.type | titlecase }} - {{ alarm.time }}
             <p *ngIf="alarm.repeat">Repetir: 
               <ng-container *ngFor="let day of alarm.daysOfWeek">
@@ -28,7 +28,7 @@
               </ng-container>
             </p>
           </ion-label>
-          <ion-toggle slot="end" checked></ion-toggle>
+          <ion-toggle slot="end" checked class="toggle"></ion-toggle>
         </ion-item>
       </div>
       <ion-button *ngIf="showCheckboxes && getSelectedIds().length > 0" expand="full" color="danger" (click)="deleteAlarms(getSelectedIds())">Eliminar Seleccionadas</ion-button>
@@ -72,7 +72,7 @@
   }
 
   ion-card {
-    background: #ffffff; /* Green theme background */
+    background:  #00915b; /* Green theme background */
     border-radius: 15px;
 
   }
