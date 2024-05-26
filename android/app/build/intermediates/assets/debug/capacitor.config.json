@@ -1,0 +1,20 @@
+{
+	"appId": "com.example.app",
+	"appName": "Healthy Way",
+	"webDir": "www",
+	"plugins": {
+		"LocalNotifications": {
+			"smallIcon": "ic_stat_icon_config_sample",
+			"iconColor": "#488AFF",
+			"sound": "alarm1.wav"
+		},
+		"FileChooser": {
+			"android": {
+				"PACKAGE_NAME": {}
+			}
+		}
+	},
+	"server": {
+		"url": "http://192.168.0.8:8100"
+	}
+}

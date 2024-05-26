@@ -1,0 +1,209 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.app"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="22"
+9        android:targetSdkVersion="34" />
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->C:\Users\vixone\Documents\GitHub\healthy-way-front\android\app\src\main\AndroidManifest.xml:19:5-67
+11-->C:\Users\vixone\Documents\GitHub\healthy-way-front\android\app\src\main\AndroidManifest.xml:19:22-64
+12    <uses-permission android:name="android.permission.VIBRATE" />
+12-->[:capacitor-haptics] C:\Users\vixone\Documents\GitHub\healthy-way-front\node_modules\@capacitor\haptics\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:7:5-66
+12-->[:capacitor-haptics] C:\Users\vixone\Documents\GitHub\healthy-way-front\node_modules\@capacitor\haptics\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:7:22-63
+13    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+13-->[:capacitor-local-notifications] C:\Users\vixone\Documents\GitHub\healthy-way-front\node_modules\@capacitor\local-notifications\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:7:5-81
+13-->[:capacitor-local-notifications] C:\Users\vixone\Documents\GitHub\healthy-way-front\node_modules\@capacitor\local-notifications\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:7:22-78
+14    <uses-permission android:name="android.permission.WAKE_LOCK" />
+14-->[:capacitor-local-notifications] C:\Users\vixone\Documents\GitHub\healthy-way-front\node_modules\@capacitor\local-notifications\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:8:5-68
+14-->[:capacitor-local-notifications] C:\Users\vixone\Documents\GitHub\healthy-way-front\node_modules\@capacitor\local-notifications\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:8:22-65
+15    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+15-->[:capacitor-local-notifications] C:\Users\vixone\Documents\GitHub\healthy-way-front\node_modules\@capacitor\local-notifications\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-77
+15-->[:capacitor-local-notifications] C:\Users\vixone\Documents\GitHub\healthy-way-front\node_modules\@capacitor\local-notifications\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:9:22-74
+16
+17    <permission
+17-->[androidx.core:core:1.12.0] C:\Users\vixone\.gradle\caches\transforms-3\4f7b0d764f8b5d0d84c4d0344e1adc27\transformed\core-1.12.0\AndroidManifest.xml:22:5-24:47
+18        android:name="com.example.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+18-->[androidx.core:core:1.12.0] C:\Users\vixone\.gradle\caches\transforms-3\4f7b0d764f8b5d0d84c4d0344e1adc27\transformed\core-1.12.0\AndroidManifest.xml:23:9-81
+19        android:protectionLevel="signature" />
+19-->[androidx.core:core:1.12.0] C:\Users\vixone\.gradle\caches\transforms-3\4f7b0d764f8b5d0d84c4d0344e1adc27\transformed\core-1.12.0\AndroidManifest.xml:24:9-44
+20
+21    <uses-permission android:name="com.example.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+21-->[androidx.core:core:1.12.0] C:\Users\vixone\.gradle\caches\transforms-3\4f7b0d764f8b5d0d84c4d0344e1adc27\transformed\core-1.12.0\AndroidManifest.xml:26:5-97
+21-->[androidx.core:core:1.12.0] C:\Users\vixone\.gradle\caches\transforms-3\4f7b0d764f8b5d0d84c4d0344e1adc27\transformed\core-1.12.0\AndroidManifest.xml:26:22-94
+22
+23    <application
+23-->C:\Users\vixone\Documents\GitHub\healthy-way-front\android\app\src\main\AndroidManifest.xml:3:5-18:19
+24        android:allowBackup="true"
+24-->C:\Users\vixone\Documents\GitHub\healthy-way-front\android\app\src\main\AndroidManifest.xml:3:18-44
+25        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+25-->[androidx.core:core:1.12.0] C:\Users\vixone\.gradle\caches\transforms-3\4f7b0d764f8b5d0d84c4d0344e1adc27\transformed\core-1.12.0\AndroidManifest.xml:28:18-86
+26        android:debuggable="true"
+27        android:extractNativeLibs="true"
+28        android:icon="@mipmap/ic_launcher"
+28-->C:\Users\vixone\Documents\GitHub\healthy-way-front\android\app\src\main\AndroidManifest.xml:3:45-79
+29        android:label="@string/app_name"
+29-->C:\Users\vixone\Documents\GitHub\healthy-way-front\android\app\src\main\AndroidManifest.xml:3:80-112
+30        android:roundIcon="@mipmap/ic_launcher_round"
+30-->C:\Users\vixone\Documents\GitHub\healthy-way-front\android\app\src\main\AndroidManifest.xml:3:113-158
+31        android:supportsRtl="true"
+31-->C:\Users\vixone\Documents\GitHub\healthy-way-front\android\app\src\main\AndroidManifest.xml:3:159-185
+32        android:theme="@style/AppTheme"
+32-->C:\Users\vixone\Documents\GitHub\healthy-way-front\android\app\src\main\AndroidManifest.xml:3:186-217
+33        android:usesCleartextTraffic="true" >
+33-->C:\Users\vixone\Documents\GitHub\healthy-way-front\android\app\src\main\AndroidManifest.xml:3:218-253
+34        <activity
+34-->C:\Users\vixone\Documents\GitHub\healthy-way-front\android\app\src\main\AndroidManifest.xml:4:9-9:20
+35            android:name="com.example.app.MainActivity"
+35-->C:\Users\vixone\Documents\GitHub\healthy-way-front\android\app\src\main\AndroidManifest.xml:4:236-264
+36            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode"
+36-->C:\Users\vixone\Documents\GitHub\healthy-way-front\android\app\src\main\AndroidManifest.xml:4:19-135
+37            android:exported="true"
+37-->C:\Users\vixone\Documents\GitHub\healthy-way-front\android\app\src\main\AndroidManifest.xml:4:136-159
+38            android:label="@string/title_activity_main"
+38-->C:\Users\vixone\Documents\GitHub\healthy-way-front\android\app\src\main\AndroidManifest.xml:4:160-203
+39            android:launchMode="singleTask"
+39-->C:\Users\vixone\Documents\GitHub\healthy-way-front\android\app\src\main\AndroidManifest.xml:4:204-235
+40            android:theme="@style/AppTheme.NoActionBarLaunch" >
+40-->C:\Users\vixone\Documents\GitHub\healthy-way-front\android\app\src\main\AndroidManifest.xml:4:265-314
+41            <intent-filter>
+41-->C:\Users\vixone\Documents\GitHub\healthy-way-front\android\app\src\main\AndroidManifest.xml:5:13-8:29
+42                <action android:name="android.intent.action.MAIN" />
+42-->C:\Users\vixone\Documents\GitHub\healthy-way-front\android\app\src\main\AndroidManifest.xml:6:17-69
+42-->C:\Users\vixone\Documents\GitHub\healthy-way-front\android\app\src\main\AndroidManifest.xml:6:25-66
+43
+44                <category android:name="android.intent.category.LAUNCHER" />
+44-->C:\Users\vixone\Documents\GitHub\healthy-way-front\android\app\src\main\AndroidManifest.xml:7:17-77
+44-->C:\Users\vixone\Documents\GitHub\healthy-way-front\android\app\src\main\AndroidManifest.xml:7:27-74
+45            </intent-filter>
+46        </activity>
+47
+48        <provider
+49            android:name="androidx.core.content.FileProvider"
+49-->C:\Users\vixone\Documents\GitHub\healthy-way-front\android\app\src\main\AndroidManifest.xml:10:131-180
+50            android:authorities="com.example.app.fileprovider"
+50-->C:\Users\vixone\Documents\GitHub\healthy-way-front\android\app\src\main\AndroidManifest.xml:10:19-70
+51            android:exported="false"
+51-->C:\Users\vixone\Documents\GitHub\healthy-way-front\android\app\src\main\AndroidManifest.xml:10:71-95
+52            android:grantUriPermissions="true" >
+52-->C:\Users\vixone\Documents\GitHub\healthy-way-front\android\app\src\main\AndroidManifest.xml:10:96-130
+53            <meta-data
+53-->C:\Users\vixone\Documents\GitHub\healthy-way-front\android\app\src\main\AndroidManifest.xml:11:13-112
+54                android:name="android.support.FILE_PROVIDER_PATHS"
+54-->C:\Users\vixone\Documents\GitHub\healthy-way-front\android\app\src\main\AndroidManifest.xml:11:24-74
+55                android:resource="@xml/file_paths" />
+55-->C:\Users\vixone\Documents\GitHub\healthy-way-front\android\app\src\main\AndroidManifest.xml:11:75-109
+56        </provider>
+57
+58        <receiver
+58-->C:\Users\vixone\Documents\GitHub\healthy-way-front\android\app\src\main\AndroidManifest.xml:13:9-17:20
+59            android:name="com.example.app.NotificationReceiver"
+59-->C:\Users\vixone\Documents\GitHub\healthy-way-front\android\app\src\main\AndroidManifest.xml:13:43-79
+60            android:exported="true" >
+60-->C:\Users\vixone\Documents\GitHub\healthy-way-front\android\app\src\main\AndroidManifest.xml:13:19-42
+61            <intent-filter>
+61-->C:\Users\vixone\Documents\GitHub\healthy-way-front\android\app\src\main\AndroidManifest.xml:14:13-16:29
+62                <action android:name="com.example.app.STOP_NOTIFICATION" />
+62-->C:\Users\vixone\Documents\GitHub\healthy-way-front\android\app\src\main\AndroidManifest.xml:15:17-76
+62-->C:\Users\vixone\Documents\GitHub\healthy-way-front\android\app\src\main\AndroidManifest.xml:15:25-73
+63            </intent-filter>
+64        </receiver>
+65        <receiver android:name="com.capacitorjs.plugins.localnotifications.TimedNotificationPublisher" />
+65-->[:capacitor-local-notifications] C:\Users\vixone\Documents\GitHub\healthy-way-front\node_modules\@capacitor\local-notifications\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:12:9-106
+65-->[:capacitor-local-notifications] C:\Users\vixone\Documents\GitHub\healthy-way-front\node_modules\@capacitor\local-notifications\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:12:19-103
+66        <receiver android:name="com.capacitorjs.plugins.localnotifications.NotificationDismissReceiver" />
+66-->[:capacitor-local-notifications] C:\Users\vixone\Documents\GitHub\healthy-way-front\node_modules\@capacitor\local-notifications\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:13:9-107
+66-->[:capacitor-local-notifications] C:\Users\vixone\Documents\GitHub\healthy-way-front\node_modules\@capacitor\local-notifications\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:13:19-104
+67        <receiver
+67-->[:capacitor-local-notifications] C:\Users\vixone\Documents\GitHub\healthy-way-front\node_modules\@capacitor\local-notifications\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:14:9-23:20
+68            android:name="com.capacitorjs.plugins.localnotifications.LocalNotificationRestoreReceiver"
+68-->[:capacitor-local-notifications] C:\Users\vixone\Documents\GitHub\healthy-way-front\node_modules\@capacitor\local-notifications\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-103
+69            android:directBootAware="true"
+69-->[:capacitor-local-notifications] C:\Users\vixone\Documents\GitHub\healthy-way-front\node_modules\@capacitor\local-notifications\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:16:13-43
+70            android:exported="false" >
+70-->[:capacitor-local-notifications] C:\Users\vixone\Documents\GitHub\healthy-way-front\node_modules\@capacitor\local-notifications\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:17:13-37
+71            <intent-filter>
+71-->[:capacitor-local-notifications] C:\Users\vixone\Documents\GitHub\healthy-way-front\node_modules\@capacitor\local-notifications\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:18:13-22:29
+72                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
+72-->[:capacitor-local-notifications] C:\Users\vixone\Documents\GitHub\healthy-way-front\node_modules\@capacitor\local-notifications\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:19:17-86
+72-->[:capacitor-local-notifications] C:\Users\vixone\Documents\GitHub\healthy-way-front\node_modules\@capacitor\local-notifications\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:19:25-83
+73                <action android:name="android.intent.action.BOOT_COMPLETED" />
+73-->[:capacitor-local-notifications] C:\Users\vixone\Documents\GitHub\healthy-way-front\node_modules\@capacitor\local-notifications\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:20:17-79
+73-->[:capacitor-local-notifications] C:\Users\vixone\Documents\GitHub\healthy-way-front\node_modules\@capacitor\local-notifications\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:20:25-76
+74                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+74-->[:capacitor-local-notifications] C:\Users\vixone\Documents\GitHub\healthy-way-front\node_modules\@capacitor\local-notifications\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:21:17-82
+74-->[:capacitor-local-notifications] C:\Users\vixone\Documents\GitHub\healthy-way-front\node_modules\@capacitor\local-notifications\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:21:25-79
+75            </intent-filter>
+76        </receiver>
+77
+78        <provider
+78-->[androidx.emoji2:emoji2:1.2.0] C:\Users\vixone\.gradle\caches\transforms-3\61f606930917a64588c199b54d3d711a\transformed\emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+79            android:name="androidx.startup.InitializationProvider"
+79-->[androidx.emoji2:emoji2:1.2.0] C:\Users\vixone\.gradle\caches\transforms-3\61f606930917a64588c199b54d3d711a\transformed\emoji2-1.2.0\AndroidManifest.xml:25:13-67
+80            android:authorities="com.example.app.androidx-startup"
+80-->[androidx.emoji2:emoji2:1.2.0] C:\Users\vixone\.gradle\caches\transforms-3\61f606930917a64588c199b54d3d711a\transformed\emoji2-1.2.0\AndroidManifest.xml:26:13-68
+81            android:exported="false" >
+81-->[androidx.emoji2:emoji2:1.2.0] C:\Users\vixone\.gradle\caches\transforms-3\61f606930917a64588c199b54d3d711a\transformed\emoji2-1.2.0\AndroidManifest.xml:27:13-37
+82            <meta-data
+82-->[androidx.emoji2:emoji2:1.2.0] C:\Users\vixone\.gradle\caches\transforms-3\61f606930917a64588c199b54d3d711a\transformed\emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+83                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+83-->[androidx.emoji2:emoji2:1.2.0] C:\Users\vixone\.gradle\caches\transforms-3\61f606930917a64588c199b54d3d711a\transformed\emoji2-1.2.0\AndroidManifest.xml:30:17-75
+84                android:value="androidx.startup" />
+84-->[androidx.emoji2:emoji2:1.2.0] C:\Users\vixone\.gradle\caches\transforms-3\61f606930917a64588c199b54d3d711a\transformed\emoji2-1.2.0\AndroidManifest.xml:31:17-49
+85            <meta-data
+85-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\vixone\.gradle\caches\transforms-3\7d158143758428a9a27e664e481c199e\transformed\lifecycle-process-2.6.1\AndroidManifest.xml:29:13-31:52
+86                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+86-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\vixone\.gradle\caches\transforms-3\7d158143758428a9a27e664e481c199e\transformed\lifecycle-process-2.6.1\AndroidManifest.xml:30:17-78
+87                android:value="androidx.startup" />
+87-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\vixone\.gradle\caches\transforms-3\7d158143758428a9a27e664e481c199e\transformed\lifecycle-process-2.6.1\AndroidManifest.xml:31:17-49
+88            <meta-data
+88-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vixone\.gradle\caches\transforms-3\c4b6893a58c24e59df590ee54241c077\transformed\profileinstaller-1.3.0\AndroidManifest.xml:29:13-31:52
+89                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+89-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vixone\.gradle\caches\transforms-3\c4b6893a58c24e59df590ee54241c077\transformed\profileinstaller-1.3.0\AndroidManifest.xml:30:17-85
+90                android:value="androidx.startup" />
+90-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vixone\.gradle\caches\transforms-3\c4b6893a58c24e59df590ee54241c077\transformed\profileinstaller-1.3.0\AndroidManifest.xml:31:17-49
+91        </provider>
+92
+93        <receiver
+93-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vixone\.gradle\caches\transforms-3\c4b6893a58c24e59df590ee54241c077\transformed\profileinstaller-1.3.0\AndroidManifest.xml:34:9-52:20
+94            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+94-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vixone\.gradle\caches\transforms-3\c4b6893a58c24e59df590ee54241c077\transformed\profileinstaller-1.3.0\AndroidManifest.xml:35:13-76
+95            android:directBootAware="false"
+95-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vixone\.gradle\caches\transforms-3\c4b6893a58c24e59df590ee54241c077\transformed\profileinstaller-1.3.0\AndroidManifest.xml:36:13-44
+96            android:enabled="true"
+96-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vixone\.gradle\caches\transforms-3\c4b6893a58c24e59df590ee54241c077\transformed\profileinstaller-1.3.0\AndroidManifest.xml:37:13-35
+97            android:exported="true"
+97-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vixone\.gradle\caches\transforms-3\c4b6893a58c24e59df590ee54241c077\transformed\profileinstaller-1.3.0\AndroidManifest.xml:38:13-36
+98            android:permission="android.permission.DUMP" >
+98-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vixone\.gradle\caches\transforms-3\c4b6893a58c24e59df590ee54241c077\transformed\profileinstaller-1.3.0\AndroidManifest.xml:39:13-57
+99            <intent-filter>
+99-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vixone\.gradle\caches\transforms-3\c4b6893a58c24e59df590ee54241c077\transformed\profileinstaller-1.3.0\AndroidManifest.xml:40:13-42:29
+100                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+100-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vixone\.gradle\caches\transforms-3\c4b6893a58c24e59df590ee54241c077\transformed\profileinstaller-1.3.0\AndroidManifest.xml:41:17-91
+100-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vixone\.gradle\caches\transforms-3\c4b6893a58c24e59df590ee54241c077\transformed\profileinstaller-1.3.0\AndroidManifest.xml:41:25-88
+101            </intent-filter>
+102            <intent-filter>
+102-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vixone\.gradle\caches\transforms-3\c4b6893a58c24e59df590ee54241c077\transformed\profileinstaller-1.3.0\AndroidManifest.xml:43:13-45:29
+103                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+103-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vixone\.gradle\caches\transforms-3\c4b6893a58c24e59df590ee54241c077\transformed\profileinstaller-1.3.0\AndroidManifest.xml:44:17-85
+103-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vixone\.gradle\caches\transforms-3\c4b6893a58c24e59df590ee54241c077\transformed\profileinstaller-1.3.0\AndroidManifest.xml:44:25-82
+104            </intent-filter>
+105            <intent-filter>
+105-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vixone\.gradle\caches\transforms-3\c4b6893a58c24e59df590ee54241c077\transformed\profileinstaller-1.3.0\AndroidManifest.xml:46:13-48:29
+106                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+106-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vixone\.gradle\caches\transforms-3\c4b6893a58c24e59df590ee54241c077\transformed\profileinstaller-1.3.0\AndroidManifest.xml:47:17-88
+106-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vixone\.gradle\caches\transforms-3\c4b6893a58c24e59df590ee54241c077\transformed\profileinstaller-1.3.0\AndroidManifest.xml:47:25-85
+107            </intent-filter>
+108            <intent-filter>
+108-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vixone\.gradle\caches\transforms-3\c4b6893a58c24e59df590ee54241c077\transformed\profileinstaller-1.3.0\AndroidManifest.xml:49:13-51:29
+109                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+109-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vixone\.gradle\caches\transforms-3\c4b6893a58c24e59df590ee54241c077\transformed\profileinstaller-1.3.0\AndroidManifest.xml:50:17-95
+109-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vixone\.gradle\caches\transforms-3\c4b6893a58c24e59df590ee54241c077\transformed\profileinstaller-1.3.0\AndroidManifest.xml:50:25-92
+110            </intent-filter>
+111        </receiver>
+112    </application>
+113
+114</manifest>
