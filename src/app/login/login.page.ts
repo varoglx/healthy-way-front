@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { NavController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,8 +11,12 @@ import { NavController } from '@ionic/angular';
 export class LoginPage {
   username: string='';
   password: string='';
+  
 
-  constructor(private authService: AuthService, private navCtrl: NavController) { }
+  constructor(private authService: AuthService, private navCtrl: NavController,
+    private router: Router) {
+      
+     }
 
   login() {
     this.authService.login(this.username, this.password).subscribe(
@@ -26,4 +31,9 @@ export class LoginPage {
       }
     );
   }
+
+  goToRegisterPage() {
+    this.navCtrl.navigateBack('/registro', { animated: false } );
+  }
+ 
 }

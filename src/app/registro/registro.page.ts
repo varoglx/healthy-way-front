@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { NavController } from '@ionic/angular';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.page.html',
@@ -12,7 +12,7 @@ export class RegistroPage {
   username: string='';
   password: string='';
 
-  constructor(private authService: AuthService, private navCtrl: NavController) { }
+  constructor(private authService: AuthService, private navCtrl: NavController, private router: Router) { }
 
   register() {
     this.authService.register(this.email, this.username, this.password).subscribe(
@@ -27,4 +27,9 @@ export class RegistroPage {
       }
     );
   }
+  
+  goToLoginPage() {
+    this.navCtrl.navigateBack('/login', { animated: false });
+  }
+ 
 }

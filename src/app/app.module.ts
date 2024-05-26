@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { StatusBar } from '@capacitor/status-bar';
 import { LocalNotifications } from '@capacitor/local-notifications';
+import { environment } from '../environments/environment';
+
 
 @NgModule({
   declarations: [AppComponent],

@@ -1,0 +1,133 @@
+.login-content {
+  --background: linear-gradient(to right, #509661, #509661);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.page-title {
+  color: #E0E3DA;
+  margin-bottom: 1em;
+  font-size: 2em;
+  font-weight: bold;
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3%;
+
+}
+
+.login-box {
+  background: #E0E3DA;
+  padding: 2em;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1em;
+}
+
+.tabs button {
+  background: none;
+  border: none;
+  color: #509661;
+  font-size: 1em;
+  padding: 0.5em 1em;
+  cursor: pointer;
+}
+
+.tabs button.active {
+  border-bottom: 2px solid #769A7F;
+}
+
+.form-container {
+  padding: 0 16px;
+}
+
+ion-item {
+  --background: #509661;
+  --border-color: #c5e9ce;
+  margin-bottom: 0.5em;
+  border-radius: 5px;
+}
+
+ion-input {
+  --color: white;
+}
+
+ion-label {
+  --color: #b3b3b3;
+}
+
+.signin-button {
+  outline: none;
+  --background: #509661;
+  margin-top: 0.5em;
+}
+
+.forgot-password {
+  display: block;
+  margin-top: 1em;
+  color: #509661;
+  text-decoration: none;
+  font-size: 0.9em;
+}
+
+
+.text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1em; 
+  margin-bottom: 1em;
+}
+
+.social {
+  display: flex;
+  justify-content: center;
+  gap: 0.5em; 
+}
+
+.social ion-button {
+  --border-radius: 50%; 
+  padding: 0; 
+}
+
+.btn-fb {
+  --background: #567aa3;
+}
+
+.btn-tw {
+  --background: #46a0e0;
+}
+
+.btn-go {
+  --background: #fd684f;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3%;
+}
+
+.container ion-card {
+  width: 80%; 
+  max-width: 300px; 
+  padding: 0;
+  text-align: center;
+}
