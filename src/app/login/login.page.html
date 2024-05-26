@@ -1,30 +1,31 @@
 <ion-content [fullscreen]="true" class="login-content">
-  <h1 class="page-title">HealthyWay</h1>
+  <div class="logo">
+    <img src="assets/icon/healthy1.png" alt="Tu logo" class="logo-img">
+  </div>
+
   <div class="login-container">
     <div class="login-box">
       <div class="tabs">
-        
-        <button class="active">Iniciar Sesión</button>
-        <button ion-button color="primary" (click)="goToRegisterPage()">Registrarse</button>
+        <button class="active" ion-button color="primary">Iniciar Sesión</button>
+        <button ion-button color="primary" (click)="goToRegisterPage()" >Registrarse</button>
       </div>
-      <div class="form-container">
+      <div  class="form-container">
         <ion-item>
-          <ion-label position="stacked" color="light">Nombre de Usuario</ion-label>
+          <ion-label position="stacked">Nombre</ion-label>
           <ion-input [(ngModel)]="username" type="text"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label position="stacked" color="light">Contraseña</ion-label>
+          <ion-label position="stacked">Contraseña</ion-label>
           <ion-input [(ngModel)]="password" type="password"></ion-input>
         </ion-item>
-        
-        <ion-button expand="full" class="signin-button" (click)="login()">Iniciar</ion-button>
+        <ion-button expand="block" class="signup-button" (click)="login()">Iniciar Sesion</ion-button>
       </div>
-
-      <a href="#" class="forgot-password">Recordar Contraseña</a>
+      <a href="#" class="forgot-password">Recuperar Contraseña</a>
     </div>
+    
   </div>
 
-<div class="container">
+  <div class="container">
     <ion-card class="container">
       <ion-card-content>
         <div>
@@ -44,5 +45,6 @@
       </ion-card-content>
     </ion-card>
 </div>
-  
+
+
 </ion-content>

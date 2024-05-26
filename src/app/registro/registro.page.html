@@ -1,7 +1,7 @@
-
-
 <ion-content [fullscreen]="true" class="login-content">
-  <h1 class="page-title">HealthyWay</h1>
+  <div class="logo">
+    <img src="assets/icon/healthy1.png" alt="Tu logo" class="logo-img">
+  </div>
   <div class="login-container">
     <div class="login-box">
       <div class="tabs">
@@ -11,19 +11,19 @@
 
       <div class="form-container">
         <ion-item>
-          <ion-label position="stacked" color="light">Correo Electrónico</ion-label>
+          <ion-label position="stacked">Correo Electrónico</ion-label>
           <ion-input [(ngModel)]="email" type="email" placeholder=""></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label position="stacked" color="light">Nombre de Usuario</ion-label>
+          <ion-label position="stacked">Nombre de Usuario</ion-label>
           <ion-input [(ngModel)]="username" type="text" placeholder=""></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label position="stacked" color="light">Contraseña</ion-label>
+          <ion-label position="stacked">Contraseña</ion-label>
           <ion-input [(ngModel)]="password" type="password" placeholder=""></ion-input>
         </ion-item>
       </div>
-      <ion-button expand="full" class="signin-button" (click)="register()">Registrarse</ion-button>
+      <ion-button expand="block" class="signin-button" (click)="register()">Registrarse</ion-button>
     </div>
   </div>
 </ion-content>
