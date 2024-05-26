@@ -91,21 +91,19 @@ ion-label {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1em; /* Ajusta el tamaño de la fuente si es necesario */
+  font-size: 1em; 
   margin-bottom: 1em;
 }
 
 .social {
   display: flex;
   justify-content: center;
-  gap: 0.5em; /* Ajusta el espacio entre los botones */
+  gap: 0.5em; 
 }
 
 .social ion-button {
-  --width: 40px; /* Ancho de los botones */
-  --height: 40px; /* Altura de los botones */
-  --border-radius: 50%; /* Hace que los botones sean circulares */
-  padding: 0; /* Remueve el padding interno */
+  --border-radius: 50%; 
+  padding: 0; 
 }
 
 .btn-fb {
