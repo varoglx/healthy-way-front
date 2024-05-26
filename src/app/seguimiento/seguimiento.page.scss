@@ -1,0 +1,74 @@
+.imc-content {
+    --background: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  div.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2em;
+  }
+  
+  .logo-img {
+    width: 100px; /* Ajusta el tamaño según tus necesidades */
+    height: auto;
+  }
+  
+  .imc-card {
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: none; /* Remove default shadow */
+    border: 1px solid #ddd; /* Add a subtle border */
+    border-radius: 8px;
+  }
+  
+  .imc-card-title {
+    font-size: 1.5em;
+    color: #000;
+    margin-bottom: 0.5em;
+  }
+  
+  .imc-label {
+    --color: #000;
+  }
+  
+  .imc-input {
+    --color: #000;
+    --background: transparent;
+  }
+  
+  .imc-button {
+    --background: #00915b;
+    margin-top: 1em;
+    border-radius: 25px; /* Bordes redondeados */
+    color: #fff;
+    height: 50px; /* Altura del botón */
+    width: 100%; /* Ancho del botón */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0; /* Sin padding adicional */
+  }
+  
+  .imc-result {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1.2em;
+  }
+  
+  .fixed-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+  
+  ion-content {
+    padding-bottom: 56px;
+  }
+  
