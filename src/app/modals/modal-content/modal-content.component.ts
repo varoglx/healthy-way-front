@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { LocalNotifications } from '@capacitor/local-notifications';
-import { NativeAudio } from '@capacitor-community/native-audio';
 import { Platform } from '@ionic/angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
@@ -65,19 +64,6 @@ export class ModalContentComponent implements OnInit {
     }
   }
 
-  async chooseSound() {
-    try {
-      await NativeAudio.preload({
-        assetId: 'alarm-sound',
-        assetPath: 'assets/sounds/alarm1.wav', // Asume que tienes el archivo de sonido en esta ubicación
-        audioChannelNum: 1,
-        isUrl: false
-      });
-      this.selectedSound = 'alarm-sound'; // Guarda el assetId para su posterior uso
-    } catch (error) {
-      console.error('Error al predefinir el archivo de sonido:', error);
-    }
-  }
 
   
   async saveAlarm() {

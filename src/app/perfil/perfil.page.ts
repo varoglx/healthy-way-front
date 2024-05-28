@@ -63,7 +63,7 @@ export class PerfilPage implements AfterViewInit, OnInit {
               label: 'Evolución',
               data: [1.256], 
               backgroundColor: ['#ff6384'],
-              hoverOffset: 4
+              hoverOffset: 2
             }]
           },
           options: {

@@ -1,0 +1,525 @@
+[
+    {
+        "nombre_receta": "Batido Verde Detox",
+        "tiempo_elaboracion": "5 minutos",
+        "porciones": 1,
+        "calorias": 150,
+        "volumen_porcion": "300ml",
+        "ingredientes": [
+            {
+                "nombre": "Espinacas",
+                "cantidad": "30g",
+                "proteinas": 1,
+                "carbohidratos": 1,
+                "grasas": 0,
+                "fibra": 1,
+                "azucares": 0.2,
+                "sodio": 24,
+                "monoacidos": {
+                    "omega3": 0.03,
+                    "omega6": 0.04
+                }
+            },
+            {
+                "nombre": "Manzana verde",
+                "cantidad": "150g",
+                "proteinas": 0,
+                "carbohidratos": 25,
+                "grasas": 0,
+                "fibra": 4,
+                "azucares": 19,
+                "sodio": 2,
+                "monoacidos": {
+                    "omega3": 0.01,
+                    "omega6": 0.03
+                }
+            },
+            {
+                "nombre": "Pepino",
+                "cantidad": "100g",
+                "proteinas": 0,
+                "carbohidratos": 2,
+                "grasas": 0,
+                "fibra": 0,
+                "azucares": 1.5,
+                "sodio": 2,
+                "monoacidos": {
+                    "omega3": 0.01,
+                    "omega6": 0.02
+                }
+            },
+            {
+                "nombre": "Apio",
+                "cantidad": "50g",
+                "proteinas": 0,
+                "carbohidratos": 1,
+                "grasas": 0,
+                "fibra": 1,
+                "azucares": 0.5,
+                "sodio": 50,
+                "monoacidos": {
+                    "omega3": 0.01,
+                    "omega6": 0.01
+                }
+            },
+            {
+                "nombre": "Limón",
+                "cantidad": "50g",
+                "proteinas": 0,
+                "carbohidratos": 5,
+                "grasas": 0,
+                "fibra": 2,
+                "azucares": 1.5,
+                "sodio": 1,
+                "monoacidos": {
+                    "omega3": 0,
+                    "omega6": 0
+                }
+            },
+            {
+                "nombre": "Agua",
+                "cantidad": "100ml",
+                "proteinas": 0,
+                "carbohidratos": 0,
+                "grasas": 0,
+                "fibra": 0,
+                "azucares": 0,
+                "sodio": 0,
+                "monoacidos": {
+                    "omega3": 0,
+                    "omega6": 0
+                }
+            }
+        ],
+        "forma_cocinar": [
+            "Lavar bien las espinacas, la manzana y el pepino.",
+            "Cortar la manzana y el pepino en trozos.",
+            "Añadir todos los ingredientes a la licuadora.",
+            "Licuar hasta obtener una mezcla homogénea.",
+            "Servir en un vaso con hielo."
+        ],
+        "vitaminas": ["Vitamina A", "Vitamina C", "Vitamina K"],
+        "nutrientes_totales": {
+            "proteinas_totales": 1,
+            "carbohidratos_totales": 34,
+            "grasas_totales": 0,
+            "fibra_total": 8,
+            "azucares_totales": 22.7,
+            "sodio_total": 79,
+            "monoacidos_totales": {
+                "omega3": 0.06,
+                "omega6": 0.1
+            }
+        }
+    },
+    {
+        "nombre_receta": "Tacos de Lechuga con Pavo",
+        "tiempo_elaboracion": "15 minutos",
+        "porciones": 3,
+        "calorias": 200,
+        "volumen_porcion": "250g",
+        "ingredientes": [
+            {
+                "nombre": "Carne de pavo molida",
+                "cantidad": "300g",
+                "proteinas": 33,
+                "carbohidratos": 0,
+                "grasas": 10,
+                "fibra": 0,
+                "azucares": 0,
+                "sodio": 90,
+                "monoacidos": {
+                    "omega3": 0.1,
+                    "omega6": 0.5
+                }
+            },
+            {
+                "nombre": "Cebolla",
+                "cantidad": "100g",
+                "proteinas": 1,
+                "carbohidratos": 9,
+                "grasas": 0,
+                "fibra": 1,
+                "azucares": 5,
+                "sodio": 4,
+                "monoacidos": {
+                    "omega3": 0.02,
+                    "omega6": 0.05
+                }
+            },
+            {
+                "nombre": "Pimiento rojo",
+                "cantidad": "150g",
+                "proteinas": 1,
+                "carbohidratos": 9,
+                "grasas": 0,
+                "fibra": 3,
+                "azucares": 6,
+                "sodio": 3,
+                "monoacidos": {
+                    "omega3": 0.01,
+                    "omega6": 0.03
+                }
+            },
+            {
+                "nombre": "Comino",
+                "cantidad": "1 cucharadita",
+                "proteinas": 1,
+                "carbohidratos": 1,
+                "grasas": 0,
+                "fibra": 1,
+                "azucares": 0.1,
+                "sodio": 1,
+                "monoacidos": {
+                    "omega3": 0.01,
+                    "omega6": 0.02
+                }
+            },
+            {
+                "nombre": "Paprika",
+                "cantidad": "1 cucharadita",
+                "proteinas": 0,
+                "carbohidratos": 1,
+                "grasas": 0,
+                "fibra": 1,
+                "azucares": 0.1,
+                "sodio": 1,
+                "monoacidos": {
+                    "omega3": 0.01,
+                    "omega6": 0.02
+                }
+            },
+            {
+                "nombre": "Lechuga romana",
+                "cantidad": "100g",
+                "proteinas": 1,
+                "carbohidratos": 1,
+                "grasas": 0,
+                "fibra": 1,
+                "azucares": 0.5,
+                "sodio": 2,
+                "monoacidos": {
+                    "omega3": 0.02,
+                    "omega6": 0.05
+                }
+            },
+            {
+                "nombre": "Aguacate",
+                "cantidad": "100g",
+                "proteinas": 2,
+                "carbohidratos": 9,
+                "grasas": 15,
+                "fibra": 7,
+                "azucares": 0.5,
+                "sodio": 7,
+                "monoacidos": {
+                    "omega3": 0.1,
+                    "omega6": 2
+                }
+            }
+        ],
+        "forma_cocinar": [
+            "Cocinar la carne de pavo en una sartén a fuego medio.",
+            "Añadir la cebolla y el pimiento rojo, y cocinar hasta que estén tiernos.",
+            "Sazonar con comino, paprika, sal y pimienta.",
+            "Servir la mezcla de pavo en las hojas de lechuga.",
+            "Añadir rodajas de aguacate por encima."
+        ],
+        "vitaminas": ["Vitamina A", "Vitamina C", "Vitamina E"],
+        "nutrientes_totales": {
+            "proteinas_totales": 39,
+            "carbohidratos_totales": 30,
+            "grasas_totales": 25,
+            "fibra_total": 14,
+            "azucares_totales": 12.2,
+            "sodio_total": 108,
+            "monoacidos_totales": {
+                "omega3": 0.27,
+                "omega6": 2.62
+            }
+        }
+    },
+    {
+        "nombre_receta": "Omelette de Claras con Espinacas",
+        "tiempo_elaboracion": "10 minutos",
+        "porciones": 1,
+        "calorias": 120,
+        "volumen_porcion": "200g",
+        "ingredientes": [
+            {
+                "nombre": "Claras de huevo",
+                "cantidad": "120g",
+                "proteinas": 14,
+                "carbohidratos": 0,
+                "grasas": 0,
+                "fibra": 0,
+                "azucares": 0,
+                "sodio": 55,
+                "monoacidos": {
+                    "omega3": 0.01,
+                    "omega6": 0.05
+                }
+            },
+            {
+                "nombre": "Espinacas",
+                "cantidad": "30g",
+                "proteinas": 1,
+                "carbohidratos": 1,
+                "grasas": 0,
+                "fibra": 1,
+                "azucares": 0.2,
+                "sodio": 24,
+                "monoacidos": {
+                    "omega3": 0.03,
+                    "omega6": 0.04
+                }
+            },
+            {
+                "nombre": "Champiñones",
+                "cantidad": "50g",
+                "proteinas": 1,
+                "carbohidratos": 1,
+                "grasas": 0,
+                "fibra": 1,
+                "azucares": 0.5,
+                "sodio": 1,
+                "monoacidos": {
+                    "omega3": 0.01,
+                    "omega6": 0.01
+                }
+            },
+            {
+                "nombre": "Aceite de oliva",
+                "cantidad": "5ml",
+                "proteinas": 0,
+                "carbohidratos": 0,
+                "grasas": 5,
+                "fibra": 0,
+                "azucares": 0,
+                "sodio": 0,
+                "monoacidos": {
+                    "omega3": 0.05,
+                    "omega6": 0.5
+                }
+            }
+        ],
+        "forma_cocinar": [
+            "Calentar el aceite de oliva en una sartén.",
+            "Añadir las espinacas y los champiñones, y cocinar hasta que estén tiernos.",
+            "Batir las claras de huevo con sal y pimienta.",
+            "Verter las claras de huevo en la sartén y cocinar hasta que estén firmes.",
+            "Doblar el omelette y servir."
+        ],
+        "vitaminas": ["Vitamina A", "Vitamina C", "Vitamina D"],
+        "nutrientes_totales": {
+            "proteinas_totales": 16,
+            "carbohidratos_totales": 2,
+            "grasas_totales": 5,
+            "fibra_total": 2,
+            "azucares_totales": 0.7,
+            "sodio_total": 80,
+            "monoacidos_totales": {
+                "omega3": 0.1,
+                "omega6": 0.6
+            }
+        }
+    },
+    {
+        "nombre_receta": "Salmón al Horno con Espárragos",
+        "tiempo_elaboracion": "25 minutos",
+        "porciones": 2,
+        "calorias": 400,
+        "volumen_porcion": "350g",
+        "ingredientes": [
+            {
+                "nombre": "Filetes de salmón",
+                "cantidad": "200g",
+                "proteinas": 40,
+                "carbohidratos": 0,
+                "grasas": 20,
+                "fibra": 0,
+                "azucares": 0,
+                "sodio": 75,
+                "monoacidos": {
+                    "omega3": 2.5,
+                    "omega6": 0.4
+                }
+            },
+            {
+                "nombre": "Espárragos",
+                "cantidad": "200g",
+                "proteinas": 4,
+                "carbohidratos": 8,
+                "grasas": 0,
+                "fibra": 4,
+                "azucares": 2,
+                "sodio": 3,
+                "monoacidos": {
+                    "omega3": 0.05,
+                    "omega6": 0.1
+                }
+            },
+            {
+                "nombre": "Aceite de oliva",
+                "cantidad": "30ml",
+                "proteinas": 0,
+                "carbohidratos": 0,
+                "grasas": 28,
+                "fibra": 0,
+                "azucares": 0,
+                "sodio": 0,
+                "monoacidos": {
+                    "omega3": 0.3,
+                    "omega6": 3
+                }
+            },
+            {
+                "nombre": "Limón",
+                "cantidad": "50g",
+                "proteinas": 0,
+                "carbohidratos": 5,
+                "grasas": 0,
+                "fibra": 2,
+                "azucares": 1.5,
+                "sodio": 1,
+                "monoacidos": {
+                    "omega3": 0,
+                    "omega6": 0
+                }
+            },
+            {
+                "nombre": "Ajo",
+                "cantidad": "5g",
+                "proteinas": 0,
+                "carbohidratos": 1,
+                "grasas": 0,
+                "fibra": 0,
+                "azucares": 0.1,
+                "sodio": 1,
+                "monoacidos": {
+                    "omega3": 0.01,
+                    "omega6": 0.02
+                }
+            }
+        ],
+        "forma_cocinar": [
+            "Precalentar el horno a 200°C.",
+            "Colocar los filetes de salmón en una bandeja para hornear.",
+            "Rociar el salmón con aceite de oliva, jugo de limón, ajo, sal y pimienta.",
+            "Colocar los espárragos en la misma bandeja y sazonar con aceite de oliva, sal y pimienta.",
+            "Hornear durante 20 minutos o hasta que el salmón esté bien cocido."
+        ],
+        "vitaminas": ["Vitamina A", "Vitamina C", "Vitamina D"],
+        "nutrientes_totales": {
+            "proteinas_totales": 44,
+            "carbohidratos_totales": 14,
+            "grasas_totales": 48,
+            "fibra_total": 6,
+            "azucares_totales": 3.6,
+            "sodio_total": 80,
+            "monoacidos_totales": {
+                "omega3": 3.15,
+                "omega6": 3.52
+            }
+        }
+    },
+    {
+        "nombre_receta": "Quinoa con Vegetales",
+        "tiempo_elaboracion": "30 minutos",
+        "porciones": 2,
+        "calorias": 300,
+        "volumen_porcion": "350g",
+        "ingredientes": [
+            {
+                "nombre": "Quinoa",
+                "cantidad": "100g",
+                "proteinas": 12,
+                "carbohidratos": 39,
+                "grasas": 4,
+                "fibra": 5,
+                "azucares": 1,
+                "sodio": 5,
+                "monoacidos": {
+                    "omega3": 0.1,
+                    "omega6": 0.9
+                }
+            },
+            {
+                "nombre": "Zanahoria",
+                "cantidad": "100g",
+                "proteinas": 1,
+                "carbohidratos": 10,
+                "grasas": 0,
+                "fibra": 3,
+                "azucares": 5,
+                "sodio": 50,
+                "monoacidos": {
+                    "omega3": 0.02,
+                    "omega6": 0.1
+                }
+            },
+            {
+                "nombre": "Pimiento rojo",
+                "cantidad": "100g",
+                "proteinas": 1,
+                "carbohidratos": 9,
+                "grasas": 0,
+                "fibra": 3,
+                "azucares": 6,
+                "sodio": 3,
+                "monoacidos": {
+                    "omega3": 0.01,
+                    "omega6": 0.03
+                }
+            },
+            {
+                "nombre": "Calabacín",
+                "cantidad": "100g",
+                "proteinas": 1,
+                "carbohidratos": 3,
+                "grasas": 0,
+                "fibra": 1,
+                "azucares": 2,
+                "sodio": 3,
+                "monoacidos": {
+                    "omega3": 0.01,
+                    "omega6": 0.02
+                }
+            },
+            {
+                "nombre": "Aceite de oliva",
+                "cantidad": "10ml",
+                "proteinas": 0,
+                "carbohidratos": 0,
+                "grasas": 9,
+                "fibra": 0,
+                "azucares": 0,
+                "sodio": 0,
+                "monoacidos": {
+                    "omega3": 0.1,
+                    "omega6": 1
+                }
+            }
+        ],
+        "forma_cocinar": [
+            "Lavar bien la quinoa y cocinar según las instrucciones del paquete.",
+            "En una sartén grande, calentar el aceite de oliva.",
+            "Añadir las zanahorias, el pimiento rojo y el calabacín, y saltear hasta que estén tiernos.",
+            "Mezclar los vegetales con la quinoa cocida.",
+            "Sazonar al gusto y servir caliente."
+        ],
+        "vitaminas": ["Vitamina A", "Vitamina C", "Vitamina E"],
+        "nutrientes_totales": {
+            "proteinas_totales": 15,
+            "carbohidratos_totales": 61,
+            "grasas_totales": 13,
+            "fibra_total": 12,
+            "azucares_totales": 14,
+            "sodio_total": 61,
+            "monoacidos_totales": {
+                "omega3": 0.24,
+                "omega6": 2.05
+            }
+        }
+    }
+]

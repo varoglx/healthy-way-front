@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Recetas</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismissModal()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <ion-list>
+    <ion-item *ngFor="let recipe of recipes" (click)="openRecipeDetails(recipe)">
+      <ion-thumbnail slot="start" class="recipe-thumbnail">
+        <img [src]="recipe.image" alt="Imagen de la receta">
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ recipe.nombre_receta }}</h2>
+        <p>Tiempo de elaboración: {{ recipe.tiempo_elaboracion }}</p>
+        <p>Porciones: {{ recipe.porciones }}</p>
+        <p>Calorías: {{ recipe.calorias }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

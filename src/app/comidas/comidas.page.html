@@ -1,3 +1,32 @@
+
+<ion-app>
+
+  <ion-content>
+    <ion-list>
+      <ion-item>
+        <ion-label>Seleccionar Dieta</ion-label>
+        <ion-select placeholder="Seleccionar Tipo de Dieta" (ionChange)="guardarTipoDieta($event)">
+          <ion-select-option value="weight_loss">Pérdida de Peso</ion-select-option>
+          <ion-select-option value="muscle_gain">Ganancia de Músculo</ion-select-option>
+          <ion-select-option value="maintenance">Mantenimiento</ion-select-option>
+        </ion-select>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label>Seguimiento Nutricional</ion-label>
+        <ion-button expand="block" routerLink="/nutritional-tracking">Registrar Comidas</ion-button>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Recetas Saludables</ion-label>
+        <ion-button expand="block" (click)="openModal()">Ver Recetas</ion-button>
+      </ion-item>
+      
+    </ion-list>
+  </ion-content>
+
+
+</ion-app>
 <ion-footer class="fixed-footer">
   <ion-tab-bar slot="bottom">
     <ion-tab-button tab="comidas" routerLink="/comidas">
