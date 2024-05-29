@@ -9,17 +9,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage {
-  username: string='';
-  password: string='';
+  email: string = '';
+  password: string = '';
   
-
-  constructor(private authService: AuthService, private navCtrl: NavController,
-    private router: Router) {
-      
-     }
+  constructor(private authService: AuthService, private navCtrl: NavController, private router: Router) { }
 
   login() {
-    this.authService.login(this.username, this.password).subscribe(
+    this.authService.loginWithEmail(this.email, this.password).then(
       response => {
         console.log('Inicio de sesión exitoso', response);
         localStorage.setItem('usuario', JSON.stringify(response.user));
@@ -33,7 +29,6 @@ export class LoginPage {
   }
 
   goToRegisterPage() {
-    this.navCtrl.navigateBack('/registro', { animated: false } );
+    this.navCtrl.navigateBack('/registro', { animated: false });
   }
- 
 }

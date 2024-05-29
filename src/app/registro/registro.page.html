@@ -6,38 +6,20 @@
     <div class="login-box">
       <div class="tabs">
         <button ion-button color="primary" (click)="goToLoginPage()">Iniciar Sesión</button>
-        <button class="active" ion-button color="primary" >Registrarse</button>
+        <button class="active" ion-button color="primary">Registrarse</button>
       </div>
 
       <div class="form-container">
         <ion-item>
           <ion-label position="stacked">Correo Electrónico</ion-label>
-          <ion-input [(ngModel)]="email" type="email" placeholder=""></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="stacked">Nombre de Usuario</ion-label>
-          <ion-input [(ngModel)]="username" type="text" placeholder=""></ion-input>
+          <ion-input [(ngModel)]="email" type="email" name="email" placeholder="" required></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="stacked">Contraseña</ion-label>
-          <ion-input [(ngModel)]="password" type="password" placeholder=""></ion-input>
+          <ion-input [(ngModel)]="password" type="password" name="password" placeholder="" required></ion-input>
         </ion-item>
       </div>
       <ion-button expand="block" class="signin-button" (click)="register()">Registrarse</ion-button>
     </div>
   </div>
 </ion-content>
-
-
-
-
-
-
-
-
-
-
-
-
-
-

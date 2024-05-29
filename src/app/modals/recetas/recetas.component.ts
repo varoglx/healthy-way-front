@@ -40,7 +40,7 @@ export class RecetasComponent implements OnInit {
     return await modal.present();
   }
   loadRecipes() {
-    this.http.get<any[]>('http://127.0.0.1:5001/healthy-way-f7636/us-central1/api/recipes')
+    this.http.get<any[]>('https://us-central1-healthy-way-f7636.cloudfunctions.net/api/recipes')
       .subscribe(
         response => {
           this.recipes = response.map((recipe, index) => ({

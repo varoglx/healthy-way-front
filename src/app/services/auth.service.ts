@@ -1,20 +1,26 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private baseUrl = 'https://us-central1-healthy-way-f7636.cloudfunctions.net/api';
 
-  constructor(private http: HttpClient) { }
+  constructor(private afAuth: AngularFireAuth) { }
 
-  login(username: string, password: string): Observable<any> {
-    return this.http.post(`${this.baseUrl}/login`, { username, password });
+  loginWithEmail(email: string, password: string) {
+    return this.afAuth.signInWithEmailAndPassword(email, password);
   }
 
-  register(email: string, username: string, password: string): Observable<any> {
-    return this.http.post(`${this.baseUrl}/register`, { email, username, password });
+  registerWithEmail(email: string, password: string) {
+    return this.afAuth.createUserWithEmailAndPassword(email, password);
+  }
+
+  logout() {
+    return this.afAuth.signOut();
+  }
+
+  getCurrentUser() {
+    return this.afAuth.authState;
   }
 }

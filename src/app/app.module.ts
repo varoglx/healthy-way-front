@@ -10,12 +10,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { StatusBar } from '@capacitor/status-bar';
 import { LocalNotifications } from '@capacitor/local-notifications';
 import { environment } from '../environments/environment';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 
 
 @NgModule({
   declarations: [AppComponent, RecetasComponent,RecetaDetallesComponent],
   imports: [
     BrowserModule,
+    // Inicializa AngularFire con tu configuración de Firebase
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule ,// Importa el módulo de Firestore
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
