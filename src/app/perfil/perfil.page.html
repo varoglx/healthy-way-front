@@ -15,7 +15,7 @@
 
       <ion-item>
         <ion-label position="floating">Nombre usuario</ion-label>
-        <ion-input [(ngModel)]="username" readonly></ion-input>
+        <ion-input [(ngModel)]="username"></ion-input>
       </ion-item>
 
       <ion-item>
@@ -29,13 +29,15 @@
       </ion-item>
 
       <ion-item class="genero">
-        <ion-label >Género</ion-label>
+        <ion-label>Género</ion-label>
         <ion-select [(ngModel)]="gender">
           <ion-select-option value="Masculino">Masculino</ion-select-option>
           <ion-select-option value="Femenino">Femenino</ion-select-option>
           <ion-select-option value="Otro">Otro</ion-select-option>
         </ion-select>
       </ion-item>
+      
+      <ion-button expand="full" routerLink="/modals/edit-profile-modal" >Modificar perfil</ion-button>
     </div>
 
     <ion-card class="chart-card">

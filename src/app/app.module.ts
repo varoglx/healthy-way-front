@@ -12,7 +12,7 @@ import { LocalNotifications } from '@capacitor/local-notifications';
 import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
-
+import { EditProfileModalComponent } from './modals/edit-profile-modal/edit-profile-modal.component';
 
 @NgModule({
   declarations: [AppComponent, RecetasComponent,RecetaDetallesComponent],

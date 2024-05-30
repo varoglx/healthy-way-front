@@ -1,6 +1,11 @@
 import { Component, AfterViewInit, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import Chart from 'chart.js/auto';
+import { AuthService } from '../services/auth.service';
+import { ModalController } from '@ionic/angular';
+import { EditProfileModalComponent } from '../modals/edit-profile-modal/edit-profile-modal.component';
+
+
 
 @Component({
   selector: 'app-perfil',
@@ -15,7 +20,9 @@ export class PerfilPage implements AfterViewInit, OnInit {
   age: number | null = null;
   gender: string = '';
 
-  constructor(private http: HttpClient) { }
+  userProfile: any;
+
+  constructor(private http: HttpClient,private authService: AuthService,private modalController: ModalController) { }
 
   ngOnInit(): void {
     const userJsonString = localStorage.getItem('usuario');
@@ -24,7 +31,15 @@ export class PerfilPage implements AfterViewInit, OnInit {
     console.log(this.username);
 
     this.loadUserEmail();
+
+    this.authService.getCurrentUser().subscribe(user => {
+      if (user) {
+        this.email = user.email || '';
+        console.log('Correo electrónico autenticado:', this.email);
+      }
+    });
   }
+  
 
   ngAfterViewInit() {
     this.createDoughnutChart();
@@ -49,6 +64,25 @@ export class PerfilPage implements AfterViewInit, OnInit {
       this.profilePicture = newPicture;
     }
   }
+
+  saveProfile() {
+    this.authService.getCurrentUser().subscribe(user => {
+      if (user) {
+        const profileData = {
+          username: this.username,
+          age: this.age,
+          gender: this.gender,
+          profilePicture: this.profilePicture
+        };
+        this.authService.updateUserProfile(user.uid, profileData).then(() => {
+          console.log('Perfil actualizado exitosamente');
+        }).catch(error => {
+          console.error('Error al actualizar el perfil', error);
+        });
+      }
+    });
+  }
+
 
   createDoughnutChart() {
     const canvas = document.getElementById('doughnutChart') as HTMLCanvasElement;
@@ -81,4 +115,5 @@ export class PerfilPage implements AfterViewInit, OnInit {
       }
     }
   }
+  
 }

@@ -19,7 +19,7 @@ export class LoginPage {
       response => {
         console.log('Inicio de sesión exitoso', response);
         localStorage.setItem('usuario', JSON.stringify(response.user));
-        this.navCtrl.navigateRoot('/menu');
+        this.navCtrl.navigateRoot('/comidas');
       },
       error => {
         console.error('Error en el inicio de sesión', error);
