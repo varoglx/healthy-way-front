@@ -1,8 +1,10 @@
+
+
 <ion-header>
   <ion-toolbar>
     <ion-title>Editar Perfil</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="dismiss()">Cerrar</ion-button>
+      <ion-button (click)="closeModal()">Cerrar</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -10,27 +12,22 @@
 <ion-content>
   <ion-item>
     <ion-label position="floating">Nombre de usuario</ion-label>
-    <ion-input [(ngModel)]="userProfile.username"></ion-input>
+    <ion-input ></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label position="floating">Edad</ion-label>
-    <ion-input type="number" [(ngModel)]="userProfile.age"></ion-input>
+    <ion-input type="number"></ion-input>
   </ion-item>
 
-  <ion-item class="genero">
+  <ion-item>
     <ion-label>Género</ion-label>
-    <ion-select [(ngModel)]="userProfile.gender">
+    <ion-select >
       <ion-select-option value="Masculino">Masculino</ion-select-option>
       <ion-select-option value="Femenino">Femenino</ion-select-option>
       <ion-select-option value="Otro">Otro</ion-select-option>
     </ion-select>
   </ion-item>
 
-  <ion-item>
-    <ion-label position="floating">Foto de perfil</ion-label>
-    <ion-input [(ngModel)]="userProfile.profilePicture"></ion-input>
-  </ion-item>
-
-  <ion-button expand="full" (click)="saveProfile()">Guardar</ion-button>
+  <ion-button expand="full" >Guardar</ion-button>
 </ion-content>

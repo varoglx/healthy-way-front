@@ -15,15 +15,15 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { EditProfileModalComponent } from './modals/edit-profile-modal/edit-profile-modal.component';
 
 @NgModule({
-  declarations: [AppComponent, RecetasComponent,RecetaDetallesComponent],
+  declarations: [AppComponent, RecetasComponent,RecetaDetallesComponent,EditProfileModalComponent],
   imports: [
     BrowserModule,
-    // Inicializa AngularFire con tu configuración de Firebase
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFirestoreModule ,// Importa el módulo de Firestore
+    AngularFirestoreModule ,
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
+    
   ],
   providers: [ { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

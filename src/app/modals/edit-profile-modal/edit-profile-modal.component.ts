@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { AuthService , UserProfile } from '../../services/auth.service';
+import { AuthService, UserProfile } from '../../services/auth.service';
 
 @Component({
   selector: 'app-edit-profile-modal',
@@ -8,34 +8,23 @@ import { AuthService , UserProfile } from '../../services/auth.service';
   styleUrls: ['./edit-profile-modal.component.scss'],
 })
 export class EditProfileModalComponent {
+  @Input() userProfile: UserProfile = {};
 
-  @Input() userId: string = '';
-  userProfile: UserProfile = {};
+  constructor(private modalController: ModalController, private authService: AuthService) { }
 
-  constructor(private modalController: ModalController, private authService: AuthService) {}
-
-  ngOnInit() {
-    if (this.userId) {
-      this.authService.getUserProfile(this.userId).subscribe(profile => {
-        if (profile) {
-          this.userProfile = profile;
-        }
-      }, error => {
-        console.error('Error al cargar el perfil del usuario', error);
-      });
-    }
-  }
-
-  dismiss() {
+  closeModal() {
     this.modalController.dismiss();
   }
 
   saveProfile() {
-    this.authService.updateUserProfile(this.userId, this.userProfile).then(() => {
-      console.log('Perfil actualizado exitosamente');
-      this.dismiss();
-    }).catch(error => {
-      console.error('Error al actualizar el perfil', error);
-    });
+    if (this.authService.currentUser) {
+      this.authService.updateUserProfile(this.authService.currentUser.uid, this.userProfile)
+        .then(() => {
+          this.modalController.dismiss(this.userProfile);
+        })
+        .catch(error => {
+          console.error('Error updating profile:', error);
+        });
+    }
   }
 }

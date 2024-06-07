@@ -1,3 +1,17 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Perfil</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()">
+        <ion-icon name="log-out-outline"></ion-icon>
+        Salir
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
 <ion-content class="profile-content">
   <ion-card-content>
     <div class="profile-container">
@@ -8,14 +22,13 @@
         <ng-template #noPicture>
           <ion-icon name="person-circle-outline" class="default-avatar-icon"></ion-icon>
         </ng-template>
-        <ion-icon name="camera" class="camera-icon" (click)="updateProfilePicture()"></ion-icon>
       </ion-avatar>
 
       <h2>Información Personal</h2>
 
       <ion-item>
         <ion-label position="floating">Nombre usuario</ion-label>
-        <ion-input [(ngModel)]="username"></ion-input>
+        <ion-input [(ngModel)]="username" readonly></ion-input>
       </ion-item>
 
       <ion-item>
@@ -25,19 +38,19 @@
 
       <ion-item>
         <ion-label position="floating">Edad</ion-label>
-        <ion-input type="number" [(ngModel)]="age"></ion-input>
+        <ion-input type="number" [(ngModel)]="age" readonly></ion-input>
       </ion-item>
 
       <ion-item class="genero">
         <ion-label>Género</ion-label>
-        <ion-select [(ngModel)]="gender">
+        <ion-select [(ngModel)]="gender" disabled>
           <ion-select-option value="Masculino">Masculino</ion-select-option>
           <ion-select-option value="Femenino">Femenino</ion-select-option>
           <ion-select-option value="Otro">Otro</ion-select-option>
         </ion-select>
       </ion-item>
       
-      <ion-button expand="full" routerLink="/modals/edit-profile-modal" >Modificar perfil</ion-button>
+      <ion-button expand="full" (click)="openEditProfileModal()">Modificar perfil</ion-button>
     </div>
 
     <ion-card class="chart-card">

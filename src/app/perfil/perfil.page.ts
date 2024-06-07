@@ -1,10 +1,10 @@
 import { Component, AfterViewInit, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import Chart from 'chart.js/auto';
-import { AuthService } from '../services/auth.service';
+import { AuthService, UserProfile } from '../services/auth.service';
 import { ModalController } from '@ionic/angular';
 import { EditProfileModalComponent } from '../modals/edit-profile-modal/edit-profile-modal.component';
-
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -20,9 +20,12 @@ export class PerfilPage implements AfterViewInit, OnInit {
   age: number | null = null;
   gender: string = '';
 
-  userProfile: any;
+  userProfile: UserProfile | null = null;
 
-  constructor(private http: HttpClient,private authService: AuthService,private modalController: ModalController) { }
+  constructor(private http: HttpClient, 
+    private authService: AuthService, 
+    private modalController: ModalController,
+    private router: Router) { }
 
   ngOnInit(): void {
     const userJsonString = localStorage.getItem('usuario');
@@ -34,12 +37,20 @@ export class PerfilPage implements AfterViewInit, OnInit {
 
     this.authService.getCurrentUser().subscribe(user => {
       if (user) {
-        this.email = user.email || '';
-        console.log('Correo electrónico autenticado:', this.email);
+        this.authService.getUserProfile(user.uid).subscribe(profile => {
+          if (profile) {
+            this.userProfile = profile as UserProfile;
+            this.username = this.userProfile?.username ?? '';
+            this.email = user.email ?? '';
+            this.profilePicture = this.userProfile?.profilePicture ?? null;
+            this.age = this.userProfile?.age ?? null;
+            this.gender = this.userProfile?.gender ?? '';
+            console.log('Perfil del usuario:', profile);
+          }
+        });
       }
     });
   }
-  
 
   ngAfterViewInit() {
     this.createDoughnutChart();
@@ -65,25 +76,6 @@ export class PerfilPage implements AfterViewInit, OnInit {
     }
   }
 
-  saveProfile() {
-    this.authService.getCurrentUser().subscribe(user => {
-      if (user) {
-        const profileData = {
-          username: this.username,
-          age: this.age,
-          gender: this.gender,
-          profilePicture: this.profilePicture
-        };
-        this.authService.updateUserProfile(user.uid, profileData).then(() => {
-          console.log('Perfil actualizado exitosamente');
-        }).catch(error => {
-          console.error('Error al actualizar el perfil', error);
-        });
-      }
-    });
-  }
-
-
   createDoughnutChart() {
     const canvas = document.getElementById('doughnutChart') as HTMLCanvasElement;
     if (canvas) {
@@ -95,7 +87,7 @@ export class PerfilPage implements AfterViewInit, OnInit {
             labels: ['Perdidos este mes'],
             datasets: [{
               label: 'Evolución',
-              data: [1.256], 
+              data: [1.256],
               backgroundColor: ['#ff6384'],
               hoverOffset: 2
             }]
@@ -115,5 +107,30 @@ export class PerfilPage implements AfterViewInit, OnInit {
       }
     }
   }
-  
+
+  async openEditProfileModal() {
+    const modal = await this.modalController.create({
+      component: EditProfileModalComponent,
+      componentProps: { userProfile: this.userProfile }
+    });
+    modal.onDidDismiss().then((data) => {
+      if (data.data) {
+        this.userProfile = data.data;
+        this.username = this.userProfile?.username ?? '';
+        this.profilePicture = this.userProfile?.profilePicture ?? null;
+        this.age = this.userProfile?.age ?? null;
+        this.gender = this.userProfile?.gender ?? '';
+      }
+    });
+    return await modal.present();
+  }
+
+  logout() {
+    this.authService.logout().then(() => {
+      localStorage.removeItem('usuario'); // Eliminar usuario del localStorage si es necesario
+      this.router.navigate(['/login']); // Redirigir a la página de login
+    }).catch(error => {
+      console.error('Error al cerrar sesión:', error);
+    });
+  }
 }
