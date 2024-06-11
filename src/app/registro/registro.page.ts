@@ -9,6 +9,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./registro.page.scss'],
 })
 export class RegistroPage {
+  name: string = '';
+  age: string = '';
+  gender: string = '';
   email: string = '';
   password: string = '';
 
@@ -18,12 +21,21 @@ export class RegistroPage {
     this.authService.registerWithEmail(this.email, this.password).then(
       response => {
         console.log('Registro exitoso', response);
-        // Navegar a otra página o mostrar mensaje de éxito
-        this.navCtrl.navigateRoot('/login');
+        const userId = response.user?.uid;
+        if (userId) {
+          const profileData = {
+            name: this.name,
+            age: this.age,
+            gender: this.gender
+          };
+          this.authService.updateUserProfile(userId, profileData).then(() => {
+            console.log('Perfil actualizado exitosamente');
+            this.navCtrl.navigateRoot('/login');
+          });
+        }
       },
       error => {
         console.error('Error en el registro', error);
-        // Manejar el error, mostrar un mensaje al usuario, etc.
       }
     );
   }

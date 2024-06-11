@@ -11,14 +11,31 @@
 
       <div class="form-container">
         <ion-item>
+          <ion-label position="stacked">Nombre</ion-label>
+          <ion-input [(ngModel)]="name" type="text" name="name" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Edad</ion-label>
+          <ion-input [(ngModel)]="age" type="number" name="age" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Género</ion-label>
+          <ion-select [(ngModel)]="gender" interface="popover">
+            <ion-select-option value="Masculino">Masculino</ion-select-option>
+            <ion-select-option value="Femenino">Femenino</ion-select-option>
+            <ion-select-option value="Otro">Otro</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
           <ion-label position="stacked">Correo Electrónico</ion-label>
-          <ion-input [(ngModel)]="email" type="email" name="email" placeholder="" required></ion-input>
+          <ion-input [(ngModel)]="email" type="email" name="email" required></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="stacked">Contraseña</ion-label>
-          <ion-input [(ngModel)]="password" type="password" name="password" placeholder="" required></ion-input>
+          <ion-input [(ngModel)]="password" type="password" name="password" required></ion-input>
         </ion-item>
       </div>
+
       <ion-button expand="block" class="signin-button" (click)="register()">Registrarse</ion-button>
     </div>
   </div>

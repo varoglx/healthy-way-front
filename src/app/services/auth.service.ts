@@ -12,20 +12,14 @@ export interface UserProfile {
 @Injectable({
   providedIn: 'root'
 })
-
-
-
 export class AuthService {
-  
   currentUser: any;
- 
 
-  constructor(private afAuth: AngularFireAuth,private firestore: AngularFirestore) {
+  constructor(private afAuth: AngularFireAuth, private firestore: AngularFirestore) {
     this.afAuth.authState.subscribe(user => {
       this.currentUser = user;
     });
-   }
-  
+  }
 
   loginWithEmail(email: string, password: string) {
     return this.afAuth.signInWithEmailAndPassword(email, password);
@@ -43,7 +37,6 @@ export class AuthService {
     return this.afAuth.authState;
   }
 
- 
   updateUserProfile(userId: string, profileData: any) {
     return this.firestore.collection('users').doc(userId).set(profileData, { merge: true });
   }
@@ -52,5 +45,3 @@ export class AuthService {
     return this.firestore.collection('users').doc(userId).valueChanges();
   }
 }
-
-
