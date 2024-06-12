@@ -32,76 +32,8 @@ export class PerfilPage implements AfterViewInit, OnInit {
     }
 
   ngAfterViewInit() {
-    this.createDoughnutChart();
+    
   }
-
-  
-
-  updateProfilePicture() {
-    const newPicture = prompt("Ingrese la URL de la nueva foto de perfil:");
-    if (newPicture) {
-      this.profilePicture = newPicture;
-    }
-  }
-
-  createDoughnutChart() {
-    const canvas = document.getElementById('doughnutChart') as HTMLCanvasElement;
-    if (canvas) {
-      const ctx = canvas.getContext('2d');
-      if (ctx) {
-        new Chart(ctx, {
-          type: 'doughnut',
-          data: {
-            labels: ['Perdidos este mes'],
-            datasets: [{
-              label: 'Evolución',
-              data: [1.256],
-              backgroundColor: ['#ff6384'],
-              hoverOffset: 2
-            }]
-          },
-          options: {
-            plugins: {
-              tooltip: {
-                callbacks: {
-                  label: function(tooltipItem) {
-                    return tooltipItem.raw + ' KG perdidos este mes';
-                  }
-                }
-              }
-            }
-          }
-        });
-      }
-    }
-  }
-
-  async openEditProfileModal() {
-    const modal = await this.modalController.create({
-      component: EditProfileModalComponent,
-      componentProps: { userProfile: this.userProfile }
-    });
-    modal.onDidDismiss().then((data) => {
-      if (data.data) {
-        this.userProfile = data.data;
-        this.name = this.userProfile?.name ?? '';
-        this.profilePicture = this.userProfile?.profilePicture ?? null;
-        this.age = this.userProfile?.age ?? null;
-        this.gender = this.userProfile?.gender ?? '';
-      }
-    });
-    return await modal.present();
-  }
-
-  logout() {
-    this.authService.logout().then(() => {
-      localStorage.removeItem('usuario'); 
-      this.router.navigate(['/login']); 
-    }).catch(error => {
-      console.error('Error al cerrar sesión:', error);
-    });
-  }
-
 
   loadUserProfile() {
     this.authService.getCurrentUser().subscribe(user => {
@@ -132,4 +64,25 @@ export class PerfilPage implements AfterViewInit, OnInit {
       }
     });
   }
+
+  updateProfilePicture() {
+    const newPicture = prompt("Ingrese la URL de la nueva foto de perfil:");
+    if (newPicture) {
+      this.profilePicture = newPicture;
+    }
+  }
+
+  
+
+  logout() {
+    this.authService.logout().then(() => {
+      localStorage.removeItem('usuario'); 
+      this.router.navigate(['/login']); 
+    }).catch(error => {
+      console.error('Error al cerrar sesión:', error);
+    });
+  }
+
+
+  
 }

@@ -40,27 +40,15 @@
         <ion-label position="floating">Edad</ion-label>
         <ion-input type="number" [(ngModel)]="age" readonly></ion-input>
       </ion-item>
-      
-      <ion-item class="genero">
-        <ion-label>Género</ion-label>
-        <ion-select [(ngModel)]="gender" disabled>
-          <ion-select-option value="Masculino">Masculino</ion-select-option>
-          <ion-select-option value="Femenino">Femenino</ion-select-option>
-          <ion-select-option value="Otro">Otro</ion-select-option>
-        </ion-select>
+   
+      <ion-item>
+        <ion-label position="floating">Genero</ion-label>
+        <ion-input [(ngModel)]="gender" readonly></ion-input>
       </ion-item>
       
-      
-      <ion-button expand="full" (click)="openEditProfileModal()">Modificar perfil</ion-button>
     </div>
 
-    <ion-card class="chart-card">
-      <div class="chart-container">
-        <h2>Estadísticas mensuales</h2>
-        <p>24 Mar 2024 - 24 Abr 2024</p>
-        <canvas id="doughnutChart"></canvas>
-      </div>
-    </ion-card>
+   
   </ion-card-content>
 </ion-content>
 
