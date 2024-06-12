@@ -18,12 +18,25 @@ export class LoginPage {
     this.authService.loginWithEmail(this.email, this.password).then(
       response => {
         console.log('Inicio de sesión exitoso', response);
-        localStorage.setItem('usuario', JSON.stringify(response.user));
-        this.navCtrl.navigateRoot('/comidas');
+        if (response.user && response.user.uid) {
+          this.authService.getUserProfile(response.user.uid).subscribe(
+            userProfile => {
+              console.log('Datos del usuario:', userProfile);
+              localStorage.setItem('usuario', JSON.stringify(userProfile));
+              this.navCtrl.navigateRoot('/menu');
+            },
+            error => {
+              console.error('Error al obtener datos del usuario', error);
+            }
+          );
+        } else {
+          console.error('El objeto de usuario en la respuesta es nulo');
+          
+        }
       },
       error => {
         console.error('Error en el inicio de sesión', error);
-        // Manejar el error, mostrar un mensaje al usuario, etc.
+        
       }
     );
   }

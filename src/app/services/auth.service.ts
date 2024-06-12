@@ -3,7 +3,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 export interface UserProfile {
-  username?: string;
+  name?: string;
   age?: number | null;
   gender?: string;
   profilePicture?: string | null;

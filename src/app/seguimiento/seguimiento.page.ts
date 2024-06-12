@@ -10,14 +10,13 @@ export class SeguimientoPage implements OnInit {
   peso: number = 0;
   altura: number = 0;
   imc: number = 0;
-  username:string='';
+  name:string='';
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
     const userJsonString = localStorage.getItem('usuario');
     const userObject = userJsonString ? JSON.parse(userJsonString) : null;
-    this.username = userObject ? userObject.username : null;
-    console.log(this.username);
+    this.name = userObject ? userObject.username : null;
   }
 
   calcularIMC() {
@@ -34,7 +33,7 @@ export class SeguimientoPage implements OnInit {
 
   storeBmiData() {
     const bmiData = {
-      username: this.username,  // Replace with actual username
+      name: this.name,  // Replace with actual username
       peso: this.peso,
       altura: this.altura,
       imc: this.imc,

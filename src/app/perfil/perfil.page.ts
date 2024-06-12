@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 })
 export class PerfilPage implements AfterViewInit, OnInit {
 
-  username: string | null = '';
+  name: string | null = '';
   email: string = '';
   profilePicture: string | null = null;
   age: number | null = null;
@@ -27,47 +27,15 @@ export class PerfilPage implements AfterViewInit, OnInit {
     private modalController: ModalController,
     private router: Router) { }
 
-  ngOnInit(): void {
-    const userJsonString = localStorage.getItem('usuario');
-    const userObject = userJsonString ? JSON.parse(userJsonString) : null;
-    this.username = userObject ? userObject.username : null;
-    console.log(this.username);
-
-    this.loadUserEmail();
-
-    this.authService.getCurrentUser().subscribe(user => {
-      if (user) {
-        this.authService.getUserProfile(user.uid).subscribe(profile => {
-          if (profile) {
-            this.userProfile = profile as UserProfile;
-            this.username = this.userProfile?.username ?? '';
-            this.email = user.email ?? '';
-            this.profilePicture = this.userProfile?.profilePicture ?? null;
-            this.age = this.userProfile?.age ?? null;
-            this.gender = this.userProfile?.gender ?? '';
-            console.log('Perfil del usuario:', profile);
-          }
-        });
-      }
-    });
-  }
+    ngOnInit(): void {
+      this.loadUserProfile();
+    }
 
   ngAfterViewInit() {
     this.createDoughnutChart();
   }
 
-  loadUserEmail() {
-    this.http.post<{ message: string, email: string }>('https://us-central1-healthy-way-f7636.cloudfunctions.net/api/getUserEmail', { username: this.username })
-      .subscribe(
-        response => {
-          this.email = response.email;
-          console.log('Correo electrónico:', this.email);
-        },
-        error => {
-          console.error('Error al cargar el correo del usuario', error);
-        }
-      );
-  }
+  
 
   updateProfilePicture() {
     const newPicture = prompt("Ingrese la URL de la nueva foto de perfil:");
@@ -116,7 +84,7 @@ export class PerfilPage implements AfterViewInit, OnInit {
     modal.onDidDismiss().then((data) => {
       if (data.data) {
         this.userProfile = data.data;
-        this.username = this.userProfile?.username ?? '';
+        this.name = this.userProfile?.name ?? '';
         this.profilePicture = this.userProfile?.profilePicture ?? null;
         this.age = this.userProfile?.age ?? null;
         this.gender = this.userProfile?.gender ?? '';
@@ -127,10 +95,41 @@ export class PerfilPage implements AfterViewInit, OnInit {
 
   logout() {
     this.authService.logout().then(() => {
-      localStorage.removeItem('usuario'); // Eliminar usuario del localStorage si es necesario
-      this.router.navigate(['/login']); // Redirigir a la página de login
+      localStorage.removeItem('usuario'); 
+      this.router.navigate(['/login']); 
     }).catch(error => {
       console.error('Error al cerrar sesión:', error);
+    });
+  }
+
+
+  loadUserProfile() {
+    this.authService.getCurrentUser().subscribe(user => {
+      if (user) {
+        this.authService.getUserProfile(user.uid).subscribe(
+          profile => {
+            if (profile) {
+              this.userProfile = profile as UserProfile;
+              this.name = this.userProfile?.name ?? '';
+              this.email = user.email ?? '';
+              this.profilePicture = this.userProfile?.profilePicture ?? null;
+              this.age = this.userProfile?.age ?? null;
+              this.gender = this.userProfile?.gender ?? '';
+              console.log('Perfil del usuario:', profile);
+            } else {
+              console.log('No se encontró el perfil del usuario');
+            
+            }
+          },
+          error => {
+            console.error('Error al obtener el perfil del usuario:', error);
+            
+          }
+        );
+      } else {
+        console.log('No hay usuario autenticado');
+       
+      }
     });
   }
 }

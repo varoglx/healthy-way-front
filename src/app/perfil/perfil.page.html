@@ -28,19 +28,19 @@
 
       <ion-item>
         <ion-label position="floating">Nombre usuario</ion-label>
-        <ion-input [(ngModel)]="username" readonly></ion-input>
+        <ion-input [(ngModel)]="name" readonly></ion-input>
       </ion-item>
-
+      
       <ion-item>
         <ion-label position="floating">Correo</ion-label>
         <ion-input [(ngModel)]="email" readonly></ion-input>
       </ion-item>
-
+      
       <ion-item>
         <ion-label position="floating">Edad</ion-label>
         <ion-input type="number" [(ngModel)]="age" readonly></ion-input>
       </ion-item>
-
+      
       <ion-item class="genero">
         <ion-label>Género</ion-label>
         <ion-select [(ngModel)]="gender" disabled>
@@ -49,6 +49,7 @@
           <ion-select-option value="Otro">Otro</ion-select-option>
         </ion-select>
       </ion-item>
+      
       
       <ion-button expand="full" (click)="openEditProfileModal()">Modificar perfil</ion-button>
     </div>
@@ -63,8 +64,15 @@
   </ion-card-content>
 </ion-content>
 
+
+
 <ion-footer class="fixed-footer">
   <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="Menu" routerLink="/menu">
+      <ion-icon name="home-outline"></ion-icon>
+      <ion-label>Home</ion-label>
+    </ion-tab-button>
+
     <ion-tab-button tab="comidas" routerLink="/comidas">
       <ion-icon name="restaurant-outline"></ion-icon>
       <ion-label>Comidas</ion-label>
