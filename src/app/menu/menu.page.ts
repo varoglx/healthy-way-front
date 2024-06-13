@@ -56,7 +56,7 @@ export class MenuPage implements OnInit {
         }
       });
   
-      console.log('Mapped weights:', this.userWeights);
+     
       this.renderWeightChart();
     });
   }

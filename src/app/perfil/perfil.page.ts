@@ -28,7 +28,14 @@ export class PerfilPage implements AfterViewInit, OnInit {
     private router: Router) { }
 
     ngOnInit(): void {
-      this.loadUserProfile();
+      this.authService.getCurrentUser().subscribe(user => {
+        if (user) {
+          this.loadUserProfile();
+        } else {
+          console.log('No hay usuario autenticado');
+          this.router.navigate(['/login']);
+        }
+      });
     }
 
   ngAfterViewInit() {
@@ -47,20 +54,18 @@ export class PerfilPage implements AfterViewInit, OnInit {
               this.profilePicture = this.userProfile?.profilePicture ?? null;
               this.age = this.userProfile?.age ?? null;
               this.gender = this.userProfile?.gender ?? '';
-              console.log('Perfil del usuario:', profile);
+              
             } else {
               console.log('No se encontró el perfil del usuario');
-            
             }
           },
           error => {
             console.error('Error al obtener el perfil del usuario:', error);
-            
           }
         );
       } else {
         console.log('No hay usuario autenticado');
-       
+        this.router.navigate(['/login']);
       }
     });
   }
@@ -72,17 +77,11 @@ export class PerfilPage implements AfterViewInit, OnInit {
     }
   }
 
-  
-
-  logout() {
-    this.authService.logout().then(() => {
-      localStorage.removeItem('usuario'); 
-      this.router.navigate(['/login']); 
-    }).catch(error => {
-      console.error('Error al cerrar sesión:', error);
-    });
+  cerrarSesion() {
+    this.authService.logout();
   }
 
+ 
 
   
 }
