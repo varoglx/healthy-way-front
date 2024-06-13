@@ -1,8 +1,7 @@
-import { NgModule } from '@angular/core';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { RecetasComponent } from './modals/recetas/recetas.component'; // Importa el componente
 import { RecetaDetallesComponent } from './modals/receta-detalles/receta-detalles.component'; // Importa el componente
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app.component';
@@ -13,9 +12,11 @@ import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { EditProfileModalComponent } from './modals/edit-profile-modal/edit-profile-modal.component';
-
+import {RegistrarRecetaComponent  } from './modals/registrar-receta/registrar-receta.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 @NgModule({
-  declarations: [AppComponent, RecetasComponent,RecetaDetallesComponent,EditProfileModalComponent],
+  declarations: [AppComponent,RecetaDetallesComponent,RegistrarRecetaComponent,EditProfileModalComponent],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
@@ -23,9 +24,11 @@ import { EditProfileModalComponent } from './modals/edit-profile-modal/edit-prof
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule
     
   ],
   providers: [ { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
+
 })
 export class AppModule { }
