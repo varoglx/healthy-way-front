@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Chart } from 'chart.js';
 import { ConsejosService } from '../services/consejos.service';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Chart, registerables } from 'chart.js';
 
 @Component({
   selector: 'app-menu',
@@ -8,107 +10,102 @@ import { ConsejosService } from '../services/consejos.service';
   styleUrls: ['./menu.page.scss'],
 })
 export class MenuPage implements OnInit {
-
-  
   consejoDelDia: string = '';
-  constructor(private consejosService: ConsejosService) { }
+  userUid: string = '';
+  userWeights: { month: string, weight: number | null }[] = [];
+  weightChart: Chart | null = null; // Store chart instance
+
+  constructor(
+    private consejosService: ConsejosService,
+    private afAuth: AngularFireAuth,
+    private firestore: AngularFirestore
+  ) {
+    Chart.register(...registerables); // Register Chart.js components
+  }
 
   ngOnInit(): void {
-    this.loadCharts();
     this.consejoDelDia = this.consejosService.getRandomCounseling();
+
+    this.afAuth.authState.subscribe(user => {
+      if (user) {
+        this.userUid = user.uid;
+        this.loadUserWeights();
+      }
+    });
+  }
+
+  loadUserWeights() {
+    const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+    this.userWeights = months.map(month => ({ month, weight: null }));
   
+    this.firestore.collection('bmiData', ref => ref.where('uid', '==', this.userUid)).valueChanges().subscribe(imcData => {
+      
+  
+     
+      this.userWeights.forEach(weight => weight.weight = null);
+  
+      imcData.forEach((data: any) => {
+        const [year, month] = data.fecha.split('-');
+        const monthIndex = parseInt(month) - 1; 
+        const weight = data.peso;
+  
+        
+  
+        if (monthIndex >= 0 && monthIndex < 12) {
+          this.userWeights[monthIndex].weight = weight;
+        }
+      });
+  
+      console.log('Mapped weights:', this.userWeights);
+      this.renderWeightChart();
+    });
   }
 
-  loadCharts() {
-    this.loadSleepChart();
-    this.loadActivityChart();
-    this.loadFoodChart();
-  }
-
-  loadSleepChart() {
-    const canvas = document.getElementById('sleepChart') as HTMLCanvasElement;
+  renderWeightChart() {
+    const canvas = document.getElementById('weightChart') as HTMLCanvasElement;
     if (canvas) {
       const ctx = canvas.getContext('2d');
       if (ctx) {
-        new Chart(ctx, {
-          type: 'line',
-          data: {
-            labels: ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'],
-            datasets: [{
-              label: 'Horas de Sueño',
-              data: [7, 8, 6, 7.5, 8, 9, 7],
-              borderColor: 'rgba(75, 192, 192, 1)',
-              backgroundColor: 'rgba(75, 192, 192, 0.2)',
-            }]
-          },
-          options: {
-            responsive: true,
-            maintainAspectRatio: false,
-          }
-        });
+        if (this.weightChart) {
+          // Update existing chart data
+          this.weightChart.data.datasets[0].data = this.userWeights.map(data => data.weight);
+          this.weightChart.update();
+        } else {
+          // Create new chart
+          this.weightChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: this.userWeights.map(data => data.month),
+              datasets: [{
+                label: 'Peso',
+                data: this.userWeights.map(data => data.weight),
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+              }]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              scales: {
+                y: {
+                  beginAtZero: true,
+                  title: {
+                    display: true,
+                    text: 'Peso'
+                  }
+                },
+                x: {
+                  title: {
+                    display: true,
+                    text: 'Meses'
+                  }
+                }
+              }
+            }
+          });
+        }
       }
     }
   }
-
-  loadActivityChart() {
-    const canvas = document.getElementById('activityChart') as HTMLCanvasElement;
-    if (canvas) {
-      const ctx = canvas.getContext('2d');
-      if (ctx) {
-        new Chart(ctx, {
-          type: 'bar',
-          data: {
-            labels: ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'],
-            datasets: [{
-              label: 'Minutos de Actividad Física',
-              data: [30, 45, 60, 40, 50, 30, 60],
-              backgroundColor: 'rgba(153, 102, 255, 0.2)',
-              borderColor: 'rgba(153, 102, 255, 1)',
-            }]
-          },
-          options: {
-            responsive: true,
-            maintainAspectRatio: false,
-          }
-        });
-      }
-    }
-  }
-
-  loadFoodChart() {
-    const canvas = document.getElementById('foodChart') as HTMLCanvasElement;
-    if (canvas) {
-      const ctx = canvas.getContext('2d');
-      if (ctx) {
-        new Chart(ctx, {
-          type: 'pie',
-          data: {
-            labels: ['Frutas', 'Vegetales', 'Proteínas', 'Carbohidratos', 'Grasas'],
-            datasets: [{
-              data: [25, 30, 20, 15, 10],
-              backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)'
-              ],
-              borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)'
-              ],
-            }]
-          },
-          options: {
-            responsive: true,
-            maintainAspectRatio: false,
-          }
-        });
-      }
-    }
-  }
-
 }

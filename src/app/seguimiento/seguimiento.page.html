@@ -25,6 +25,35 @@
       </ion-range>
     </ion-card-content>
   </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Historial de IMC</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <table>
+        <thead>
+          <tr>
+            <th>Mes</th>
+            <th>Peso (kg)</th>
+            <th>Altura (cm)</th>
+            <th>IMC</th>
+            <th>Fecha</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let record of imcRecords">
+            <td>{{ record.month }}</td>
+            <td>{{ record.peso }}</td>
+            <td>{{ record.altura }}</td>
+            <td>{{ record.imc | number: '1.2-2' }}</td>
+            <td>{{ record.fecha }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </ion-card-content>
+  </ion-card>
+  
 </ion-content>
 
 <ion-footer class="fixed-footer">

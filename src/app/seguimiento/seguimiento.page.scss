@@ -72,3 +72,24 @@
     padding-bottom: 56px;
   }
   
+
+
+  .table-container {
+    overflow-x: auto; /* Permitir scroll horizontal si es necesario */
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  table th, table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  table th {
+    background-color: #f2f2f2;
+  }
+  
