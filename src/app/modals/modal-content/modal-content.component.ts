@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { LocalNotifications } from '@capacitor/local-notifications';
 import { Platform } from '@ionic/angular';
-import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+
 
 
 @Component({
@@ -17,11 +17,12 @@ export class ModalContentComponent implements OnInit {
 
   
   counter = 0;
+  previousAlarmId = 0;
   alarmForm: FormGroup;
   daysOfWeek = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
   selectedSound: string = '';
 
-  constructor(private modalController: ModalController, private fb: FormBuilder,private platform: Platform, private inAppBrowser: InAppBrowser) {
+  constructor(private modalController: ModalController, private fb: FormBuilder,private platform: Platform) {
     this.alarmForm = this.fb.group({
       type: ['', Validators.required],
       time: ['', Validators.required],
@@ -34,6 +35,14 @@ export class ModalContentComponent implements OnInit {
       Sábado: [false],
       Domingo: [false]
     });
+
+    const storedAlarms = localStorage.getItem('alarms');
+    if (storedAlarms) {
+      const alarms = JSON.parse(storedAlarms);
+      this.previousAlarmId = alarms.length > 0 ? alarms[alarms.length - 1].id : 0;
+    } else {
+      this.previousAlarmId = 0;
+    }
   }
 
   ngOnInit() {}
@@ -69,7 +78,7 @@ export class ModalContentComponent implements OnInit {
   async saveAlarm() {
     if (this.alarmForm.valid) {
       const newAlarm = {
-        id: ++this.counter,
+        id: this.previousAlarmId + 1,
         type: this.alarmForm.value.type,
         time: this.alarmForm.value.time,
         repeat: this.alarmForm.value.repeat,
@@ -77,15 +86,22 @@ export class ModalContentComponent implements OnInit {
         sound: this.selectedSound,
       };
 
-      this.modalController.dismiss(newAlarm);
-      console.log(newAlarm);
+      if (newAlarm.type && newAlarm.time) {
+        this.modalController.dismiss(newAlarm);
+        this.counter = newAlarm.id;
+        console.log(newAlarm);
+  
+        // Resto del código para crear y programar la notificación
+      } else {
+        console.error('La alarma está incompleta. No se agregará a la lista.');
+      }
 
       try {
         // Crear el canal de notificación
         await LocalNotifications.createChannel({
           id: 'channel-id',
-          name: 'Nombre del Canal',
-          description: 'Descripción del Canal',
+          name: 'Recodatorio de Actividad',
+          description: '',
           importance: 5,
           sound: newAlarm.sound, // Usar el ID del sonido cargado
           visibility: 1,
@@ -97,29 +113,48 @@ export class ModalContentComponent implements OnInit {
       try {
         // Programar la notificación local
         await LocalNotifications.requestPermissions();
-
+    
         const [hours, minutes] = newAlarm.time.split(':').map(Number);
         const now = new Date();
         const notificationTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), hours, minutes);
-
-        await LocalNotifications.schedule({
-          notifications: [
-            {
-              title: `Recordatorio de ${newAlarm.type}`,
-              body: 'Es hora de tu actividad programada.',
-              id: newAlarm.id,
-              schedule: { at: notificationTime },
-              channelId: 'channel-id', // ID del canal creado anteriormente
-              attachments: undefined,
-              actionTypeId: '',
-              extra: null,
-            },
-          ],
-        });
-      } catch (error) {
+    
+        if (newAlarm.daysOfWeek.length === 0) {
+            // Programar la notificación sin días de la semana específicos
+            const scheduledNotification = {
+                title: `Recordatorio de ${newAlarm.type}`,
+                body: 'Es hora de tu actividad programada.',
+                id: newAlarm.id,
+                schedule: { at: notificationTime },
+                channelId: 'channel-id',
+                attachments: undefined,
+                actionTypeId: '',
+                extra: null,
+            };
+    
+            await LocalNotifications.schedule({ notifications: [scheduledNotification] });
+        } else {
+            // Programar la notificación para los días de la semana seleccionados
+            const scheduledNotifications = newAlarm.daysOfWeek.map(day => ({
+                title: `Recordatorio de ${newAlarm.type}`,
+                body: 'Es hora de tu actividad programada.',
+                id: newAlarm.id,
+                schedule: { at: notificationTime },
+                channelId: 'channel-id',
+                attachments: undefined,
+                actionTypeId: '',
+                extra: null,
+            }));
+    
+            await LocalNotifications.schedule({ notifications: scheduledNotifications });
+        }
+    } catch (error) {
         console.error('Error al programar la notificación:', error);
-      }
     }
+    } else {
+      console.error('recordatorio incompleto. No se agregará a la lista.');
+      this.modalController.dismiss();
+    }
+    
   }
 
   deleteAll() {

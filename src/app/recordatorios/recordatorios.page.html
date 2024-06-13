@@ -14,9 +14,12 @@
     <!-- List of Alarms -->
     <ion-card>
       <ion-card-header>
-        <ion-card-title class="title">Lista de Alarmas</ion-card-title>
+        <ion-card-title class="title">Lista de Recordatorios</ion-card-title>
       </ion-card-header>
       <ion-card-content >
+        <div *ngIf="!alarms">
+          <h1>No hay Recordatorios</h1>
+        </div>
         <div *ngIf="alarms">
         <ion-item *ngFor="let alarm of alarms"  class="box">
           <ion-checkbox *ngIf="showCheckboxes" slot="start" (click)="toggleSelection(alarm)"></ion-checkbox>
@@ -28,7 +31,7 @@
               </ng-container>
             </p>
           </ion-label>
-          <ion-toggle slot="end" checked class="toggle"></ion-toggle>
+          <ion-toggle slot="end" [(ngModel)]="alarm.enabled" (ionChange)="toggleEnabled(alarm)"></ion-toggle>
         </ion-item>
       </div>
       <ion-button *ngIf="showCheckboxes && getSelectedIds().length > 0" expand="full" color="danger" (click)="deleteAlarms(getSelectedIds())">Eliminar Seleccionadas</ion-button>

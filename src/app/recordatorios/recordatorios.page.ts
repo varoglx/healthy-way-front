@@ -9,6 +9,7 @@ interface Alarm {
   repeat: boolean;
   daysOfWeek: string[];
   selected?: boolean; // Añadir la propiedad selected
+  enabled: boolean;
 }
 
 @Component({
@@ -41,15 +42,17 @@ export class RecordatoriosPage implements OnInit {
     const modal = await this.modalController.create({
       component: ModalContentComponent,
     });
-
+  
     modal.onDidDismiss().then((dataReturned) => {
-      if (dataReturned!== null) {
-        this.alarms.push(dataReturned.data);
+      if (dataReturned !== null && dataReturned.data !== undefined) {
+        const newAlarm = dataReturned.data;
+        newAlarm.enabled = true;
+        this.alarms.push(newAlarm);
         // Guardar las alarmas en el localStorage después de agregar una nueva alarma
         localStorage.setItem('alarms', JSON.stringify(this.alarms));
       }
     });
-
+  
     return await modal.present();
   }
 
@@ -71,6 +74,20 @@ export class RecordatoriosPage implements OnInit {
 
   toggleSelection(alarm: Alarm) {
     alarm.selected = !alarm.selected;
+  }
+
+  toggleEnabled(alarm: Alarm) {
+    if (alarm.enabled){
+      alarm.enabled = true
+      const storedAlarms = JSON.stringify(this.alarms);
+      localStorage.setItem('alarms', storedAlarms);
+      console.log(this.alarms)
+    }else{
+      alarm.enabled = false
+      const storedAlarms = JSON.stringify(this.alarms);
+      localStorage.setItem('alarms', storedAlarms);
+      console.log(this.alarms)
+    }
   }
 
   deleteAlarms(idsToDelete: number[]) {
