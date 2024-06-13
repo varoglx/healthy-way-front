@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { LocalNotifications } from '@capacitor/local-notifications';
 import { Platform } from '@ionic/angular';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 
 
@@ -22,7 +24,7 @@ export class ModalContentComponent implements OnInit {
   daysOfWeek = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
   selectedSound: string = '';
 
-  constructor(private modalController: ModalController, private fb: FormBuilder,private platform: Platform) {
+  constructor(private modalController: ModalController, private fb: FormBuilder,private platform: Platform,private afs : AngularFirestore, private afa : AngularFireAuth) {
     this.alarmForm = this.fb.group({
       type: ['', Validators.required],
       time: ['', Validators.required],
@@ -36,16 +38,24 @@ export class ModalContentComponent implements OnInit {
       Domingo: [false]
     });
 
-    const storedAlarms = localStorage.getItem('alarms');
-    if (storedAlarms) {
-      const alarms = JSON.parse(storedAlarms);
-      this.previousAlarmId = alarms.length > 0 ? alarms[alarms.length - 1].id : 0;
-    } else {
-      this.previousAlarmId = 0;
-    }
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.loadAlarms()
+  }
+
+  async loadAlarms() {
+    const user = await this.afa.currentUser;
+    if (user) {
+      this.afs.collection(`users/${user.uid}/alarms`).valueChanges().subscribe(alarms => {
+        if (alarms.length > 0) {
+          this.previousAlarmId = Math.max(...alarms.map((alarm: any) => alarm.id));
+        } else {
+          this.previousAlarmId = 0;
+        }
+      });
+    }
+  }
 
   dismissModal() {
     this.modalController.dismiss();
@@ -77,6 +87,8 @@ export class ModalContentComponent implements OnInit {
   
   async saveAlarm() {
     if (this.alarmForm.valid) {
+      const user = await this.afa.currentUser;
+      if (user) {
       const newAlarm = {
         id: this.previousAlarmId + 1,
         type: this.alarmForm.value.type,
@@ -86,14 +98,13 @@ export class ModalContentComponent implements OnInit {
         sound: this.selectedSound,
       };
 
-      if (newAlarm.type && newAlarm.time) {
-        this.modalController.dismiss(newAlarm);
+      try {
+        await this.afs.collection(`users/${user.uid}/alarms`).doc(newAlarm.id.toString()).set(newAlarm);
         this.counter = newAlarm.id;
+        this.modalController.dismiss();
         console.log(newAlarm);
-  
-        // Resto del código para crear y programar la notificación
-      } else {
-        console.error('La alarma está incompleta. No se agregará a la lista.');
+      } catch (error) {
+        console.error('Error al guardar la alarma en Firestore:', error);
       }
 
       try {
@@ -117,6 +128,11 @@ export class ModalContentComponent implements OnInit {
         const [hours, minutes] = newAlarm.time.split(':').map(Number);
         const now = new Date();
         const notificationTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), hours, minutes);
+
+        if (notificationTime <= now) {
+          // Si la hora seleccionada ya ha pasado, ajusta para el día siguiente
+          notificationTime.setDate(notificationTime.getDate() + 1);
+        }
     
         if (newAlarm.daysOfWeek.length === 0) {
             // Programar la notificación sin días de la semana específicos
@@ -146,15 +162,13 @@ export class ModalContentComponent implements OnInit {
             }));
     
             await LocalNotifications.schedule({ notifications: scheduledNotifications });
-        }
-    } catch (error) {
+        }} catch (error) {
         console.error('Error al programar la notificación:', error);
-    }
-    } else {
+        }}}
+     else {
       console.error('recordatorio incompleto. No se agregará a la lista.');
       this.modalController.dismiss();
     }
-    
   }
 
   deleteAll() {

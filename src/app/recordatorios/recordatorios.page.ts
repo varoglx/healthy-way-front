@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { ModalContentComponent } from '../modals/modal-content/modal-content.component';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AuthService } from '../services/auth.service';
+
 
 interface Alarm {
   id: number;
@@ -22,14 +26,21 @@ export class RecordatoriosPage implements OnInit {
   showCheckboxes = false;
   counter: any;
   alarms: Alarm[]=[];
-  constructor(private modalController: ModalController) { }
+  constructor(private modalController: ModalController,private afs : AngularFirestore, private afa : AngularFireAuth,private as : AuthService) { }
 
   ngOnInit() {
-    const storedAlarms = localStorage.getItem('alarms');
-    if (storedAlarms) {
-      this.alarms = JSON.parse(storedAlarms);
-      console.log(this.alarms)
-    }
+    this.loadUser();
+  }
+
+  loadUser(){
+    this.as.getCurrentUser().subscribe(user => {
+      if (user) {
+        this.afs.collection<Alarm>(`users/${user.uid}/alarms`).valueChanges().subscribe(alarms => {
+          this.alarms = alarms;
+          console.log(this.alarms);
+        });
+      }
+    });
   }
 
   
