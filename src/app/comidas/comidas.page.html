@@ -1,64 +1,74 @@
-
 <ion-app>
-
   <ion-content>
     <ion-list>
       <ion-item>
         <ion-label>Seleccionar Dieta</ion-label>
-        <ion-select placeholder="Seleccionar Tipo de Dieta" (ionChange)="guardarTipoDieta($event)">
+        <ion-select placeholder="Seleccionar Tipo de Dieta" (ionChange)="guardarTipoDieta($event)" [(ngModel)]="tipoDieta">
           <ion-select-option value="weight_loss">Pérdida de Peso</ion-select-option>
           <ion-select-option value="muscle_gain">Ganancia de Músculo</ion-select-option>
           <ion-select-option value="maintenance">Mantenimiento</ion-select-option>
         </ion-select>
       </ion-item>
-      
-      <ion-item>
-        <ion-label>Seguimiento Nutricional</ion-label>
-        <ion-button expand="block" routerLink="/nutritional-tracking">Registrar Comidas</ion-button>
-      </ion-item>
+      <ion-list>
+        <ion-item *ngFor="let recipe of recipes" (click)="openRecipeDetails(recipe)">
+          <ion-thumbnail slot="start" class="recipe-thumbnail">
+            <img [src]="recipe.image" alt="Imagen de la receta" class="large-image">
 
-      <ion-item>
-        <ion-label>Recetas Saludables</ion-label>
-        <ion-button expand="block" (click)="openModal()">Ver Recetas</ion-button>
-      </ion-item>
-      
+          </ion-thumbnail>
+          <ion-label>
+            <h2>{{ recipe.nombre_receta }}</h2>
+            <p>Tiempo de elaboración: {{ recipe.tiempo_elaboracion }}</p>
+            <p>Porciones: {{ recipe.porciones }}</p>
+            <p>Calorías: {{ recipe.calorias }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
     </ion-list>
+    <!-- Botón flotante para agregar recetas -->
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed" class="fab-button-custom">
+      <ion-fab-button>
+        <ion-icon name="add"></ion-icon>
+        <ion-label class="fab-button-custom-label"></ion-label>
+      </ion-fab-button>
+      <ion-fab-list side="top">
+        <ion-fab-button (click)="openRegistrarReceta()">
+          <ion-label class="fab-button-custom-label">Crear Receta</ion-label>
+        </ion-fab-button>
+        <ion-fab-button>
+          <ion-label class="fab-button-custom-label">Registrar Ingesta</ion-label>
+        </ion-fab-button>
+      </ion-fab-list>
+    </ion-fab>
+    
+    
+    
   </ion-content>
 
-
+  <ion-footer class="fixed-footer">
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="Menu" routerLink="/menu">
+        <ion-icon name="home-outline"></ion-icon>
+        <ion-label>Home</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="comidas" routerLink="/comidas">
+        <ion-icon name="restaurant-outline"></ion-icon>
+        <ion-label>Comidas</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="recordatorios" routerLink="/recordatorios">
+        <ion-icon name="alarm-outline"></ion-icon>
+        <ion-label>Recordatorios</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="seguimiento" routerLink="/seguimiento">
+        <ion-icon name="analytics-outline"></ion-icon>
+        <ion-label>Seguimiento</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="perfil" routerLink="/perfil">
+        <ion-icon name="person"></ion-icon>
+        <ion-label>Perfil</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-footer>
 </ion-app>
-
-
-<ion-footer class="fixed-footer">
-  <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="Menu" routerLink="/menu">
-      <ion-icon name="home-outline"></ion-icon>
-      <ion-label>Home</ion-label>
-    </ion-tab-button>
-
-    <ion-tab-button tab="comidas" routerLink="/comidas">
-      <ion-icon name="restaurant-outline"></ion-icon>
-      <ion-label>Comidas</ion-label>
-    </ion-tab-button>
-
-    <ion-tab-button tab="recordatorios" routerLink="/recordatorios">
-      <ion-icon name="alarm-outline"></ion-icon>
-      <ion-label>Recordatorios</ion-label>
-    </ion-tab-button>
-
-    <ion-tab-button tab="seguimiento" routerLink="/seguimiento">
-      <ion-icon name="analytics-outline"></ion-icon>
-      <ion-label>Seguimiento</ion-label>
-    </ion-tab-button>
-
-    <ion-tab-button tab="perfil" routerLink="/perfil">
-      <ion-icon name="person"></ion-icon>
-      <ion-label>Perfil</ion-label>
-    </ion-tab-button>
-  </ion-tab-bar>
-</ion-footer>
-
-
 
 <style>
   .fixed-footer {

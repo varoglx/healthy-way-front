@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';  // Import HttpClient
 import { format } from 'date-fns';
+import { AuthService, UserProfile } from '../services/auth.service';
 @Component({
   selector: 'app-seguimiento',
   templateUrl: './seguimiento.page.html',
@@ -10,13 +11,19 @@ export class SeguimientoPage implements OnInit {
   peso: number = 0;
   altura: number = 0;
   imc: number = 0;
-  name:string='';
-  constructor(private http: HttpClient) { }
-
+  username:string='';
+  uid:string='';
+  constructor(private authService: AuthService,private http: HttpClient) { }
+  loadId() {
+    this.authService.getCurrentUser().subscribe(user => {
+      if (user) {
+        console.log('uisisiisu',user.uid)
+        this.uid=user.uid
+      }
+    });
+  }
   ngOnInit(): void {
-    const userJsonString = localStorage.getItem('usuario');
-    const userObject = userJsonString ? JSON.parse(userJsonString) : null;
-    this.name = userObject ? userObject.username : null;
+    this.loadId()
   }
 
   calcularIMC() {
@@ -33,7 +40,7 @@ export class SeguimientoPage implements OnInit {
 
   storeBmiData() {
     const bmiData = {
-      name: this.name,  // Replace with actual username
+      uid:this.uid,  // Replace with actual username
       peso: this.peso,
       altura: this.altura,
       imc: this.imc,
