@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { NotificationBackgroundService } from './services/recordatorios.service';
-
+import { AuthGuard } from './guard/auth.guard';
 const routes: Routes = [
   {
     path: 'home',
@@ -22,23 +22,28 @@ const routes: Routes = [
   },
   {
     path: 'menu',
-    loadChildren: () => import('./menu/menu.module').then( m => m.MenuPageModule)
+    loadChildren: () => import('./menu/menu.module').then( m => m.MenuPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'comidas',
-    loadChildren: () => import('./comidas/comidas.module').then( m => m.ComidasPageModule)
+    loadChildren: () => import('./comidas/comidas.module').then( m => m.ComidasPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'recordatorios',
-    loadChildren: () => import('./recordatorios/recordatorios.module').then( m => m.RecordatoriosPageModule)
+    loadChildren: () => import('./recordatorios/recordatorios.module').then( m => m.RecordatoriosPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'seguimiento',
-    loadChildren: () => import('./seguimiento/seguimiento.module').then( m => m.SeguimientoPageModule)
+    loadChildren: () => import('./seguimiento/seguimiento.module').then( m => m.SeguimientoPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'perfil',
-    loadChildren: () => import('./perfil/perfil.module').then( m => m.PerfilPageModule)
+    loadChildren: () => import('./perfil/perfil.module').then( m => m.PerfilPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'bienvenida',

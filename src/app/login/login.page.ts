@@ -21,7 +21,7 @@ export class LoginPage {
         if (response.user && response.user.uid) {
           this.authService.getUserProfile(response.user.uid).subscribe(
             userProfile => {
-              console.log('Datos del usuario:', userProfile);
+              
               localStorage.setItem('usuario', JSON.stringify(userProfile));
               this.navCtrl.navigateRoot('/menu');
             },
