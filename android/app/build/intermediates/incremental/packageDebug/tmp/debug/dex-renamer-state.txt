@@ -1,4 +1,4 @@
-#Wed Jun 12 23:31:02 CLT 2024
+#Wed Jun 12 23:42:13 CLT 2024
 base.0=C\:\\Users\\vixone\\Documents\\GitHub\\healthy-way-front\\android\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 base.1=C\:\\Users\\vixone\\Documents\\GitHub\\healthy-way-front\\android\\app\\build\\intermediates\\dex\\debug\\mergeLibDexDebug\\12\\classes.dex
 base.10=C\:\\Users\\vixone\\Documents\\GitHub\\healthy-way-front\\android\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
