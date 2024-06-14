@@ -5,7 +5,7 @@
       <ion-button class="large-button" slot="start" color="danger" (click)="toggleCheckboxes()">
         <ion-icon name="trash"></ion-icon>
       </ion-button>
-      <ion-button slot="end" (click)="deleteAll()" class="red ">
+      <ion-button slot="end" (click)="deleteAllAlarms()" class="red ">
         Borrar todo
       </ion-button>
     </ion-buttons>
@@ -34,7 +34,7 @@
           <ion-toggle slot="end" [(ngModel)]="alarm.enabled" (ionChange)="toggleEnabled(alarm)"></ion-toggle>
         </ion-item>
       </div>
-      <ion-button *ngIf="showCheckboxes && getSelectedIds().length > 0" expand="full" color="danger" (click)="deleteAlarms(getSelectedIds())">Eliminar Seleccionadas</ion-button>
+      <ion-button *ngIf="showCheckboxes && getSelectedIds().length > 0" expand="full" color="danger" (click)="deleteMultipleAlarms(getSelectedIds())">Eliminar Seleccionadas</ion-button>
       </ion-card-content>
     </ion-card>
 
