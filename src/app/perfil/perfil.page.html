@@ -4,7 +4,12 @@
     <ion-title>Perfil</ion-title>
     
 
-<button ion-button expand="full" color="danger" (click)="cerrarSesion()">Cerrar Sesión</button>
+    <ion-buttons slot="end">
+      <ion-button (click)="cerrarSesion()">
+        <ion-icon name="log-out-outline"></ion-icon>
+        Salir
+      </ion-button>
+    </ion-buttons>
 
   </ion-toolbar>
 </ion-header>
