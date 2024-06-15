@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { Ingrediente } from '../../schema/Ingrediente.model';  // Ajusta la ruta según tu estructura de carpetas
+
 @Component({
   selector: 'app-registrar-receta',
   templateUrl: './registrar-receta.component.html',
@@ -21,8 +22,8 @@ export class RegistrarRecetaComponent implements OnInit {
       nombre_receta: ['', Validators.required],
       porciones: ['', [Validators.required, Validators.min(1)]],
       tiempo_elaboracion: ['', Validators.required],
-      ingredientes: ['', Validators.required],
-      forma_cocinar: ['', Validators.required]
+      ingredientes: [[], Validators.required],
+      forma_cocinar: ['', Validators.required]  // Mantenerlo como string por ahora
     });
   }
 
@@ -35,8 +36,10 @@ export class RegistrarRecetaComponent implements OnInit {
   onSubmit() {
     if (this.recetaForm.valid) {
       const receta = this.recetaForm.value;
+      receta.forma_cocinar = receta.forma_cocinar.split('\n'); // Convertir textarea en array de pasos
       receta.vitaminas = this.calculateVitamins(receta.ingredientes);
       receta.nutrientes_totales = this.calculateNutrients(receta.ingredientes);
+      receta.calorias = this.calculateCalories(receta.ingredientes);
       console.log(receta);
       // Aquí puedes manejar el envío de los datos, como enviarlos a tu API
       this.dismissModal();
@@ -45,7 +48,7 @@ export class RegistrarRecetaComponent implements OnInit {
 
   calculateVitamins(ingredientes: Ingrediente[]): string[] {
     // Lógica para calcular las vitaminas totales
-    return ['Vitamina A', 'Vitamina C']; // Ejemplo estático
+    return ['Vitamina A', 'Vitamina C', 'Vitamina E']; // Ejemplo estático
   }
 
   calculateNutrients(ingredientes: Ingrediente[]): any {
@@ -71,5 +74,15 @@ export class RegistrarRecetaComponent implements OnInit {
     });
 
     return nutrientes;
+  }
+
+  calculateCalories(ingredientes: Ingrediente[]): number {
+    // Lógica para calcular las calorías totales
+    let calorias_totales = 0;
+    ingredientes.forEach((ingrediente: Ingrediente) => {
+      // Supongamos que las calorías pueden derivarse de las macros: 4 cal/g para proteínas y carbohidratos, 9 cal/g para grasas
+      calorias_totales += (ingrediente.proteinas * 4) + (ingrediente.carbohidratos * 4) + (ingrediente.grasas * 9);
+    });
+    return calorias_totales;
   }
 }

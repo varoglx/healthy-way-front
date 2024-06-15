@@ -13,7 +13,6 @@
         <ion-item *ngFor="let recipe of recipes" (click)="openRecipeDetails(recipe)">
           <ion-thumbnail slot="start" class="recipe-thumbnail">
             <img [src]="recipe.image" alt="Imagen de la receta" class="large-image">
-
           </ion-thumbnail>
           <ion-label>
             <h2>{{ recipe.nombre_receta }}</h2>
@@ -39,9 +38,6 @@
         </ion-fab-button>
       </ion-fab-list>
     </ion-fab>
-    
-    
-    
   </ion-content>
 
   <ion-footer class="fixed-footer">
