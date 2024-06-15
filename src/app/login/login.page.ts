@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 export class LoginPage {
   email: string = '';
   password: string = '';
+  loading: boolean = false;
+  errorMessage: string = '';
   
   constructor(private authService: AuthService, private navCtrl: NavController, private router: Router) { }
 
@@ -44,4 +46,9 @@ export class LoginPage {
   goToRegisterPage() {
     this.navCtrl.navigateBack('/registro', { animated: false });
   }
+
+  goToPasswordResetPage() {
+    this.router.navigate(['/password-recovery']);
+  }
+  
 }
