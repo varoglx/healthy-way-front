@@ -3,6 +3,8 @@ import { ConsejosService } from '../services/consejos.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Chart, registerables } from 'chart.js';
+import { EditProfileModalComponent } from '../modals/edit-profile-modal/edit-profile-modal.component';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-menu',
@@ -18,7 +20,8 @@ export class MenuPage implements OnInit {
   constructor(
     private consejosService: ConsejosService,
     private afAuth: AngularFireAuth,
-    private firestore: AngularFirestore
+    private firestore: AngularFirestore,
+    private modalController: ModalController
   ) {
     Chart.register(...registerables); // Register Chart.js components
   }
@@ -108,4 +111,13 @@ export class MenuPage implements OnInit {
       }
     }
   }
+
+  async openExerciseRecommendations() {
+    const modal = await this.modalController.create({
+      component: EditProfileModalComponent
+    });
+    return await modal.present();
+  }
+
+  
 }
