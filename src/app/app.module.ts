@@ -15,8 +15,9 @@ import { EditProfileModalComponent } from './modals/edit-profile-modal/edit-prof
 import {RegistrarRecetaComponent  } from './modals/registrar-receta/registrar-receta.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { FormularioSuenoComponent } from './modals/formulario-sueno/formulario-sueno.component';
 @NgModule({
-  declarations: [AppComponent,RecetaDetallesComponent,RegistrarRecetaComponent,EditProfileModalComponent],
+  declarations: [AppComponent,RecetaDetallesComponent,RegistrarRecetaComponent,EditProfileModalComponent,],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
