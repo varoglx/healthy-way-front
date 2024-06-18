@@ -8,23 +8,49 @@ import { AuthService, UserProfile } from '../../services/auth.service';
   styleUrls: ['./edit-profile-modal.component.scss'],
 })
 export class EditProfileModalComponent {
-  @Input() userProfile: UserProfile = {};
+  @Input() userProfile: UserProfile = {
+    name: '',
+    age: null,
+    gender: '',
+    profilePicture: null,
+    email: ''
+  };
 
-  constructor(private modalController: ModalController, private authService: AuthService) { }
+  newEmail: string = '';
+  password: string = '';
+
+  constructor(
+    private modalController: ModalController,
+    private authService: AuthService
+  ) {}
 
   closeModal() {
     this.modalController.dismiss();
   }
 
-  saveProfile() {
-    if (this.authService.currentUser) {
-      this.authService.updateUserProfile(this.authService.currentUser.uid, this.userProfile)
-        .then(() => {
-          this.modalController.dismiss(this.userProfile);
-        })
-        .catch(error => {
-          console.error('Error updating profile:', error);
-        });
+  async saveChanges() {
+    if (this.newEmail && this.password) {
+      try {
+        await this.authService.updateEmail(this.newEmail);
+        this.userProfile.email = this.newEmail;
+        console.log('Correo electrónico actualizado con éxito');
+        // Opcionalmente, muestra un mensaje de éxito aquí
+      } catch (error) {
+        console.error('Error al actualizar el correo electrónico:', error);
+      }
+    }
+
+    if (this.userProfile) {
+      this.authService.getCurrentUser().subscribe(user => {
+        if (user) {
+          this.authService.updateUserProfile(user.uid, this.userProfile).then(() => {
+            console.log('Perfil actualizado con éxito');
+            this.closeModal();
+          }).catch(error => {
+            console.error('Error al actualizar el perfil:', error);
+          });
+        }
+      });
     }
   }
 }
