@@ -3,6 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { format, parseISO } from 'date-fns';
 import { AuthService, UserProfile } from '../services/auth.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { ModalController } from '@ionic/angular';
+import { FormularioSuenoComponent } from '../modals/formulario-sueno/formulario-sueno.component';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 
 @Component({
@@ -16,11 +19,14 @@ export class SeguimientoPage implements OnInit {
   imc: number = 0;
   uid: string = '';
   imcRecords: any[] = [];
+  listaSueno: any[] = [];
 
   constructor(
     private authService: AuthService,
     private http: HttpClient,
-    private firestore: AngularFirestore
+    private firestore: AngularFirestore,
+    private modalController: ModalController,
+    private as : AuthService
   ) {}
 
   ngOnInit(): void {
@@ -30,6 +36,15 @@ export class SeguimientoPage implements OnInit {
         this.loadImcRecords();
       }
     });
+
+    this.loadSueno();
+  }
+
+  async openModal() {
+    const modal = await this.modalController.create({
+      component: FormularioSuenoComponent,
+    });
+    return await modal.present();
   }
 
   calcularIMC() {
@@ -86,6 +101,17 @@ export class SeguimientoPage implements OnInit {
   
         console.log('Formatted IMC records:', this.imcRecords);
       });
+  }
+
+  loadSueno() {
+    this.as.getCurrentUser().subscribe(user => {
+      if (user) {
+        this.firestore.collection<any>(`users/${user.uid}/sueno`).valueChanges().subscribe(sueno => {
+          this.listaSueno = sueno;
+          console.log(this.listaSueno);
+        });
+      }
+    });
   }
   
 

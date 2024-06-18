@@ -15,10 +15,15 @@ import { EditProfileModalComponent } from './modals/edit-profile-modal/edit-prof
 import {RegistrarRecetaComponent  } from './modals/registrar-receta/registrar-receta.component';
 import {RegistroComidasComponent  } from './modals/registro-comidas/registro-comidas.component';
 import {RegistrarIngestaComponent  } from './modals/registrar-ingesta/registrar-ingesta.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { FormularioSuenoComponent } from './modals/formulario-sueno/formulario-sueno.component';
+import { EjerciciosComponent } from './modals/ejercicios/ejercicios.component';
+
+
+
 @NgModule({
-  declarations: [AppComponent,RecetaDetallesComponent,RegistrarIngestaComponent ,RegistrarRecetaComponent,EditProfileModalComponent,RegistroComidasComponent],
+  declarations: [AppComponent,RecetaDetallesComponent,RegistrarIngestaComponent ,RegistrarRecetaComponent,EditProfileModalComponent,RegistroComidasComponent,EjerciciosComponent],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
@@ -26,7 +31,8 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
     
   ],
   providers: [ { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],

@@ -92,4 +92,25 @@
   table th {
     background-color: #f2f2f2;
   }
+
+  .fab-button-custom {
+    bottom: 20vw !important;
+
+  }
+  
+  .fab-button-custom ion-fab-button {
+    --background: rgb(27, 89, 61);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    height: 70px;
+  }
+  
+  .fab-button-custom-label {
+    font-size: 8px;
+    text-align: center;
+    color: #FFFFFF; /* o puedes usar 'white' */
+  }
   

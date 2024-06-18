@@ -1,33 +1,35 @@
-
-
 <ion-header>
   <ion-toolbar>
     <ion-title>Editar Perfil</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="closeModal()">Cerrar</ion-button>
+      <ion-button (click)="closeModal()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf="userProfile">
   <ion-item>
-    <ion-label position="floating">Nombre de usuario</ion-label>
-    <ion-input ></ion-input>
+    <ion-label position="stacked">Nombre</ion-label>
+    <ion-input type="text" [(ngModel)]="userProfile.name"></ion-input>
   </ion-item>
-
-  <ion-item>
-    <ion-label position="floating">Edad</ion-label>
-    <ion-input type="number"></ion-input>
-  </ion-item>
-
   <ion-item>
     <ion-label>Género</ion-label>
-    <ion-select >
+    <ion-select [(ngModel)]="userProfile.gender" interface="popover">
       <ion-select-option value="Masculino">Masculino</ion-select-option>
       <ion-select-option value="Femenino">Femenino</ion-select-option>
       <ion-select-option value="Otro">Otro</ion-select-option>
     </ion-select>
   </ion-item>
+  <ion-item>
+    <ion-label position="stacked">Correo Electrónico</ion-label>
+    <ion-input type="email" [(ngModel)]="newEmail"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="stacked">Contraseña Actual</ion-label>
+    <ion-input type="password" [(ngModel)]="password"></ion-input>
+  </ion-item>
 
-  <ion-button expand="full" >Guardar</ion-button>
+  <ion-button expand="block" (click)="saveChanges()">Guardar Cambios</ion-button>
 </ion-content>

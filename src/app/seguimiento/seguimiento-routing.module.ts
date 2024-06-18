@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
+import { CommonModule } from '@angular/common';
 import { SeguimientoPage } from './seguimiento.page';
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -11,7 +12,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(routes), CommonModule, FormsModule],
   exports: [RouterModule],
 })
 export class SeguimientoPageRoutingModule {}
