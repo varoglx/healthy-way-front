@@ -30,8 +30,20 @@
       </ion-select>
     </ion-item>
     <ion-item>
+      <ion-label position="stacked">Tipo de Dieta</ion-label>
+      <ion-select formControlName="tipo_dieta" placeholder="Seleccionar Tipo de Dieta">
+        <ion-select-option value="weight_loss">Pérdida de Peso</ion-select-option>
+        <ion-select-option value="muscle_gain">Ganancia de Músculo</ion-select-option>
+        <ion-select-option value="maintenance">Mantenimiento</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
       <ion-label position="stacked">Forma de Cocinar</ion-label>
       <ion-textarea formControlName="forma_cocinar" required></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Imagen</ion-label>
+      <input type="file" (change)="onFileSelected($event)" required>
     </ion-item>
     <ion-button expand="full" type="submit" [disabled]="!recetaForm.valid">Registrar Receta</ion-button>
   </form>
