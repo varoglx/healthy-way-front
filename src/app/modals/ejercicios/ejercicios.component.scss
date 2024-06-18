@@ -1,0 +1,24 @@
+.exercise-card {
+    margin-bottom: 20px; 
+  }
+  
+  .exercise-image {
+    width: 100%; 
+    height: auto;
+  }
+  
+  .exercise-details {
+    .exercise-name {
+      font-size: 1.5rem; 
+      font-weight: bold; 
+      margin-bottom: 10px;
+    }
+  
+    .exercise-description {
+      font-size: 1.2rem; 
+      font-style: italic; 
+      color: #333; 
+      line-height: 1.5; 
+    }
+  }
+  

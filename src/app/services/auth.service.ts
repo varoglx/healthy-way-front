@@ -4,12 +4,12 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 
-
 export interface UserProfile {
   name?: string;
   age?: number | null;
   gender?: string;
   profilePicture?: string | null;
+  email?: string; 
 }
 
 @Injectable({
@@ -86,6 +86,45 @@ export class AuthService {
   }
   
   
-  
+  async updateEmail(newEmail: string): Promise<void> {
+    try {
+      // Obtener el usuario actual
+      const user = await this.afAuth.currentUser;
+
+      if (user) {
+        // Verificar el nuevo correo electrónico antes de actualizar
+        await user.verifyBeforeUpdateEmail(newEmail);
+
+        // Actualizar el correo electrónico
+        await user.updateEmail(newEmail);
+        console.log('Correo electrónico actualizado exitosamente');
+      } else {
+        console.error('No se ha encontrado un usuario actual');
+        // Aquí puedes manejar la situación donde no hay usuario actual disponible
+      }
+
+    } catch (error) {
+      console.error('Error al actualizar el correo electrónico:', error);
+    }
+  }
+
+  async updateEmailInAuthAndFirestore(newEmail: string): Promise<void> {
+    try {
+      const user = await this.afAuth.currentUser;
+
+      if (user) {
+        await user.updateEmail(newEmail); // Actualizar el correo electrónico en Firebase Authentication
+
+        // Actualizar también en Firestore si es necesario (aquí un ejemplo hipotético)
+        await this.firestore.collection('users').doc(user.uid).update({ email: newEmail });
+
+        console.log('Correo electrónico actualizado correctamente en Auth y Firestore');
+      } else {
+        console.error('No se ha encontrado un usuario actual');
+      }
+    } catch (error) {
+      console.error('Error al actualizar el correo electrónico:', error);
+    }
+  }
   
 }

@@ -4,6 +4,9 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Chart, registerables } from 'chart.js';
 import { AuthService } from '../services/auth.service';
+import { EditProfileModalComponent } from '../modals/edit-profile-modal/edit-profile-modal.component';
+import { ModalController } from '@ionic/angular';
+import { EjerciciosComponent } from '../modals/ejercicios/ejercicios.component';
 
   interface SuenoEntry {
     time: number;
@@ -34,7 +37,8 @@ export class MenuPage implements OnInit {
     private consejosService: ConsejosService,
     private afAuth: AngularFireAuth,
     private firestore: AngularFirestore,
-    private as: AuthService
+    private as: AuthService,
+    private modalController: ModalController
   ) {
     Chart.register(...registerables); // Register Chart.js components
   }
@@ -231,6 +235,14 @@ export class MenuPage implements OnInit {
     const diff = date.getDate() - day + (day == 0 ? -6 : 1); // Ajuste si el día es domingo
     return new Date(date.setDate(diff));
   }
+  async openExerciseRecommendations() {
+    const modal = await this.modalController.create({
+      component: EjerciciosComponent
+    });
+    return await modal.present();
+  }
+
+  
 }
 
   

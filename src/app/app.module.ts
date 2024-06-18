@@ -13,11 +13,15 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { EditProfileModalComponent } from './modals/edit-profile-modal/edit-profile-modal.component';
 import {RegistrarRecetaComponent  } from './modals/registrar-receta/registrar-receta.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormularioSuenoComponent } from './modals/formulario-sueno/formulario-sueno.component';
+import { EjerciciosComponent } from './modals/ejercicios/ejercicios.component';
+
+
+
 @NgModule({
-  declarations: [AppComponent,RecetaDetallesComponent,RegistrarRecetaComponent,EditProfileModalComponent,],
+  declarations: [AppComponent,RecetaDetallesComponent,RegistrarRecetaComponent,EditProfileModalComponent,EjerciciosComponent],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
@@ -25,7 +29,8 @@ import { FormularioSuenoComponent } from './modals/formulario-sueno/formulario-s
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
     
   ],
   providers: [ { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
