@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+
 @Component({
   selector: 'app-ejercicios',
   templateUrl: './ejercicios.component.html',
   styleUrls: ['./ejercicios.component.scss'],
 })
-export class EjerciciosComponent  implements OnInit {
-
+export class EjerciciosComponent implements OnInit {
+  
   categories = [
     {
       name: 'Perdida de Peso',
@@ -62,7 +63,12 @@ export class EjerciciosComponent  implements OnInit {
     
   ];
 
+
   constructor(private modalController: ModalController) { }
+
+  ngOnInit(): void {
+    
+  }
 
   closeModal() {
     this.modalController.dismiss();

@@ -81,7 +81,20 @@ export class PerfilPage implements AfterViewInit, OnInit {
     this.authService.logout();
   }
 
- 
+  async abrirModalEditarPerfil() {
+    const modal = await this.modalController.create({
+      component: EditProfileModalComponent,
+      componentProps: {
+        userProfile: this.userProfile
+      }
+    });
+    modal.onDidDismiss().then((dataReturned) => {
+      if (dataReturned !== null) {
+        this.loadUserProfile(); // Recargar el perfil del usuario después de cerrar el modal
+      }
+    });
+    return await modal.present();
+  }
 
   
 }

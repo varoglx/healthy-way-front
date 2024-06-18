@@ -5,6 +5,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Chart, registerables } from 'chart.js';
 import { EditProfileModalComponent } from '../modals/edit-profile-modal/edit-profile-modal.component';
 import { ModalController } from '@ionic/angular';
+import { EjerciciosComponent } from '../modals/ejercicios/ejercicios.component';
 
 @Component({
   selector: 'app-menu',
@@ -114,7 +115,7 @@ export class MenuPage implements OnInit {
 
   async openExerciseRecommendations() {
     const modal = await this.modalController.create({
-      component: EditProfileModalComponent
+      component: EjerciciosComponent
     });
     return await modal.present();
   }
