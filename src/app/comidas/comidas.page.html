@@ -40,41 +40,4 @@
     </ion-fab>
   </ion-content>
 
-  <ion-footer class="fixed-footer">
-    <ion-tab-bar slot="bottom">
-      <ion-tab-button tab="Menu" routerLink="/menu">
-        <ion-icon name="home-outline"></ion-icon>
-        <ion-label>Home</ion-label>
-      </ion-tab-button>
-      <ion-tab-button tab="comidas" routerLink="/comidas">
-        <ion-icon name="restaurant-outline"></ion-icon>
-        <ion-label>Comidas</ion-label>
-      </ion-tab-button>
-      <ion-tab-button tab="recordatorios" routerLink="/recordatorios">
-        <ion-icon name="alarm-outline"></ion-icon>
-        <ion-label>Recordatorios</ion-label>
-      </ion-tab-button>
-      <ion-tab-button tab="seguimiento" routerLink="/seguimiento">
-        <ion-icon name="analytics-outline"></ion-icon>
-        <ion-label>Seguimiento</ion-label>
-      </ion-tab-button>
-      <ion-tab-button tab="perfil" routerLink="/perfil">
-        <ion-icon name="person"></ion-icon>
-        <ion-label>Perfil</ion-label>
-      </ion-tab-button>
-    </ion-tab-bar>
-  </ion-footer>
-</ion-app>
-
-<style>
-  .fixed-footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    z-index: 1000; /* Asegura que esté por encima de otros elementos */
-  }
-
-  ion-content {
-    padding-bottom: 56px; /* Altura del footer para evitar que el contenido quede oculto debajo del footer */
-  }
-</style>
+ 

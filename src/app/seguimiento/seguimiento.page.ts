@@ -72,7 +72,7 @@ export class SeguimientoPage implements OnInit {
       .subscribe(
         response => {
           console.log('Data stored successfully', response);
-          this.loadImcRecords(); // Refresh the records after storing new data
+          this.loadImcRecords(); 
         },
         error => console.error('Error storing data', error)
       );
@@ -83,18 +83,18 @@ export class SeguimientoPage implements OnInit {
       .valueChanges().subscribe(data => {
         console.log('Retrieved data:', data);
         this.imcRecords = data.map((record: any) => {
-          const date = parseISO(record.fecha); // Parsear la fecha en formato UTC
-          const month = date.toLocaleString('es-ES', { month: 'long' }); // Obtener nombre del mes en español
+          const date = parseISO(record.fecha);
+          const month = date.toLocaleString('es-ES', { month: 'long' }); 
           return {
             month,
             peso: record.peso,
             altura: record.altura,
             imc: record.imc,
-            fecha: record.fecha // Mantener la fecha original
+            fecha: record.fecha 
           };
         });
   
-        // Ordenar los registros por fecha (de más reciente a más antiguo)
+        
         this.imcRecords.sort((a, b) => {
           return new Date(b.fecha).getTime() - new Date(a.fecha).getTime();
         });
