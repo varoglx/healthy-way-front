@@ -10,3 +10,13 @@ ion-content {
 }
    
 
+ion-app, ion-content, ion-router-outlet {
+  height: 100%;
+}
+
+
+
+ion-footer {
+  margin: 0;
+  padding: 0;
+}

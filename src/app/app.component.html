@@ -2,7 +2,7 @@
   <ion-content>
     <ion-router-outlet></ion-router-outlet>
   </ion-content>
-  <ion-footer class="fixed-footer">
+  <ion-footer class="fixed-footer" *ngIf="showFooter">
     <ion-tab-bar slot="bottom">
       <ion-tab-button tab="Menu" routerLink="/menu">
         <ion-icon name="home-outline"></ion-icon>

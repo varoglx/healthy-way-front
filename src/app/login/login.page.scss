@@ -1,5 +1,5 @@
 .login-content {
-  --background: #E0E3DA;
+  --background: #fff;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -27,7 +27,7 @@ div.logo {
 }
 
 .login-box {
-  background: #E0E3DA;
+  background: #fff;
   padding: 2em;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -81,13 +81,6 @@ ion-label {
   color: #fff;
 }
 
-.forgot-password {
-  display: block;
-  margin-top: 1em;
-  color: #00915b;
-  text-decoration: none;
-  font-size: 0.9em;
-}
 
 
 .social ion-button {
@@ -115,9 +108,17 @@ ion-label {
 }
 
 .container ion-card {
-  background: #E0E3DA;
+  background: #fff;
   width: 80%; 
   max-width: 300px; 
   padding: 0;
   text-align: center;
 }
+
+.rec{
+  --background: #808080;
+  margin-top: 1em;
+  border-radius: 25px;
+  color: #fff;
+}
+
