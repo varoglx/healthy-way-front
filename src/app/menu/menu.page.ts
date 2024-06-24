@@ -10,6 +10,14 @@ import { EjerciciosComponent } from '../modals/ejercicios/ejercicios.component';
 interface SuenoEntry {
   time: number;
   date: string;
+  day?: string;
+  hour?: string; // Hacer opcional si no siempre la vas a tener disponible
+  averageSleep?: number;
+}
+
+interface SuenoMesEntry {
+  time: number;
+  date: string;
   day?: string; // Hacer opcional si no siempre la vas a tener disponible
   averageSleep?: number;
 }
@@ -33,13 +41,10 @@ export class MenuPage implements OnInit {
   userUid: string = '';
   userWeights: { month: string, weight: number | null }[] = [];
   weightChart: Chart | null = null; // Store chart instance
-  userSleepHours: {
-    averageSleep: any;
-    month: string;
-    sleepHours: any[];
-  }[] = [];
   sleepChart: any;
+  sleepChartMes: any;
   caloriesChart: any;
+  fecha: string = '';
 
   constructor(
     private consejosService: ConsejosService,
@@ -59,12 +64,24 @@ export class MenuPage implements OnInit {
         this.userUid = user.uid;
         this.loadUserWeights();
         this.loadCaloriesData();
-        console.log(this.userSleepHours);
       }
     });
     console.log(this.userUid);
     this.consulta();
+    this.consultaMes();
+
+    this.fecha = this.getMonth(new Date().getMonth())
   }
+
+  getMonth(monthNumber: number) {
+    const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+      "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+    return monthNames[monthNumber];
+  }
+
+  // Usando la función para obtener el nombre del mes actual
+
+
 
   loadUserWeights() {
     const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
@@ -139,51 +156,54 @@ export class MenuPage implements OnInit {
     this.as.getCurrentUser().subscribe(async user => {
       if (user) {
         this.userUid = user.uid;
-
+  
         // Obtén los datos de sueno directamente
         this.firestore.collection(`users/${user.uid}/sueno`).valueChanges()
           .subscribe((sueno: unknown[]) => {
             const entries: SuenoEntry[] = sueno as SuenoEntry[];
-
+  
             // Paso 1: Filtrar los datos de la semana actual
             const startOfWeek = this.getStartOfWeek(new Date());
             const endOfWeek = new Date(startOfWeek);
             endOfWeek.setDate(endOfWeek.getDate() + 6);
-
+            endOfWeek.setHours(23, 59, 59, 999); // Asegurarse de incluir todo el día domingo
+  
             const datosDeLaSemanaActual: SuenoEntry[] = entries.filter(entry => {
               const entryDate = new Date(entry.date);
               return entryDate >= startOfWeek && entryDate <= endOfWeek;
             });
-
-            // Paso 2: Calcular el promedio por día de la semana
-            const datosPromediadosPorDia: SuenoEntry[] = [];
+  
+            // Paso 2: Crear un array con todos los días de la semana
+            const daysOfWeek: { date: string; day: string; time: number }[] = [];
             for (let i = 0; i < 7; i++) {
               const dayOfWeek = new Date(startOfWeek);
               dayOfWeek.setDate(dayOfWeek.getDate() + i);
-              const dayEntries = datosDeLaSemanaActual.filter(entry => {
-                const entryDate = new Date(entry.date);
-                return entryDate.toDateString() === dayOfWeek.toDateString();
-              });
-
-              const totalHoraDeSueno = dayEntries.reduce((total, entry) => total + entry.time, 0);
-              const promedioHoraDeSueno = dayEntries.length > 0 ? totalHoraDeSueno / dayEntries.length : 0;
-              
-              datosPromediadosPorDia.push({
-                date: dayOfWeek.toISOString(),
-                time: promedioHoraDeSueno,
+              daysOfWeek.push({
+                date: dayOfWeek.toISOString().split('T')[0], // Solo la parte de la fecha
                 day: dayOfWeek.toLocaleDateString('es-ES', { weekday: 'long' }),
-                averageSleep: promedioHoraDeSueno
+                time: 0
               });
             }
-
-            // Paso 3: Pasar los datos procesados al gráfico
-            this.renderSleepChart(datosPromediadosPorDia);
+  
+            // Paso 3: Llenar los datos de sueño para cada día
+            daysOfWeek.forEach(day => {
+              const dayEntries = datosDeLaSemanaActual.filter(entry => {
+                const entryDate = entry.date.split('T')[0];
+                return entryDate === day.date;
+              });
+              if (dayEntries.length > 0) {
+                day.time = dayEntries.reduce((total, entry) => total + entry.time, 0);
+              }
+            });
+  
+            // Paso 4: Pasar los datos completos al gráfico
+            this.renderSleepChart(daysOfWeek);
           });
       }
     });
   }
-
-  renderSleepChart(sueno: SuenoEntry[]) {
+  
+  renderSleepChart(sueno: { date: string; day: string; time: number }[]) {
     const canvas = document.getElementById('sleepChart') as HTMLCanvasElement;
     if (canvas) {
       const ctx = canvas.getContext('2d');
@@ -194,8 +214,8 @@ export class MenuPage implements OnInit {
             data: {
               labels: sueno.map(entry => entry.day), // Usar el día de la semana como etiqueta del eje X
               datasets: [{
-                label: 'Horas de Sueño Promedio',
-                data: sueno.map(entry => entry.averageSleep),
+                label: 'Horas de Sueño',
+                data: sueno.map(entry => entry.time),
                 backgroundColor: 'rgba(54, 162, 235, 0.2)',
                 borderColor: 'rgba(54, 162, 235, 1)',
                 borderWidth: 1
@@ -209,7 +229,7 @@ export class MenuPage implements OnInit {
                   beginAtZero: true,
                   title: {
                     display: true,
-                    text: 'Horas de Sueño Promedio'
+                    text: 'Horas de Sueño'
                   }
                 },
                 x: {
@@ -223,12 +243,21 @@ export class MenuPage implements OnInit {
           });
         } else {
           this.sleepChart.data.labels = sueno.map(entry => entry.day);
-          this.sleepChart.data.datasets[0].data = sueno.map(entry => entry.averageSleep);
+          this.sleepChart.data.datasets[0].data = sueno.map(entry => entry.time);
           this.sleepChart.update();
         }
       }
     }
   }
+  
+  getStartOfWeek(date: Date): Date {
+    const day = date.getDay();
+    const diff = date.getDate() - day + (day === 0 ? -6 : 1);  // Ajuste si el día es domingo
+    const startOfWeek = new Date(date.setDate(diff));
+    startOfWeek.setHours(0, 0, 0, 0); // Establecer al inicio del día
+    return startOfWeek;
+  }
+  
   loadCaloriesData() {
     this.as.getCurrentUser().subscribe(async user => {
       if (user) {
@@ -328,11 +357,6 @@ export class MenuPage implements OnInit {
     }
   }
 
-  getStartOfWeek(date: Date): Date {
-    const day = date.getDay();
-    const diff = date.getDate() - day + (day == 0 ? -6 : 1); // Ajuste si el día es domingo
-    return new Date(date.setDate(diff));
-  }
 
   async openExerciseRecommendations() {
     const modal = await this.modalController.create({
@@ -340,4 +364,108 @@ export class MenuPage implements OnInit {
     });
     return await modal.present();
   }
+
+  consultaMes() {
+    this.as.getCurrentUser().subscribe(async user => {
+      if (user) {
+        this.userUid = user.uid;
+
+        // Obtén los datos de sueno directamente
+        this.firestore.collection(`users/${user.uid}/sueno`).valueChanges()
+          .subscribe((sueno: unknown[]) => {
+            const entries: SuenoMesEntry[] = sueno as SuenoMesEntry[];
+
+            // Paso 1: Filtrar los datos del mes actual
+            const startOfMonth = new Date(new Date().getFullYear(), new Date().getMonth(), 1);
+            const endOfMonth = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0);
+
+            const datosDelMesActual: SuenoMesEntry[] = entries.filter(entry => {
+              const entryDate = new Date(entry.date);
+              return entryDate >= startOfMonth && entryDate <= endOfMonth;
+            });
+
+            // Paso 2: Calcular el total de horas por día del mes
+            const datosPorDiaDelMes: { [key: string]: number } = {};
+            datosDelMesActual.forEach(entry => {
+              const entryDate = new Date(entry.date);
+              // Ajustar a la zona horaria local para evitar desajustes de fecha
+              const localDate = new Date(entryDate.getTime() + entryDate.getTimezoneOffset() * 60000).toISOString().split('T')[0];
+              if (!datosPorDiaDelMes[localDate]) {
+                datosPorDiaDelMes[localDate] = 0;
+              }
+              datosPorDiaDelMes[localDate] += entry.time;
+            });
+
+            // Convertir el objeto en un array de SuenoEntry y ordenarlo por fecha
+            const datosDelMesArray: SuenoMesEntry[] = Object.keys(datosPorDiaDelMes).map(date => {
+              const currentDate = new Date(date);
+              // Sumar un día a la fecha actual para mostrar el día correcto en la interfaz
+              currentDate.setDate(currentDate.getDate() + 1);
+
+              return {
+                date: currentDate.toISOString().split('T')[0],
+                time: datosPorDiaDelMes[date],
+                day: currentDate.getDate().toString(), // Mostrar el día del mes como etiqueta
+                averageSleep: datosPorDiaDelMes[date] // Total de horas de sueño
+              };
+            }).sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+
+            // Paso 3: Pasar los datos procesados al gráfico
+            this.renderSleepChartMes(datosDelMesArray);
+          });
+      }
+    });
+  }
+
+  renderSleepChartMes(sueno: SuenoMesEntry[]) {
+    const canvas = document.getElementById('sleepChartMes') as HTMLCanvasElement;
+    if (canvas) {
+      const ctx = canvas.getContext('2d');
+      if (ctx) {
+        if (!this.sleepChartMes) {
+          this.sleepChartMes = new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: sueno.map(entry => entry.day), // Usar el día del mes como etiqueta del eje X
+              datasets: [{
+                label: 'Horas de Sueño',
+                data: sueno.map(entry => entry.averageSleep),
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+              }]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              scales: {
+                y: {
+                  beginAtZero: true,
+                  title: {
+                    display: true,
+                    text: 'Horas de Sueño'
+                  }
+                },
+                x: {
+                  title: {
+                    display: true,
+                    text: 'Días del Mes'
+                  }
+                }
+              }
+            }
+          });
+        } else {
+          this.sleepChartMes.data.labels = sueno.map(entry => entry.day);
+          this.sleepChartMes.data.datasets[0].data = sueno.map(entry => entry.averageSleep);
+          this.sleepChartMes.update();
+        }
+      }
+    }
+  }
+
+
+
 }
+
+
