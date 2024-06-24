@@ -12,9 +12,28 @@
     <ion-item class="record txt">
       <ion-input formControlName="time" type="number" min="0" max="24" placeholder="Horas dormidas"></ion-input>
     </ion-item>
+    <div class="contenedor-texto">
+      <span class="texto-sutil"> Ingresa la fecha solamente si deceas guardar un registro anterior, de lo contrario se guardara la fecha actual</span>
+    </div>
     <ion-item>
       <ion-input formControlName="customDate" type="date" placeholder="Horas dormidas"></ion-input>
     </ion-item>
-    <ion-button class="bt txt1" expand="full" type="submit" [disabled]="!suenoForm.valid">Guardar Alarma</ion-button>
+    <ion-button class="bt txt1" expand="full" type="submit" [disabled]="!suenoForm.valid">Guardar</ion-button>
   </form>
 </ion-content>
+<style>
+.contenedor-texto {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  height: 10vh; /* Altura total de la vista */
+  padding: 20px; /* Espacio alrededor del contenido */
+}
+
+.texto-sutil {
+  color: #b9b9b9; /* Color sutil */
+  font-size: 16px; /* Tamaño de fuente */
+  max-width: 90%; /* Ancho máximo del texto */
+  margin: auto; /* Centra el texto horizontalmente dentro del contenedor */
+}
+</style>  

@@ -40,7 +40,12 @@ export class FormularioSuenoComponent  implements OnInit {
   async saveSueno() {
     if (this.suenoForm.valid) {
       const selectedDate = this.suenoForm.value.customDate || this.date;
-      console.log(selectedDate);
+      const now = this.formatDate(new Date());
+
+      if (selectedDate > now) {
+        await this.showAlert1('No se puede guardar una fecha futura.');
+        return;
+      }
 
       try {
         const user = await this.afa.currentUser;
@@ -54,12 +59,12 @@ export class FormularioSuenoComponent  implements OnInit {
           const suenoRef = this.afs.collection(`users/${user.uid}/sueno`, ref => ref.where('date', '==', selectedDate));
           const querySnapshot = await suenoRef.get().toPromise();
 
-          console.log("Query Snapshot:", querySnapshot); // Registro de consola para depurar
+          console.log("Query Snapshot:", querySnapshot);
 
           if (querySnapshot && !querySnapshot.empty) {
             console.log("Documents found:", querySnapshot.docs.map(doc => ({ id: doc.id, data: doc.data() })));
-            const docId = querySnapshot.docs[0].id; // Obtener el ID del documento existente
-            console.log("Document ID:", docId); // Registro de consola para depurar
+            const docId = querySnapshot.docs[0].id;
+            console.log("Document ID:", docId);
             await this.showAlert('Ya existe un registro para esta fecha. ¿Desea actualizarlo?', () => this.updateSueno(user.uid, docId, form));
           } else {
             await this.afs.collection(`users/${user.uid}/sueno`).doc().set(form);
@@ -95,6 +100,20 @@ export class FormularioSuenoComponent  implements OnInit {
     });
     await alert.present();
   }
+
+  private async showAlert1(message: string) {
+    const alert = await this.alertController.create({
+      header: 'Advertencia',
+      message: message,
+      buttons: [
+        {
+          text: 'Aceptar',
+        }
+      ]
+    });
+    await alert.present();
+  }
+
 
   private async updateSueno(uid: string, docId: string, form: any) {
     try {
