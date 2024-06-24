@@ -4,16 +4,25 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Chart, registerables } from 'chart.js';
 import { AuthService } from '../services/auth.service';
-import { EditProfileModalComponent } from '../modals/edit-profile-modal/edit-profile-modal.component';
 import { ModalController } from '@ionic/angular';
 import { EjerciciosComponent } from '../modals/ejercicios/ejercicios.component';
 
-  interface SuenoEntry {
-    time: number;
-    date: string;
-    day?: string; // Hacer opcional si no siempre la vas a tener disponible
-    averageSleep?: number;
-  }
+interface SuenoEntry {
+  time: number;
+  date: string;
+  day?: string; // Hacer opcional si no siempre la vas a tener disponible
+  averageSleep?: number;
+}
+
+interface CaloriasEntry {
+  calorias: number;
+  fecha: string;
+  day?: string;
+  averageCalories?: number;
+  totalCalorias: number;
+}
+
+
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.page.html',
@@ -30,8 +39,7 @@ export class MenuPage implements OnInit {
     sleepHours: any[];
   }[] = [];
   sleepChart: any;
-
-
+  caloriesChart: any;
 
   constructor(
     private consejosService: ConsejosService,
@@ -50,6 +58,7 @@ export class MenuPage implements OnInit {
       if (user) {
         this.userUid = user.uid;
         this.loadUserWeights();
+        this.loadCaloriesData();
         console.log(this.userSleepHours);
       }
     });
@@ -62,9 +71,6 @@ export class MenuPage implements OnInit {
     this.userWeights = months.map(month => ({ month, weight: null }));
 
     this.firestore.collection('bmiData', ref => ref.where('uid', '==', this.userUid)).valueChanges().subscribe(imcData => {
-
-
-
       this.userWeights.forEach(weight => weight.weight = null);
 
       imcData.forEach((data: any) => {
@@ -72,13 +78,10 @@ export class MenuPage implements OnInit {
         const monthIndex = parseInt(month) - 1;
         const weight = data.peso;
 
-
-
         if (monthIndex >= 0 && monthIndex < 12) {
           this.userWeights[monthIndex].weight = weight;
         }
       });
-
 
       this.renderWeightChart();
     });
@@ -131,9 +134,6 @@ export class MenuPage implements OnInit {
       }
     }
   }
-
-
-
 
   consulta() {
     this.as.getCurrentUser().subscribe(async user => {
@@ -229,21 +229,115 @@ export class MenuPage implements OnInit {
       }
     }
   }
+  loadCaloriesData() {
+    this.as.getCurrentUser().subscribe(async user => {
+      if (user) {
+        this.userUid = user.uid;
+
+        this.firestore.collection(`users/${user.uid}/calorias`).valueChanges()
+          .subscribe((calorias: unknown[]) => {
+            const entries: CaloriasEntry[] = calorias as CaloriasEntry[];
+            console.log('Datos recuperados:', entries);
+
+            // Filtrar los datos del mes actual
+            const startOfMonth = new Date(new Date().getFullYear(), new Date().getMonth(), 1);
+            const endOfMonth = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0);
+
+            const datosDelMesActual: CaloriasEntry[] = entries.filter(entry => {
+              const entryDate = new Date(entry.fecha);
+              return entryDate >= startOfMonth && entryDate <= endOfMonth;
+            });
+            console.log('Datos del mes actual:', datosDelMesActual);
+
+            // Calcular el promedio de calorías por día del mes
+            const datosPromediadosPorDia: CaloriasEntry[] = [];
+            for (let i = 0; i < endOfMonth.getDate(); i++) {
+              const dayOfMonth = new Date(startOfMonth);
+              dayOfMonth.setDate(dayOfMonth.getDate() + i);
+              const dayEntries = datosDelMesActual.filter(entry => {
+                const entryDate = new Date(entry.fecha);
+                return entryDate.toDateString() === dayOfMonth.toDateString();
+              });
+              console.log('dayEntries:', dayEntries);
+
+              const totalCalorias = dayEntries.reduce((total, entry) => total + entry.totalCalorias, 0);
+              const promedioCalorias = dayEntries.length > 0 ? totalCalorias / dayEntries.length : 0;
+              console.log('promedioCalorias:', promedioCalorias);
+
+              datosPromediadosPorDia.push({
+                fecha: dayOfMonth.toISOString(),
+                calorias: promedioCalorias,
+                day: dayOfMonth.toLocaleDateString('es-ES', { day: 'numeric', month: 'short' }),
+                averageCalories: promedioCalorias,
+                totalCalorias: promedioCalorias
+              });
+            }
+            console.log('datosPromediadosPorDia:', datosPromediadosPorDia);
+
+            // Pasar los datos procesados al gráfico
+            this.renderCaloriesChart(datosPromediadosPorDia);
+          });
+      }
+    });
+  }
+
+  renderCaloriesChart(calorias: CaloriasEntry[]) {
+    const canvas = document.getElementById('caloriesChart') as HTMLCanvasElement;
+    if (canvas) {
+      const ctx = canvas.getContext('2d');
+      if (ctx) {
+        if (!this.caloriesChart) {
+          this.caloriesChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: calorias.map(entry => entry.day), // Usar el día del mes como etiqueta del eje X
+              datasets: [{
+                label: 'Calorías Consumidas',
+                data: calorias.map(entry => entry.averageCalories),
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1
+              }]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              scales: {
+                y: {
+                  beginAtZero: true,
+                  title: {
+                    display: true,
+                    text: 'Calorías Consumidas'
+                  }
+                },
+                x: {
+                  title: {
+                    display: true,
+                    text: 'Días del Mes'
+                  }
+                }
+              }
+            }
+          });
+        } else {
+          this.caloriesChart.data.labels = calorias.map(entry => entry.day);
+          this.caloriesChart.data.datasets[0].data = calorias.map(entry => entry.averageCalories);
+          this.caloriesChart.update();
+        }
+      }
+    }
+  }
 
   getStartOfWeek(date: Date): Date {
     const day = date.getDay();
     const diff = date.getDate() - day + (day == 0 ? -6 : 1); // Ajuste si el día es domingo
     return new Date(date.setDate(diff));
   }
+
   async openExerciseRecommendations() {
     const modal = await this.modalController.create({
       component: EjerciciosComponent
     });
     return await modal.present();
   }
-
-  
 }
-
-  
-

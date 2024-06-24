@@ -12,13 +12,13 @@
       <ion-list>
         <ion-item *ngFor="let recipe of recipes" (click)="openRecipeDetails(recipe)">
           <ion-thumbnail slot="start" class="recipe-thumbnail">
-            <img [src]="recipe.image" alt="Imagen de la receta" class="large-image">
+            <img [src]="recipe.imageUrl" alt="Imagen de la receta" class="large-image">
           </ion-thumbnail>
           <ion-label>
             <h2>{{ recipe.nombre_receta }}</h2>
             <p>Tiempo de elaboración: {{ recipe.tiempo_elaboracion }}</p>
             <p>Porciones: {{ recipe.porciones }}</p>
-            <p>Calorías: {{ recipe.calorias }}</p>
+            <p>Calorías: {{ recipe.calorias_totales }}</p>
           </ion-label>
         </ion-item>
       </ion-list>
@@ -33,8 +33,8 @@
         <ion-fab-button (click)="openRegistrarReceta()">
           <ion-label class="fab-button-custom-label">Crear Receta</ion-label>
         </ion-fab-button>
-        <ion-fab-button>
-          <ion-label class="fab-button-custom-label">Registrar Ingesta</ion-label>
+        <ion-fab-button (click)="openRegistroComidas()">
+          <ion-label class="fab-button-custom-label">Registrar Comidas</ion-label>
         </ion-fab-button>
       </ion-fab-list>
     </ion-fab>

@@ -1,5 +1,6 @@
 export interface Ingrediente {
   nombre: string;
+  calorias:number;
   cantidad: string;
   proteinas: number;
   carbohidratos: number;

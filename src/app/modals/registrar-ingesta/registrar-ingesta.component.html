@@ -1,0 +1,35 @@
+<ion-app>
+  <ion-content>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Registrar Ingesta</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="dismissModal()">Close</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-list>
+      <ion-item>
+        <ion-label>Seleccionar Dieta</ion-label>
+        <ion-select placeholder="Seleccionar Tipo de Dieta" (ionChange)="guardarTipoDieta($event)">
+          <ion-select-option value="weight_loss">Pérdida de Peso</ion-select-option>
+          <ion-select-option value="muscle_gain">Ganancia de Músculo</ion-select-option>
+          <ion-select-option value="maintenance">Mantenimiento</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-list>
+        <ion-item *ngFor="let recipe of recipes" (click)="confirmAddRecipe(recipe)">
+          <ion-thumbnail slot="start" class="recipe-thumbnail">
+            <img [src]="recipe.imageUrl" alt="Imagen de la receta" class="large-image">
+          </ion-thumbnail>
+          <ion-label>
+            <h2>{{ recipe.nombre_receta }}</h2>
+            <p>Tiempo de elaboración: {{ recipe.tiempo_elaboracion }}</p>
+            <p>Porciones: {{ recipe.porciones }}</p>
+            <p>Calorías: {{ recipe.calorias_totales }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-list>
+  </ion-content>
+</ion-app>

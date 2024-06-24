@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { RecetaDetallesComponent } from '../modals/receta-detalles/receta-detalles.component';
+import { RegistrarIngestaComponent } from '../modals/registrar-ingesta/registrar-ingesta.component';
+import { RegistroComidasComponent } from '../modals/registro-comidas/registro-comidas.component';
 import { RegistrarRecetaComponent } from '../modals/registrar-receta/registrar-receta.component';
 
 @Component({
@@ -13,13 +15,7 @@ import { RegistrarRecetaComponent } from '../modals/registrar-receta/registrar-r
 })
 export class ComidasPage implements OnInit {
   recipes: any[] = [];
-  images: string[] = [
-    '../../../assets/img/batido.webp',
-    '../../../assets/img/tacos_de_lechuga.webp',
-    '../../../assets/img/omellet_claras_espinacas.webp',
-    '../../../assets/img/salmon_al_horno_esparragos.webp',
-    '../../../assets/img/quinoa_con_vegetales.webp',
-  ];
+
   tipoDieta$: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
 
   constructor(
@@ -35,6 +31,12 @@ export class ComidasPage implements OnInit {
   async openRegistrarReceta() {
     const modal = await this.modalController.create({
       component: RegistrarRecetaComponent
+    });
+    return await modal.present();
+  }
+  async openRegistroComidas() {
+    const modal = await this.modalController.create({
+      component: RegistroComidasComponent
     });
     return await modal.present();
   }
@@ -58,8 +60,7 @@ export class ComidasPage implements OnInit {
       .subscribe(
         (response) => {
           this.recipes = response.map((recipe, index) => ({
-            ...recipe,
-            image: this.images[index % this.images.length],
+            ...recipe 
           }));
           console.log('Recetas:', this.recipes);
         },
