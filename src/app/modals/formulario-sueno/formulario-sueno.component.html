@@ -12,7 +12,9 @@
     <ion-item class="record txt">
       <ion-input formControlName="time" type="number" min="0" max="24" placeholder="Horas dormidas"></ion-input>
     </ion-item>
-
+    <ion-item>
+      <ion-input formControlName="customDate" type="date" placeholder="Horas dormidas"></ion-input>
+    </ion-item>
     <ion-button class="bt txt1" expand="full" type="submit" [disabled]="!suenoForm.valid">Guardar Alarma</ion-button>
   </form>
 </ion-content>
