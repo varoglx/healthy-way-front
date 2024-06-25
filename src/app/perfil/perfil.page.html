@@ -5,7 +5,7 @@
     
 
     <ion-buttons slot="end">
-      <ion-button (click)="cerrarSesion()">
+      <ion-button class="cerrar" (click)="cerrarSesion()">
         <ion-icon name="log-out-outline"></ion-icon>
         Salir
       </ion-button>
@@ -16,7 +16,7 @@
 
 
 <ion-content class="profile-content">
-  <ion-card-content>
+  <ion-card-content class="card">
     <div class="profile-container">
       <ion-avatar class="profile-avatar">
         <ng-container *ngIf="profilePicture; else noPicture">
@@ -51,37 +51,9 @@
       
     </div>
 
-    <ion-button expand="block" (click)="abrirModalEditarPerfil()">Editar Perfil</ion-button>
+    <ion-button expand="block" class="edit-button" (click)="abrirModalEditarPerfil()">Editar Perfil</ion-button>
   </ion-card-content>
 </ion-content>
 
 
 
-<ion-footer class="fixed-footer">
-  <ion-tab-bar slot="bottom" class="full-width">
-    <ion-tab-button tab="Menu" routerLink="/menu">
-      <ion-icon name="home-outline"></ion-icon>
-      <ion-label>Home</ion-label>
-    </ion-tab-button>
-
-    <ion-tab-button tab="comidas" routerLink="/comidas">
-      <ion-icon name="restaurant-outline"></ion-icon>
-      <ion-label>Comidas</ion-label>
-    </ion-tab-button>
-
-    <ion-tab-button tab="recordatorios" routerLink="/recordatorios">
-      <ion-icon name="alarm-outline"></ion-icon>
-      <ion-label>Recordatorios</ion-label>
-    </ion-tab-button>
-
-    <ion-tab-button tab="seguimiento" routerLink="/seguimiento">
-      <ion-icon name="analytics-outline"></ion-icon>
-      <ion-label>Seguimiento</ion-label>
-    </ion-tab-button>
-
-    <ion-tab-button tab="perfil" routerLink="/perfil">
-      <ion-icon name="person"></ion-icon>
-      <ion-label>Perfil</ion-label>
-    </ion-tab-button>
-  </ion-tab-bar>
-</ion-footer>

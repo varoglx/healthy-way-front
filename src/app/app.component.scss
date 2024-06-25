@@ -1,0 +1,22 @@
+ion-content {
+    --padding-bottom: 56px; 
+  }
+  
+  .fixed-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 1000; 
+}
+   
+
+ion-app, ion-content, ion-router-outlet {
+  height: 100%;
+}
+
+
+
+ion-footer {
+  margin: 0;
+  padding: 0;
+}
