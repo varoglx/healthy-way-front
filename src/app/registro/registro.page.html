@@ -18,10 +18,10 @@
         
         <ion-item>
           <ion-label position="stacked">Edad</ion-label>
-          <ion-input [(ngModel)]="age" type="number" name="age" required></ion-input>
+          <ion-input [(ngModel)]="age" type="number" name="age" required (input)="validateAge($event)"></ion-input>
         </ion-item>
-        <div *ngIf="ageError" class="error-message">La edad debe ser un número válido.</div>
-        
+        <div *ngIf="ageError" class="error-message">La edad debe ser un número válido y no mayor a 99.</div>
+
         <ion-item>
           <ion-label>Género</ion-label>
           <ion-select [(ngModel)]="gender" interface="popover" required>
@@ -38,13 +38,14 @@
         </ion-item>
         <div *ngIf="emailError" class="error-message">El correo electrónico no es válido.</div>
         
-        <ion-item>
-          <ion-label position="stacked">Contraseña</ion-label>
-          <ion-input [(ngModel)]="password" type="password" name="password" required></ion-input>
-        </ion-item>
-        <div *ngIf="passwordError" class="error-message">
-          La contraseña debe tener al menos 8 caracteres, incluyendo letras, números y al menos un carácter especial.
-        </div>
+       <ion-item>
+      <ion-label position="stacked">Contraseña</ion-label>
+      <ion-input [(ngModel)]="password" [type]="passwordType" name="password" required></ion-input>
+      <ion-icon [name]="passwordIcon" slot="end" (click)="togglePasswordVisibility()"></ion-icon>
+    </ion-item>
+    <div *ngIf="passwordError" class="error-message">
+      La contraseña debe contener entre 8 y 16 caracteres, incluyendo letras, números y al menos un carácter especial.
+    </div>
       </div>
 
       <ion-button expand="block" class="signin-button" (click)="register()">Registrarse</ion-button>
