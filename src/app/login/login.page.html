@@ -1,14 +1,12 @@
 <ion-content [fullscreen]="true" class="login-content">
+  <div class="background-shape"></div>
+
   <div class="logo">
     <img src="assets/icon/healthy1.png" alt="Tu logo" class="logo-img">
   </div>
 
   <div class="login-container">
     <div class="login-box">
-      <div class="tabs">
-        <button class="active" ion-button color="primary">Iniciar Sesión</button>
-        <button ion-button color="primary" (click)="goToRegisterPage()">Registrarse</button>
-      </div>
       <div class="form-container">
         <ion-item>
           <ion-label position="stacked">Correo Electrónico</ion-label>
@@ -18,31 +16,9 @@
           <ion-label position="stacked">Contraseña</ion-label>
           <ion-input [(ngModel)]="password" type="password" name="password" placeholder="" required></ion-input>
         </ion-item>
-        <ion-button expand="block" class="signup-button" (click)="login()">Iniciar Sesión</ion-button>
+        <ion-button expand="block" class="login-button" (click)="login()">Iniciar Sesión</ion-button>
       </div>
-      <ion-button expand="block" class="rec" (click)="goToPasswordResetPage()">Olvidé mi contraseña</ion-button>
-
+      <ion-button expand="block" class="forgot-password-button" (click)="goToPasswordResetPage()">Olvidé mi contraseña</ion-button>
     </div>
-  </div>
-
-  <div class="container">
-    <ion-card class="container">
-      <ion-card-content>
-        <div>
-          <h2 class="text">Conecta con</h2>
-        </div>
-        <div class="social">
-          <ion-button class="btn-fb">
-            <ion-icon name="logo-facebook"></ion-icon>
-          </ion-button>
-          <ion-button class="btn-tw">
-            <ion-icon name="logo-twitter"></ion-icon>
-          </ion-button>
-          <ion-button class="btn-go">
-            <ion-icon name="logo-google"></ion-icon>
-          </ion-button>
-        </div>
-      </ion-card-content>
-    </ion-card>
   </div>
 </ion-content>
