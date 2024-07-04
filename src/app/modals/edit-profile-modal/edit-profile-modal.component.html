@@ -22,14 +22,15 @@
       <ion-select-option value="Otro">Otro</ion-select-option>
     </ion-select>
   </ion-item>
-  <ion-item>
-    <ion-label position="stacked">Correo Electrónico</ion-label>
-    <ion-input type="email" [(ngModel)]="newEmail"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="stacked">Contraseña Actual</ion-label>
-    <ion-input type="password" [(ngModel)]="password"></ion-input>
-  </ion-item>
 
   <ion-button expand="block" (click)="saveChanges()">Guardar Cambios</ion-button>
+
+  <!-- Añadir IonAlert para errores -->
+  <ion-alert
+    [isOpen]="showError"
+    header="Error"
+    message="{{ errorMessage }}"
+    buttons="OK"
+    (didDismiss)="showError = false">
+  </ion-alert>
 </ion-content>

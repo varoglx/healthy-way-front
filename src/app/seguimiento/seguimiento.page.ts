@@ -20,6 +20,7 @@ export class SeguimientoPage implements OnInit {
   uid: string = '';
   imcRecords: any[] = [];
   listaSueno: any[] = [];
+  loading: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -49,6 +50,7 @@ export class SeguimientoPage implements OnInit {
 
   calcularIMC() {
     if (this.peso <= 0 || this.altura <= 0) {
+      this.loading = false;
       alert("Por favor, ingrese valores válidos.");
       return;
     }
@@ -57,9 +59,11 @@ export class SeguimientoPage implements OnInit {
     
     // Call the API to store the data
     this.storeBmiData();
+    this.loading = false;
   }
 
   storeBmiData() {
+    this.loading = true;
     const bmiData = {
       uid: this.uid,
       peso: this.peso,

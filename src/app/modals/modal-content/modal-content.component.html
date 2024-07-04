@@ -42,7 +42,9 @@
         <ion-checkbox [formControlName]="day"></ion-checkbox>
       </ion-item>
     </ion-list>
-
-    <ion-button class="bt txt1" expand="full" type="submit" [disabled]="!alarmForm.valid">Guardar Alarma</ion-button>
+    <ion-button expand="block" class="bt txt1" type="submit" [disabled]="loading" [disabled]="!alarmForm.valid">
+      <ion-spinner *ngIf="loading" name="crescent"></ion-spinner>
+      <span *ngIf="!loading">Guardar</span>
+    </ion-button>
   </form>
-</ion-content>
+</ion-content> 

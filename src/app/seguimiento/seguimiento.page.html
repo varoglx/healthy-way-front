@@ -9,13 +9,16 @@
     <ion-card-content>
       <ion-item>
         <ion-label position="floating" class="imc-label">Peso (KG)</ion-label>
-        <ion-input [(ngModel)]="peso" type="number" class="imc-input"></ion-input>
+        <ion-input [(ngModel)]="peso" type="number" min="40" max="300" class="imc-input"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating" class="imc-label">Altura (CM)</ion-label>
-        <ion-input [(ngModel)]="altura" type="number" class="imc-input"></ion-input>
+        <ion-input [(ngModel)]="altura" type="number" min="100" max="300"class="imc-input"></ion-input>
       </ion-item>
-      <ion-button expand="block" class="imc-button" (click)="calcularIMC()">Calcular</ion-button>
+      <ion-button expand="block" class="imc-button" (click)="calcularIMC()" [disabled]="loading">
+        <ion-spinner *ngIf="loading" name="crescent"></ion-spinner>
+        <span *ngIf="!loading">Calcular</span>
+      </ion-button>
       <div *ngIf="imc > 0" id="resultadoIMC" class="imc-result">
         IMC: {{ imc.toFixed(2) }}
       </div>

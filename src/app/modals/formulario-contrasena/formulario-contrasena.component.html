@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Cambiar Contraseña</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="form-container">
+    <ion-item>
+      <ion-label position="stacked">Nueva Contraseña</ion-label>
+      <ion-input [(ngModel)]="newPassword" type="password" name="newPassword" required></ion-input>
+    </ion-item>
+    <ion-button expand="block" class="change-password-button" (click)="changePassword()" [disabled]="loading">
+      <ion-spinner *ngIf="loading" name="crescent"></ion-spinner>
+      <span *ngIf="!loading">Cambiar Contraseña</span>
+    </ion-button>
+  </div>
+
+  <ion-alert
+    [isOpen]="showError"
+    header="Error"
+    message="{{ errorMessage }}"
+    buttons="OK"
+    (didDismiss)="showError = false">
+  </ion-alert>
+
+  <ion-toast
+    [isOpen]="showSuccess"
+    message="Contraseña cambiada exitosamente"
+    duration="2000"
+    position="top"
+    (didDismiss)="showSuccess = false">
+  </ion-toast>
+</ion-content>

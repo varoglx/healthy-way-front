@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { PerfilPageRoutingModule } from './perfil-routing.module';
+import { FormularioContrasenaComponent } from '../modals/formulario-contrasena/formulario-contrasena.component';
 
 import { PerfilPage } from './perfil.page';
 
@@ -16,6 +17,6 @@ import { PerfilPage } from './perfil.page';
     IonicModule,
     PerfilPageRoutingModule
   ],
-  declarations: [PerfilPage]
+  declarations: [PerfilPage,FormularioContrasenaComponent]
 })
 export class PerfilPageModule {}

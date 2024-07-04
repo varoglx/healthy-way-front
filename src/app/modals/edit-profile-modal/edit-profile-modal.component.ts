@@ -18,6 +18,9 @@ export class EditProfileModalComponent {
 
   newEmail: string = '';
   password: string = '';
+  showError: boolean = false;
+  showSuccess: boolean = false;
+  errorMessage: string = '';
 
   constructor(
     private modalController: ModalController,
@@ -29,15 +32,20 @@ export class EditProfileModalComponent {
   }
 
   async saveChanges() {
-    if (this.newEmail && this.password) {
-      try {
-        await this.authService.updateEmail(this.newEmail);
-        this.userProfile.email = this.newEmail;
-        console.log('Correo electrónico actualizado con éxito');
-        // Opcionalmente, muestra un mensaje de éxito aquí
-      } catch (error) {
-        console.error('Error al actualizar el correo electrónico:', error);
-      }
+    const namePattern = /^[A-Za-z\s]{4,15}$/;
+
+    // Verificar si el nombre es undefined
+    if (!this.userProfile.name) {
+      this.errorMessage = 'El nombre no puede estar vacío.';
+      this.showError = true;
+      return;
+    }
+
+    // Validar el nombre con el patrón
+    if (!namePattern.test(this.userProfile.name)) {
+      this.errorMessage = 'El nombre debe tener entre 4 y 15 caracteres y no debe contener números ni caracteres especiales.';
+      this.showError = true;
+      return;
     }
 
     if (this.userProfile) {
@@ -47,6 +55,8 @@ export class EditProfileModalComponent {
             console.log('Perfil actualizado con éxito');
             this.closeModal();
           }).catch(error => {
+            this.errorMessage = 'Error al actualizar el perfil: ' + error.message;
+            this.showError = true;
             console.error('Error al actualizar el perfil:', error);
           });
         }

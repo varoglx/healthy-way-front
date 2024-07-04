@@ -14,6 +14,7 @@ export class FormularioSuenoComponent  implements OnInit {
   suenoForm: FormGroup;
   date: any;
   hour: any;
+  loading = false;
 
 
   constructor(private modalController: ModalController,private fb: FormBuilder,private afs : AngularFirestore, private afa : AngularFireAuth,private alertController: AlertController) {
@@ -31,6 +32,7 @@ export class FormularioSuenoComponent  implements OnInit {
     this.hour = this.formatTime(now)
 
     console.log(this.date)
+    this.showAlert1('Ingresa la fecha solamente si deseas guardar un registro anterior, de lo contrario se guardara la fecha actual.');
   }
 
   dismissModal() {
@@ -39,6 +41,7 @@ export class FormularioSuenoComponent  implements OnInit {
 
   async saveSueno() {
     if (this.suenoForm.valid) {
+      this.loading = true;
       const selectedDate = this.suenoForm.value.customDate || this.date;
       const now = this.formatDate(new Date());
 
@@ -73,10 +76,13 @@ export class FormularioSuenoComponent  implements OnInit {
           }
         } else {
           console.error('No user is currently logged in.');
+          this.loading = false;
         }
       } catch (error) {
         console.error('Error al guardar el formulario en Firestore:', error);
       }
+    }else{
+      this.loading = false;
     }
   }
   
@@ -112,6 +118,19 @@ export class FormularioSuenoComponent  implements OnInit {
       ]
     });
     await alert.present();
+  }
+
+  async showAlert2(message: string) {
+    const alert = this.alertController.create({
+      header: 'Advertencia',
+      message: message,
+      buttons: [
+        {
+          text: 'Aceptar',
+        }
+      ]
+    });
+    (await alert).present();
   }
 
 

@@ -5,6 +5,7 @@ import { AuthService, UserProfile } from '../services/auth.service';
 import { ModalController } from '@ionic/angular';
 import { EditProfileModalComponent } from '../modals/edit-profile-modal/edit-profile-modal.component';
 import { Router } from '@angular/router';
+import { FormularioContrasenaComponent } from '../modals/formulario-contrasena/formulario-contrasena.component';
 
 
 @Component({
@@ -96,5 +97,10 @@ export class PerfilPage implements AfterViewInit, OnInit {
     return await modal.present();
   }
 
-  
+  async openModal() {
+    const modal = await this.modalController.create({
+      component: FormularioContrasenaComponent
+    });
+    return await modal.present();
+  }
 }

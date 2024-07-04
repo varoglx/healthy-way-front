@@ -15,12 +15,6 @@
           <ion-input [(ngModel)]="name" type="text" name="name" required></ion-input>
         </ion-item>
         <div *ngIf="nameError" class="error-message">{{ nameErrorMessage }}</div>
-        
-        <ion-item>
-          <ion-label position="stacked">Edad</ion-label>
-          <ion-input [(ngModel)]="age" type="number" name="age" required (input)="validateAge($event)"></ion-input>
-        </ion-item>
-        <div *ngIf="ageError" class="error-message">La edad debe ser un número válido y no mayor a 99.</div>
 
         <ion-item>
           <ion-label>Género</ion-label>

@@ -17,7 +17,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 export class ModalContentComponent implements OnInit {
 
-  
+  loading = false;
   counter = 0;
   previousAlarmId = 0;
   alarmForm: FormGroup;
@@ -42,51 +42,10 @@ export class ModalContentComponent implements OnInit {
 
   ngOnInit() {
     this.loadAlarms()
-    this.schedulePredefinedNotification()
+
   }
 
-  async schedulePredefinedNotification() {
-    try {
-      // Crear el canal de notificación
-      await LocalNotifications.createChannel({
-        id: '',
-        name: 'Notificación Predefinida',
-        description: 'Canal para notificaciones predefinidas diarias',
-        importance: 5,
-        visibility: 1,
-      });
-    } catch (error) {
-      console.error('Error al crear el canal de notificación:', error);
-    }
 
-    try {
-      await LocalNotifications.requestPermissions();
-
-      const hours = 14; // Hora predefinida (8 AM)
-      const minutes = 57; // Minutos predefinidos
-
-      const predefinedNotification = {
-        title: 'Recordatorio Diario',
-        body: 'Este es tu mensaje predeterminado diario.',
-        id: 1, // ID predefinido
-        schedule: {
-          on: {
-            hour: hours,
-            minute: minutes,
-          },
-          repeats: true,
-        },
-        channelId: 'predefined-channel-id',
-        attachments: undefined,
-        actionTypeId: '',
-        extra: null,
-      };
-
-      await LocalNotifications.schedule({ notifications: [predefinedNotification] });
-    } catch (error) {
-      console.error('Error al programar la notificación predefinida:', error);
-    }
-  }
 
   async loadAlarms() {
     const user = await this.afa.currentUser;
@@ -131,6 +90,7 @@ export class ModalContentComponent implements OnInit {
   
   async saveAlarm() {
     if (this.alarmForm.valid) {
+      this.loading = true;
       const user = await this.afa.currentUser;
       if (user) {
       const newAlarm = {

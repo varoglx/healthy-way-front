@@ -126,5 +126,10 @@ export class AuthService {
       console.error('Error al actualizar el correo electrónico:', error);
     }
   }
+
+  updatePassword(newPassword: string) {
+    const user = this.afAuth.currentUser;
+    return user.then(u => u?.updatePassword(newPassword));
+  }
   
 }
