@@ -17,6 +17,7 @@ export class LoginPage {
   constructor(private authService: AuthService, private navCtrl: NavController, private router: Router) { }
 
   login() {
+    this.loading = true;
     this.authService.loginWithEmail(this.email, this.password).then(
       response => {
         console.log('Inicio de sesión exitoso', response);

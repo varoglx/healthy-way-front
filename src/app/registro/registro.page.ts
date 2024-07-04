@@ -14,10 +14,13 @@ export class RegistroPage {
   gender: string = '';
   email: string = '';
   password: string = '';
+  loading: boolean = false;
+
 
   constructor(private authService: AuthService, private navCtrl: NavController, private router: Router) { }
 
   register() {
+    this.loading = true;
     this.authService.registerWithEmail(this.email, this.password).then(
       response => {
         console.log('Registro exitoso', response);
@@ -38,6 +41,9 @@ export class RegistroPage {
         console.error('Error en el registro', error);
       }
     );
+    if  (this.authService.registerWithEmail!){
+      this.loading = false;
+    }
   }
   
   goToLoginPage() {

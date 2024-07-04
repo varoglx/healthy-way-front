@@ -35,8 +35,10 @@
           <ion-input [(ngModel)]="password" type="password" name="password" required></ion-input>
         </ion-item>
       </div>
-
-      <ion-button expand="block" class="signin-button" (click)="register()">Registrarse</ion-button>
+      <ion-button expand="block" class="signin-button" (click)="register()" [disabled]="loading">        
+        <ion-spinner *ngIf="loading" name="crescent"></ion-spinner>
+        <span *ngIf="!loading">Registrarse</span>
+      </ion-button>
     </div>
   </div>
 </ion-content>

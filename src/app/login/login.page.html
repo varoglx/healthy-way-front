@@ -18,7 +18,10 @@
           <ion-label position="stacked">Contraseña</ion-label>
           <ion-input [(ngModel)]="password" type="password" name="password" placeholder="" required></ion-input>
         </ion-item>
-        <ion-button expand="block" class="signup-button" (click)="login()">Iniciar Sesión</ion-button>
+        <ion-button expand="block" class="signup-button" (click)="login()" [disabled]="loading">
+          <ion-spinner *ngIf="loading" name="crescent"></ion-spinner>
+          <span *ngIf="!loading">Iniciar Sesión</span>
+        </ion-button>
       </div>
       <ion-button expand="block" class="rec" (click)="goToPasswordResetPage()">Olvidé mi contraseña</ion-button>
 
