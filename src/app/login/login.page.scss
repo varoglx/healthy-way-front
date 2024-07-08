@@ -1,5 +1,5 @@
 .login-content {
-  --background: #fff;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -14,8 +14,13 @@ div.logo {
 }
 
 .logo-img {
-  width: 90px; /* Ajusta el tamaño según tus necesidades */
+  width:  190px;
   height: auto;
+  position: absolute;
+  top: 0.7vw; /* Baja la imagen 50 píxeles desde la parte superior */
+  left: 50%; /* Posiciona la imagen horizontalmente al 50% del ancho del contenedor */
+  transform: translateX(-50%); /* Ajusta la posición para centrar la imagen horizontalmente */
+  z-index: 9999; /* Asegura que esté por encima de todos los demás elementos */
 }
 
 .login-container {
