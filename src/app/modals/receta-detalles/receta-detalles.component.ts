@@ -6,9 +6,12 @@ import { ModalController } from '@ionic/angular';
   templateUrl: './receta-detalles.component.html',
   styleUrls: ['./receta-detalles.component.scss'],
 })
+
 export class RecetaDetallesComponent implements OnInit {
   @Input() receta: any;
-
+  getCookingSteps(formaCocinar: string): string[] {
+    return formaCocinar.split('.').filter(step => step.trim().length > 0);
+  }
   constructor(private modalController: ModalController) { }
 
   dismissModal() {

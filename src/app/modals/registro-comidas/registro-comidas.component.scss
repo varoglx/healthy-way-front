@@ -18,3 +18,71 @@
     text-align: center;
     color: #FFFFFF; /* o puedes usar 'white' */
   }
+.eje-button {
+  --background: #00915b;
+  margin-top: 1em;
+  border-radius: 25px; 
+  color: #fff;
+  height: 50px; 
+  width: 100%; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0; 
+  --background-activated: #00915b;
+}
+.custom-green-button {
+  --background: #00915b;
+  --background-activated: #007a4c;
+  --background-focused: #00915b;
+  --background-hover: #00a86b;
+  border-radius: 12px;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  display: block; /* Para que el botón se comporte como un bloque */
+  width: 70%; /* Ocupa todo el ancho disponible */
+  height: 70%; /* Opcional: para que ocupe todo el alto disponible */
+  background-color: var(--background);
+  border: none; /* Opcional: elimina cualquier borde por defecto */
+  color: white; /* Opcional: color del texto */
+  padding: 10px; /* Opcional: espacio interior del botón */
+  font-size: 16px; /* Opcional: tamaño de la fuente */
+  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+  box-sizing: border-box; /* Asegura que el padding y borde no aumenten el ancho total */
+}
+
+.custom-green-button:hover {
+  background-color: var(--background-hover);
+}
+
+.custom-green-button:focus {
+  background-color: var(--background-focused);
+}
+
+.custom-green-button:active {
+  background-color: var(--background-activated);
+}
+.background {
+  background: linear-gradient(to bottom right, #d7ead3, #acdca8);
+  padding: 20px;
+  height: 100%;
+  position: relative;
+  overflow-y: scroll; /* Permite scroll vertical si el contenido desborda */
+}
+
+.floating-card {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  margin-bottom: 20px;
+}
+
+.eje-button {
+  --background: #00915b; /* Ajustado al verde especificado */
+  --background-activated: #006b4c; /* Tonalidad más oscura del verde para estado activado */
+  color: #fff;
+  border-radius: 12px;
+  width: 100%;
+  height: 50px;
+  font-size: 16px;
+  font-weight: bold;
+}

@@ -7,70 +7,50 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content *ngIf="receta">
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>{{ receta.nombre_receta }}</ion-card-title>
-      <ion-card-subtitle>{{ receta.calorias_totales }} calorías | {{ receta.tiempo_elaboracion }}</ion-card-subtitle>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-img [src]="receta.imageUrl" alt="Imagen de {{ receta.nombre_receta }}"></ion-img>
-      <ion-list>
-        <ion-item>
-          <ion-label>Porciones: {{ receta.porciones }}</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-label>Volumen por porción: {{ receta.volumen_porcion }}</ion-label>
-        </ion-item>
-      </ion-list>
-      <ion-card-title>Ingredientes</ion-card-title>
-      <ion-list>
-        <ion-item *ngFor="let ingrediente of receta.ingredientes">
-          <ion-label>
-            {{ ingrediente.nombre }} - {{ ingrediente.cantidad }}
-            <p>Proteínas: {{ ingrediente.proteinas }}g, Carbohidratos: {{ ingrediente.carbohidratos }}g, Grasas: {{ ingrediente.grasas }}g, Fibra: {{ ingrediente.fibra }}g, Azúcares: {{ ingrediente.azucares }}g, Sodio: {{ ingrediente.sodio }}mg</p>
-            <p>Omega 3: {{ ingrediente.omega3 }}g, Omega 6: {{ ingrediente.omega6 }}g</p>
-          </ion-label>
-        </ion-item>
-      </ion-list>
-      <ion-list>
-        <ion-item>
-          <ion-label>Forma de cocinar:</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-label>{{ receta.forma_cocinar }}</ion-label>
-        </ion-item>
-      </ion-list>
-      <ion-list>
-        <ion-item>
-          <ion-label>Vitaminas: {{ receta.vitaminas.join(', ') }}</ion-label>
-        </ion-item>
+  <ion-content *ngIf="receta">
 
-      <ion-list>
-        <ion-item>
-          <ion-label>Nutrientes Totales:</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-label>Proteínas Totales: {{ receta.nutrientes_totales.proteinas_totales }}g</ion-label>
-        <ion-item>
-          <ion-label>Carbohidratos Totales: {{ receta.nutrientes_totales.carbohidratos_totales }}g</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-label>Grasas Totales: {{ receta.nutrientes_totales.grasas_totales }}g</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-label>Fibra Total: {{ receta.nutrientes_totales.fibra_total }}g</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-label>Azúcares Totales: {{ receta.nutrientes_totales.azucares_totales }}g</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-label>Sodio Total: {{ receta.nutrientes_totales.sodio_total }}mg</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-label>Omega 3 Total: {{ receta.nutrientes_totales.monoacidos_totales.omega3 }}g</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-label>Omega 6 Total: {{ receta.nutrientes_totales.monoacidos_totales.omega6 }}g</ion-label>
-        </ion-item>
+
+        <ion-card-header>
+          <ion-card-title>{{ receta.nombre_receta }}</ion-card-title>
+          <ion-card-subtitle>{{ receta.calorias_totales | number: '1.0-0' }} calorías | {{ receta.tiempo_elaboracion }}</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-img [src]="receta.imageUrl" alt="Imagen de {{ receta.nombre_receta }}"></ion-img>
+          <ion-list>
+            <ion-item>
+              <ion-label>Porciones: {{ receta.porciones }}</ion-label>
+            </ion-item>
+          </ion-list>
+          <ion-card-title>Ingredientes</ion-card-title>
+          <ion-list>
+            <ion-item *ngFor="let ingrediente of receta.ingredientes">
+              <ion-label>
+                {{ ingrediente.nombre }} - {{ ingrediente.cantidad }}
+                <p>Proteínas: {{ ingrediente.proteinas }} Gramos </p>
+              </ion-label>
+            </ion-item>
+          </ion-list>
+          <ion-list>
+            <ion-item>
+              <ion-label>Forma de cocinar:</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-list>
+                <ion-item *ngFor="let step of getCookingSteps(receta.forma_cocinar); let i = index">
+                  <ion-label slot="start" class="full-width-label">{{ i + 1 }}. {{ step.trim() }}</ion-label>
+                </ion-item>
+              </ion-list>
+              
+            </ion-item>
+          </ion-list>
+          <ion-list>
+            <ion-item>
+              <ion-label>Proteínas Totales: {{ receta.nutrientes_totales.proteinas_totales }}g</ion-label>
+            </ion-item>
+          </ion-list>
+          </ion-card-content>
+
+
+  </ion-content>
+
 

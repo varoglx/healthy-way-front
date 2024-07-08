@@ -1,0 +1,38 @@
+.eje-button {
+    --background: #00915b;
+    margin-top: 1em;
+    border-radius: 25px; 
+    color: #fff;
+    height: 50px; 
+    width: 100%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0; 
+    --background-activated: #00915b;
+  }
+  .background {
+    background: linear-gradient(to bottom right, #d7ead3, #acdca8);
+    padding: 20px;
+    height: 100%;
+    position: relative;
+    overflow-y: scroll; /* Permite scroll vertical si el contenido desborda */
+  }
+  
+  .floating-card {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .eje-button {
+    --background: #00915b; /* Ajustado al verde especificado */
+    --background-activated: #006b4c; /* Tonalidad más oscura del verde para estado activado */
+    color: #fff;
+    border-radius: 12px;
+    width: 100%;
+    height: 50px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  

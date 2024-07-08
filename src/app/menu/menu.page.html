@@ -1,65 +1,49 @@
 
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Home</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content padding-bottom>
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Consejo Diario</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
+  <div class="background">
+    <ion-card class="floating-card">
+      <ion-card-header>
+        <ion-card-title>Consejo Diario</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
         <p>{{ consejoDelDia }}</p>
-    </ion-card-content>
-  </ion-card>
+      </ion-card-content>
+    </ion-card>
 
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Recomendacion De Ejercicio</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-button class="eje-button" (click)="openExerciseRecommendations()">Recomendación de Ejercicios</ion-button>
-    </ion-card-content>
-  </ion-card>
+    <ion-card class="floating-card">
+      <ion-card-header>
+        <ion-card-title>Recomendacion De Ejercicio</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-button class="eje-button" (click)="openExerciseRecommendations()">Recomendación de Ejercicios</ion-button>
+      </ion-card-content>
+    </ion-card>
 
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Progreso de Peso</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <canvas id="weightChart"></canvas>
-    </ion-card-content>
-  </ion-card>
+    <ion-card class="floating-card">
+      <ion-card-header>
+        <ion-card-title>Progreso de Peso</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <canvas id="weightChart"></canvas>
+      </ion-card-content>
+    </ion-card>
 
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Calidad de sueño Semana</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <canvas id="sleepChart"></canvas>
-    </ion-card-content>
-  </ion-card>
+    <ion-card class="floating-card">
+      <ion-card-header>
+        <ion-card-title>Calidad de sueño Semana</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <canvas id="sleepChart"></canvas>
+      </ion-card-content>
+    </ion-card>
 
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Calidad de sueño Mes ({{ fecha }})</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <canvas id="sleepChartMes"></canvas>
-    </ion-card-content>
-  </ion-card>
-
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Calorías Semanales</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <canvas id="caloriesChart"></canvas>
-    </ion-card-content>
-  </ion-card>
-
+    <ion-card class="floating-card">
+      <ion-card-header>
+        <ion-card-title>Calorías Semanales</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <canvas id="caloriesChart"></canvas>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>
-
-

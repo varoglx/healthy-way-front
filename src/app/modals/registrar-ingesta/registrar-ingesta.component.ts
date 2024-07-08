@@ -104,7 +104,7 @@ export class RegistrarIngestaComponent implements OnInit {
   addRecipeToIngesta(recipe: any) {
     const ingestaHoyStr = localStorage.getItem('ingestaHoy');
     let ingestaHoy = ingestaHoyStr ? JSON.parse(ingestaHoyStr) : [];
-
+    console.log('addRecipeToIngesta');
     const newRecipe = {
       nombre: recipe.nombre_receta,
       calorias: recipe.calorias_totales,

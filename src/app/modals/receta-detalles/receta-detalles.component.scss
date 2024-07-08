@@ -19,4 +19,58 @@
   
 
   }
+  .full-width-label {
+    width: 100%;
+    white-space: pre-wrap; /* Para que los saltos de línea se respeten */
+  }
+  .floating-card {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    margin-bottom: 20px;
+  }
+  .full-screen {
+    height: 100vh; /* Vista completa del alto de la pantalla */
+    width: 100vw; /* Vista completa del ancho de la pantalla */
+  }
+  
+
+  .modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 15px; /* Borde redondeado */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    margin: 10px; /* Separación con los bordes */
+  }
+  
+
+  .large-image {
+    max-width:56px;
+    max-height:56px;
+    object-fit: fill; /* Cambiado a 'fill' para que la imagen se deforme y se ajuste */
+  }
+  
+  .recipe-thumbnail img {
+    max-width:56px;
+    max-height:56px;
+    object-fit: fill; /* Cambiado a 'fill' para que la imagen se deforme y se ajuste */
+  }
+  .fab-button-custom {
+    --background: #00915b;
+  }
+
+  ion-fab-button:hover .fab-button-custom-label {
+    display: block;
+  }
+  .background {
+    background: linear-gradient(to bottom right, #d7ead3, #acdca8);
+    padding: 20px;
+    height: 100%;
+    position: relative;
+    overflow-y: scroll; /* Permite scroll vertical si el contenido desborda */
+  }
+  .floating-card {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    margin-bottom: 20px;
+  }
   
