@@ -75,13 +75,7 @@
       #acdca8 840px
     );
   }
-  .custom-green-button {
-    --background: var(--my-green);
-    --background-activated: var(--my-green);
-    --background-focused: var(--my-green);
-    --background-hover: var(--my-green);
-    --color: rgb(255, 255, 255); /* Color del texto */
-  }
+
   .floating-card {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     border-radius: 15px;
