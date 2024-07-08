@@ -1,94 +1,94 @@
-<ion-content class="imc-content">
-  <div class="logo">
-    <img src="assets/icon/healthy2.png" alt="Tu logo" class="logo-img">
-  </div>
-  <ion-card class="imc-card">
-    <ion-card-header>
-      <ion-card-title class="imc-card-title">Calculadora IMC</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-item>
-        <ion-label position="floating" class="imc-label">Peso (KG)</ion-label>
-        <ion-input [(ngModel)]="peso" type="number" min="40" max="300" class="imc-input"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating" class="imc-label">Altura (CM)</ion-label>
-        <ion-input [(ngModel)]="altura" type="number" min="100" max="300"class="imc-input"></ion-input>
-      </ion-item>
-      <ion-button expand="block" class="imc-button" (click)="calcularIMC()" [disabled]="loading">
-        <ion-spinner *ngIf="loading" name="crescent"></ion-spinner>
-        <span *ngIf="!loading">Calcular</span>
-      </ion-button>
-      <div *ngIf="imc > 0" id="resultadoIMC" class="imc-result">
-        IMC: {{ imc.toFixed(2) }}
-      </div>
-      <ion-range min="0" max="40" step="0.1" snaps="true" [(ngModel)]="imc" [disabled]="true">
-        <ion-label slot="start">Bajo Peso</ion-label>
-        <ion-label slot="end">Sobre Peso</ion-label>
-      </ion-range>
-    </ion-card-content>
-  </ion-card>
+<ion-content padding-bottom>
+  <div class="background">
+    <div class="logo">
+      <img src="assets/icon/healthy.png" alt="Tu logo" class="logo-img">
+    </div>
 
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Historial de IMC</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <table>
-        <thead>
-          <tr>
-            
-            <th>Peso (kg)</th>
-            <th>Altura (cm)</th>
-            <th>IMC</th>
-            <th>Fecha</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let record of imcRecords">
-            
-            <td>{{ record.peso }}</td>
-            <td>{{ record.altura }}</td>
-            <td>{{ record.imc | number: '1.2-2' }}</td>
-            <td>{{ record.fecha | date: 'dd/MM/yyyy' }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </ion-card-content>
-  </ion-card>
+    <ion-card class="floating-card">
+      <ion-card-header>
+        <ion-card-title class="imc-card-title">Calculadora IMC</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label position="floating" class="imc-label">Peso (KG)</ion-label>
+          <ion-input [(ngModel)]="peso" type="number" min="40" max="300" class="imc-input"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating" class="imc-label">Altura (CM)</ion-label>
+          <ion-input [(ngModel)]="altura" type="number" min="100" max="300" class="imc-input"></ion-input>
+        </ion-item>
+        <ion-button expand="block" class="imc-button" (click)="calcularIMC()" [disabled]="loading">
+          <ion-spinner *ngIf="loading" name="crescent"></ion-spinner>
+          <span *ngIf="!loading">Calcular</span>
+        </ion-button>
+        <div *ngIf="imc > 0" id="resultadoIMC" class="imc-result">
+          IMC: {{ imc.toFixed(2) }}
+        </div>
+        <ion-range min="0" max="40" step="0.1" snaps="true" [(ngModel)]="imc" [disabled]="true">
+          <ion-label slot="start">Bajo Peso</ion-label>
+          <ion-label slot="end">Sobre Peso</ion-label>
+        </ion-range>
+      </ion-card-content>
+    </ion-card>
 
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Historial Sueño</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <table>
-        <thead>
-          <tr>
-            <th>H.Sueño</th>
-            <th>Fecha</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let record of listaSueno">
-            <td>{{ record.time }}</td>
-            <td>{{ record.date}} / {{record.hour}}</td>
-          </tr>
-        </tbody>
-      </table>
-    </ion-card-content>
-  </ion-card>
+    <ion-card class="floating-card">
+      <ion-card-header>
+        <ion-card-title>Historial de IMC</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <table>
+          <thead>
+            <tr>
+              <th>Peso (kg)</th>
+              <th>Altura (cm)</th>
+              <th>IMC</th>
+              <th>Fecha</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let record of imcRecords">
+              <td>{{ record.peso }}</td>
+              <td>{{ record.altura }}</td>
+              <td>{{ record.imc | number: '1.2-2' }}</td>
+              <td>{{ record.fecha | date: 'dd/MM/yyyy' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </ion-card-content>
+    </ion-card>
 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed" class="fab-button-custom">
-    <ion-fab-button>
-      <ion-icon name="add"></ion-icon>
-      <ion-label class="fab-button-custom-label"></ion-label>
-    </ion-fab-button>
-    <ion-fab-list side="top">
-      <ion-fab-button (click)="openModal()">
-        <ion-label class="fab-button-custom-label">registrar sueño</ion-label>
+    <ion-card class="floating-card">
+      <ion-card-header>
+        <ion-card-title>Historial Sueño</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <table>
+          <thead>
+            <tr>
+              <th>H.Sueño</th>
+              <th>Fecha</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let record of listaSueno">
+              <td>{{ record.time }}</td>
+              <td>{{ record.date}} / {{record.hour}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed" class="fab-button-custom">
+      <ion-fab-button>
+        <ion-icon name="add"></ion-icon>
+        <ion-label class="fab-button-custom-label"></ion-label>
       </ion-fab-button>
-    </ion-fab-list>
-  </ion-fab>
-  
+      <ion-fab-list side="top">
+        <ion-fab-button (click)="openModal()">
+          <ion-label class="fab-button-custom-label">Registrar Sueño</ion-label>
+        </ion-fab-button>
+      </ion-fab-list>
+    </ion-fab>
+  </div>
 </ion-content>

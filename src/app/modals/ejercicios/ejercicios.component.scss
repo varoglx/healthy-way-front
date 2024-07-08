@@ -1,24 +1,70 @@
-.exercise-card {
-    margin-bottom: 20px; 
+
+
+  
+  ion-card {
+    margin-bottom: 20px;
   }
   
-  .exercise-image {
+  canvas {
+    width: 100% !important;
+    height: 300px !important;
+  }
+  
+  
+  ion-content {
+    --padding-bottom: 56px;
+   
+  }
+  .eje-button {
+    --background: #00915b;
+    margin-top: 1em;
+    border-radius: 25px; 
+    color: #fff;
+    height: 50px; 
     width: 100%; 
-    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0; 
+    --background-activated: #00915b;
   }
   
-  .exercise-details {
-    .exercise-name {
-      font-size: 1.5rem; 
-      font-weight: bold; 
-      margin-bottom: 10px;
-    }
+  .background {
+    background: linear-gradient(to bottom right, #d7ead3, #acdca8);
+    padding: 20px;
+    height: 100%;
+    position: relative;
+    overflow-y: scroll; /* Permite scroll vertical si el contenido desborda */
+    background-image: repeating-linear-gradient(
+      45deg, 
+      #d7ead3, 
+      #d7ead3 420px, 
+      #acdca8 420px, 
+      #acdca8 840px
+    );
+  }
   
-    .exercise-description {
-      font-size: 1.2rem; 
-      font-style: italic; 
-      color: #333; 
-      line-height: 1.5; 
-    }
+  .floating-card {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .eje-button {
+    --background: #00915b; /* Ajustado al verde especificado */
+    --background-activated: #006b4c; /* Tonalidad más oscura del verde para estado activado */
+    color: #fff;
+    border-radius: 12px;
+    width: 100%;
+    height: 50px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .exercise-name {
+    font-weight: bold;
+    font-size: 1.2em; /* Puedes ajustar el tamaño de la fuente según tus necesidades */
+    color: #000; /* Ajusta el color según tu preferencia */
+    margin: 0.5em 0; /* Añade un margen superior e inferior para separación */
   }
   
