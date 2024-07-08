@@ -8,6 +8,7 @@ import { RecordatoriosPageRoutingModule } from './recordatorios-routing.module';
 
 import { RecordatoriosPage } from './recordatorios.page';
 import { ModalContentComponent } from '../modals/modal-content/modal-content.component';
+import { EditRecordComponent } from '../modals/edit-record/edit-record.component';
 import { FileChooser } from '@ionic-native/file-chooser/ngx';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
@@ -20,7 +21,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
     IonicModule,
     RecordatoriosPageRoutingModule,ReactiveFormsModule,IonicModule.forRoot(),
   ],
-  declarations: [RecordatoriosPage,ModalContentComponent],
+  declarations: [RecordatoriosPage,ModalContentComponent,EditRecordComponent],
   providers: [FileChooser,LocalNotifications,InAppBrowser],
 })
 export class RecordatoriosPageModule {}

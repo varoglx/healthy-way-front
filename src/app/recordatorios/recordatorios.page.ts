@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { ModalContentComponent } from '../modals/modal-content/modal-content.component';
+import { EditRecordComponent } from '../modals/edit-record/edit-record.component';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AuthService } from '../services/auth.service';
@@ -95,7 +96,23 @@ export class RecordatoriosPage implements OnInit {
     return await modal.present();
   }
 
+  async editAlarm(alarm: Alarm) {
+    const modal = await this.modalController.create({
+      component: EditRecordComponent,
+      componentProps: { alarm }
+    });
 
+    modal.onDidDismiss().then(async (detail: any) => {
+      if (detail.data) {
+        const user = await this.afa.currentUser;
+        if (user) {
+          await this.afs.doc(`users/${user.uid}/alarms/${alarm.id}`).update(detail.data);
+        }
+      }
+    });
+
+    return await modal.present();
+  }
   
   toggleCheckboxes() {
     this.showCheckboxes = !this.showCheckboxes;

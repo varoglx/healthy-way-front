@@ -17,8 +17,8 @@
         <ion-card-title class="title">Lista de Recordatorios</ion-card-title>
       </ion-card-header>
       <ion-card-content >
-        <div *ngIf="!alarms">
-          <h1>No hay Recordatorios</h1>
+        <div *ngIf="!alarms || alarms.length === 0">
+          <h1 class="title">No hay Recordatorios</h1>
         </div>
         <div *ngIf="alarms">
         <ion-item *ngFor="let alarm of alarms"  class="box">
@@ -31,6 +31,9 @@
               </ng-container>
             </p>
           </ion-label>
+          <ion-button slot="end" color="tertiary" (click)="editAlarm(alarm)">
+            <ion-icon name="create"></ion-icon>
+          </ion-button>
           <ion-toggle slot="end" [(ngModel)]="alarm.enabled" (ionChange)="toggleEnabled(alarm)"></ion-toggle>
         </ion-item>
       </div>
