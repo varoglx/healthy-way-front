@@ -9,12 +9,13 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content *ngIf="userProfile">
-  <ion-item>
+<ion-content *ngIf="userProfile" class="edit-profile-content">
+  
+  <ion-item class="input-item">
     <ion-label position="stacked">Nombre</ion-label>
     <ion-input type="text" [(ngModel)]="userProfile.name"></ion-input>
   </ion-item>
-  <ion-item>
+  <ion-item class="input-item">
     <ion-label>Género</ion-label>
     <ion-select [(ngModel)]="userProfile.gender" interface="popover">
       <ion-select-option value="Masculino">Masculino</ion-select-option>
@@ -23,9 +24,8 @@
     </ion-select>
   </ion-item>
 
-  <ion-button expand="block" (click)="saveChanges()">Guardar Cambios</ion-button>
+  <ion-button expand="block" class="save-button" (click)="saveChanges()">Guardar Cambios</ion-button>
 
-  <!-- Añadir IonAlert para errores -->
   <ion-alert
     [isOpen]="showError"
     header="Error"

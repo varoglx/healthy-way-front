@@ -46,8 +46,8 @@ ion-content {
 }
 
 .cerrar {
-  --color: #00915b; 
-  --background: 00915b;
+  --color: #00915b;
+  font-weight: bold;
 }
 
 ion-card {
@@ -108,4 +108,10 @@ ion-content {
   height: 50px;
   font-size: 16px;
   font-weight: bold;
+}
+
+.logo-img {
+  width: 180px; 
+  height: auto;
+  margin-bottom: 16px; 
 }

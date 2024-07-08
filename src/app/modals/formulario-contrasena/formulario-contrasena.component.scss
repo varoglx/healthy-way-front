@@ -1,0 +1,28 @@
+.change-password-content {
+    --padding-bottom: 56px;
+    padding: 20px;
+  }
+  
+  .form-container {
+    margin-top: 20px;
+  }
+  
+  .input-item {
+    margin-bottom: 20px;
+  }
+  
+  .change-password-button {
+    --background: #00915b;
+    --background-activated: #006b4c;
+    color: #fff;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+  
+  ion-alert,
+  ion-toast {
+    z-index: 9999; /* Asegura que los alertas y toasts estén por encima de otros elementos */
+  }
+  

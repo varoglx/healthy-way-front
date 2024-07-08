@@ -1,7 +1,7 @@
 <ion-content padding-bottom>
   <div class="background">
     <div class="logo">
-      <img src="assets/icon/healthy.png" alt="Tu logo" class="logo-img">
+      <img src="assets/icon/healthy1.png" alt="Tu logo" class="logo-img">
     </div>
 
     <ion-card class="floating-card">
@@ -78,11 +78,9 @@
         </table>
       </ion-card-content>
     </ion-card>
-
     <ion-fab vertical="bottom" horizontal="end" slot="fixed" class="fab-button-custom">
-      <ion-fab-button>
+      <ion-fab-button (click)="openModal()">
         <ion-icon name="add"></ion-icon>
-        <ion-label class="fab-button-custom-label"></ion-label>
       </ion-fab-button>
       <ion-fab-list side="top">
         <ion-fab-button (click)="openModal()">
@@ -90,5 +88,6 @@
         </ion-fab-button>
       </ion-fab-list>
     </ion-fab>
+   
   </div>
 </ion-content>

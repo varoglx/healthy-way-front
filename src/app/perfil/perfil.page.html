@@ -1,28 +1,18 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Perfil</ion-title>
-    <ion-buttons slot="end">
-      <ion-button class="cerrar" (click)="cerrarSesion()">
-        <ion-icon name="log-out-outline"></ion-icon>
-        Salir
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+  <ion-buttons slot="end">
+    <ion-button class="cerrar" (click)="cerrarSesion()" fill="clear">
+      <ion-icon name="log-out-outline"></ion-icon>
+      Salir
+    </ion-button>
+  </ion-buttons>
 
+</ion-header>
 
 <ion-content class="background">
   <ion-card-content class="background">
     <div class="profile-container">
 
-      <ion-avatar class="profile-avatar">
-        <ng-container *ngIf="profilePicture; else noPicture">
-          <img [src]="profilePicture" alt="Foto de perfil">
-        </ng-container>
-        <ng-template #noPicture>
-          <ion-icon name="person-circle-outline" class="default-avatar-icon"></ion-icon>
-        </ng-template>
-      </ion-avatar>
+      <img src="assets/icon/healthy1.png" alt="Tu logo" class="logo-img">
 
       <ion-card class="background">
         <h2>Información Personal</h2>
@@ -36,7 +26,7 @@
           <ion-input [(ngModel)]="email" readonly></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label position="floating">Genero</ion-label>
+          <ion-label position="floating">Género</ion-label>
           <ion-input [(ngModel)]="gender" readonly></ion-input>
         </ion-item>
       </ion-card>
@@ -44,8 +34,6 @@
 
     <ion-button expand="block" class="edit-button" (click)="abrirModalEditarPerfil()">Editar Perfil</ion-button>
 
-    <ion-button (click)="openModal()">
-      Cambiar contraseña
-    </ion-button>
+    <ion-button expand="block" class="edit-button" (click)="openModal()">Cambiar contraseña</ion-button>
   </ion-card-content>
 </ion-content>
