@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFireStorage } from '@angular/fire/compat/storage'; // Importar AngularFireStorage
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import { finalize, switchMap } from 'rxjs/operators'; // Importar map, switchMap
+import { Observable } from 'rxjs'; // Importar Observable
 
 export interface UserProfile {
   name?: string;
@@ -29,6 +32,7 @@ export class AuthService {
   constructor(
     private afAuth: AngularFireAuth,
     private firestore: AngularFirestore,
+    private storage: AngularFireStorage, // Añadir el servicio de almacenamiento
     private router: Router,
     private toastController: ToastController
   ) {
@@ -133,19 +137,22 @@ export class AuthService {
     return this.firestore.collection('exercises').snapshotChanges();
   }
 
-  updateExercise(categoryName: string, exercise: Exercise) {
-    const user = JSON.parse(localStorage.getItem('usuario')!);
-
-    if (user) {
-      return this.firestore.collection('users').doc(user.uid).collection('categories').doc(categoryName)
-        .collection('exercises').doc(exercise.name).update(exercise);
-    } else {
-      return Promise.reject(new Error('No hay usuario autenticado'));
-    }
+  updateExercise(id: string, exercise: Exercise) {
+    return this.firestore.collection('exercises').doc(id).update(exercise);
   }
-
 
   deleteExercise(id: string) {
     return this.firestore.collection('exercises').doc(id).delete();
+  }
+
+  uploadImage(file: File): Observable<string> {
+    const filePath = `images/${Date.now()}_${file.name}`;
+    const fileRef = this.storage.ref(filePath);
+    const task = this.storage.upload(filePath, file);
+
+    return task.snapshotChanges().pipe(
+      finalize(() => fileRef.getDownloadURL()),
+      switchMap(() => fileRef.getDownloadURL())
+    );
   }
 }

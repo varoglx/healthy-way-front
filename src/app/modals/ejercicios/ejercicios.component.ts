@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { AuthService, Exercise } from '../../services/auth.service';
+
 interface Category {
   name: string;
   exercises: Exercise[];
@@ -12,15 +13,15 @@ interface Category {
   styleUrls: ['./ejercicios.component.scss'],
 })
 export class EjerciciosComponent implements OnInit {
-  
   categories: Category[] = [
     {
       name: 'Perdida de Peso',
       exercises: []
     },
   ];
-  
+
   newExercise: Exercise = { name: '', description: '', image: '', category: 'Perdida de Peso' };
+  selectedFile: File | null = null; // Para almacenar el archivo seleccionado
 
   constructor(private modalController: ModalController, private authService: AuthService) { }
 
@@ -38,18 +39,45 @@ export class EjerciciosComponent implements OnInit {
     });
   }
 
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
+  }
+
   addExercise() {
-    this.authService.addExercise(this.newExercise).then(() => {
-      this.newExercise = { name: '', description: '', image: '', category: 'Perdida de Peso' };
-      this.loadExercises();
-    });
+    if (this.selectedFile) {
+      this.authService.uploadImage(this.selectedFile).subscribe(url => {
+        this.newExercise.image = url;
+        this.authService.addExercise(this.newExercise).then(() => {
+          this.newExercise = { name: '', description: '', image: '', category: 'Perdida de Peso' };
+          this.selectedFile = null;
+          this.loadExercises();
+        });
+      });
+    } else {
+      this.authService.addExercise(this.newExercise).then(() => {
+        this.newExercise = { name: '', description: '', image: '', category: 'Perdida de Peso' };
+        this.loadExercises();
+      });
+    }
   }
 
   updateExercise(exercise: Exercise) {
-    if (exercise.id) {
-      this.authService.updateExercise(exercise.id, exercise).then(() => {
-        this.loadExercises();
+    if (this.selectedFile) {
+      this.authService.uploadImage(this.selectedFile).subscribe(url => {
+        exercise.image = url;
+        if (exercise.id) {
+          this.authService.updateExercise(exercise.id, exercise).then(() => {
+            this.selectedFile = null;
+            this.loadExercises();
+          });
+        }
       });
+    } else {
+      if (exercise.id) {
+        this.authService.updateExercise(exercise.id, exercise).then(() => {
+          this.loadExercises();
+        });
+      }
     }
   }
 
@@ -63,6 +91,3 @@ export class EjerciciosComponent implements OnInit {
     this.modalController.dismiss();
   }
 }
-
-
-
