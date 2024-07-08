@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar class="record txt">
+  <ion-toolbar class="">
     <ion-title>Registro de sueño</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="dismissModal()">Cerrar</ion-button>
@@ -7,19 +7,23 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="record txt">
-  <form (ngSubmit)="saveSueno()" [formGroup]="suenoForm">
-    <ion-item class="record txt">
-      <ion-input formControlName="time" type="number" min="0" max="24" placeholder="Horas dormidas"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input formControlName="customDate" type="date" placeholder="Horas dormidas"></ion-input>
-    </ion-item>
-    <ion-button class="bt txt1" expand="full" type="submit" [disabled]="loading" [disabled]="!suenoForm.valid" >
-      <ion-spinner *ngIf="loading" name="crescent"></ion-spinner>
-      <span *ngIf="!loading">Guardar</span>
-    </ion-button>
-  </form>
+<ion-content class="">
+  <div class="record">
+    <ion-card class="floating-card">
+      <form (ngSubmit)="saveSueno()" [formGroup]="suenoForm">
+        <ion-item class="">
+          <ion-input formControlName="time" type="number" min="0" max="24" placeholder="Horas dormidas"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input formControlName="customDate" type="date" placeholder="Horas dormidas"></ion-input>
+        </ion-item>
+        <ion-button class="bt" expand="full" type="submit" [disabled]="loading" [disabled]="!suenoForm.valid" >
+          <ion-spinner *ngIf="loading" name="crescent"></ion-spinner>
+          <span *ngIf="!loading">Guardar</span>
+        </ion-button>
+      </form>
+    </ion-card>
+  </div>
 </ion-content>
 <style>
 .contenedor-texto {

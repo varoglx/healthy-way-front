@@ -46,6 +46,7 @@ export class FormularioSuenoComponent  implements OnInit {
       const now = this.formatDate(new Date());
 
       if (selectedDate > now) {
+        this.loading = false;
         await this.showAlert1('No se puede guardar una fecha futura.');
         return;
       }
