@@ -6,6 +6,9 @@ import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { finalize, switchMap } from 'rxjs/operators'; // Importar map, switchMap
 import { Observable } from 'rxjs'; // Importar Observable
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+
+
 
 export interface UserProfile {
   name?: string;
@@ -32,7 +35,8 @@ export class AuthService {
   constructor(
     private afAuth: AngularFireAuth,
     private firestore: AngularFirestore,
-    private storage: AngularFireStorage, // Añadir el servicio de almacenamiento
+    private storage: AngularFireStorage,
+    private afStorage: AngularFireStorage, 
     private router: Router,
     private toastController: ToastController
   ) {
@@ -128,7 +132,30 @@ export class AuthService {
     }
   }
 
-  // Métodos CRUD para ejercicios
+  async subirImagen(archivo: File): Promise<string> {
+    const filePath = `images/${Date.now()}_${archivo.name}`;
+    const storageRef = this.afStorage.ref(filePath); // Obtener la referencia al archivo
+
+    const task: AngularFireUploadTask = this.afStorage.upload(filePath, archivo); // Subir el archivo a Firebase Storage
+
+    try {
+      // Obtener la URL de descarga como Observable<string>
+      const downloadUrl$: Observable<string> = task.snapshotChanges().pipe(
+        finalize(async () => {
+          const url: string = await storageRef.getDownloadURL(); // Obtener la URL de descarga del archivo subido
+          return url;
+        })
+      );
+
+      return downloadUrl$.toPromise(); // Retornar la URL de descarga como string
+    } catch (error) {
+      console.error('Error al subir la imagen:', error);
+      throw error;
+    }
+  }
+
+  
+  // Métodos CRUD para ejercicios (ya existentes)...
   addExercise(exercise: Exercise) {
     return this.firestore.collection('exercises').add(exercise);
   }
@@ -144,15 +171,6 @@ export class AuthService {
   deleteExercise(id: string) {
     return this.firestore.collection('exercises').doc(id).delete();
   }
-
-  uploadImage(file: File): Observable<string> {
-    const filePath = `images/${Date.now()}_${file.name}`;
-    const fileRef = this.storage.ref(filePath);
-    const task = this.storage.upload(filePath, file);
-
-    return task.snapshotChanges().pipe(
-      finalize(() => fileRef.getDownloadURL()),
-      switchMap(() => fileRef.getDownloadURL())
-    );
-  }
 }
+  
+
