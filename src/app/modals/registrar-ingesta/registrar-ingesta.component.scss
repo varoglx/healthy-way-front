@@ -17,6 +17,13 @@
     height: 100%;
     position: relative;
     overflow-y: scroll; /* Permite scroll vertical si el contenido desborda */
+    background-image: repeating-linear-gradient(
+      45deg, 
+      #d7ead3, 
+      #d7ead3 420px, 
+      #acdca8 420px, 
+      #acdca8 840px
+    );
   }
   
   .floating-card {
