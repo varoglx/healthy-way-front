@@ -1,0 +1,22 @@
+.record{
+    background: linear-gradient(to bottom right, #d7ead3, #acdca8);
+padding: 20px;
+height: 100%;
+position: relative;
+overflow-y: scroll; /* Permite scroll vertical si el contenido desborda */
+background-image: repeating-linear-gradient(
+  45deg, 
+  #d7ead3, 
+  #d7ead3 420px, 
+  #acdca8 420px, 
+  #acdca8 840px
+);
+}
+.floating-card {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+  .bt{
+    --background:#00915b;
+}

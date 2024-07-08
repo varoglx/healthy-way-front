@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar class="record txt">
+  <ion-toolbar class="txt">
     <ion-title>Crear Alarma</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="saveAlarm()">Cerrar</ion-button>
@@ -7,9 +7,11 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="record txt">
+<ion-content class="txt">
+<div class="record">
+  <ion-card class="floating-card">
   <form (ngSubmit)="saveAlarm()" [formGroup]="alarmForm">
-    <ion-item class="record txt">
+    <ion-item class="txt">
       <ion-label>Tipo</ion-label>
       <ion-select formControlName="type" placeholder="Seleccionar Tipo">
         <ion-select-option value="comida">Comida</ion-select-option>
@@ -18,26 +20,26 @@
       </ion-select>
     </ion-item>
     
-    <ion-item class="record txt">
+    <ion-item class="txt">
       <ion-label>Hora</ion-label>
       <input formControlName="time" type="time" name="selectedTime">
     </ion-item>
 
-    <ion-item class="record txt">
+    <ion-item class="txt">
     <ion-button class="bt txt1" expand="full" (click)="openNotificationSettings()">Seleccionar Sonido</ion-button>
   </ion-item>
-  <ion-item class="record txt">
+  <ion-item class="txt">
     <ion-label>Sonido: </ion-label>
     <ion-input [value]="selectedSound" readonly></ion-input>
   </ion-item>
 
-    <ion-item class="record txt">
+    <ion-item class="txt">
       <ion-label>Repetir</ion-label>
       <ion-toggle formControlName="repeat"></ion-toggle>
     </ion-item>
     
     <ion-list *ngIf="alarmForm?.get('repeat').value">
-      <ion-item *ngFor="let day of daysOfWeek" class="record txt">
+      <ion-item *ngFor="let day of daysOfWeek" class="txt">
         <ion-label>{{ day }}</ion-label>
         <ion-checkbox [formControlName]="day"></ion-checkbox>
       </ion-item>
@@ -47,4 +49,6 @@
       <span *ngIf="!loading">Guardar</span>
     </ion-button>
   </form>
+</ion-card>
+</div>
 </ion-content> 

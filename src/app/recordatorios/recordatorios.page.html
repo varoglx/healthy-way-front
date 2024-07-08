@@ -1,4 +1,5 @@
   <ion-content class="record">
+    <div class="background">
   <div class="bt1">
     <ion-buttons class="button-container">
       <ion-button class="large-button" slot="start" color="primary" (click)="openModal()"><ion-icon name="add-circle"></ion-icon></ion-button>
@@ -12,7 +13,7 @@
   </div>
     
     <!-- List of Alarms -->
-    <ion-card>
+    <ion-card class="floating-card">
       <ion-card-header>
         <ion-card-title class="title">Lista de Recordatorios</ion-card-title>
       </ion-card-header>
@@ -20,8 +21,8 @@
         <div *ngIf="!alarms || alarms.length === 0">
           <h1 class="title">No hay Recordatorios</h1>
         </div>
-        <div *ngIf="alarms">
-        <ion-item *ngFor="let alarm of alarms"  class="box">
+        <div *ngIf="alarms"  >
+        <ion-item *ngFor="let alarm of alarms" class="border">
           <ion-checkbox *ngIf="showCheckboxes" slot="start" (click)="toggleSelection(alarm)"></ion-checkbox>
           <ion-label class="title1">
             {{ alarm.type | titlecase }} - {{ alarm.time }}
@@ -31,8 +32,8 @@
               </ng-container>
             </p>
           </ion-label>
-          <ion-button slot="end" color="tertiary" (click)="editAlarm(alarm)">
-            <ion-icon name="create"></ion-icon>
+          <ion-button slot="end" (click)="editAlarm(alarm)">
+            <ion-icon name="pencil"></ion-icon>
           </ion-button>
           <ion-toggle slot="end" [(ngModel)]="alarm.enabled" (ionChange)="toggleEnabled(alarm)"></ion-toggle>
         </ion-item>
@@ -42,7 +43,7 @@
     </ion-card>
 
  
-
+  </div>
 </ion-content>
 
 <style>
@@ -53,13 +54,4 @@
     z-index: 1000; /* Ensure it stays above other elements */
   }
 
-  ion-content {
-    padding-bottom: 56px; /* Footer height to prevent content being hidden behind it */
-  }
-
-  ion-card {
-    background:  #00915b; /* Green theme background */
-    border-radius: 15px;
-
-  }
 </style>
