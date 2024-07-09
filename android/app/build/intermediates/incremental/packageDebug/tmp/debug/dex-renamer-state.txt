@@ -1,4 +1,4 @@
-#Tue Jun 18 07:28:08 CLT 2024
+#Mon Jul 08 22:27:15 CLT 2024
 base.0=C\:\\Users\\alvaro\\Documents\\GitHub\\healthy-way-front\\android\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 base.1=C\:\\Users\\alvaro\\Documents\\GitHub\\healthy-way-front\\android\\app\\build\\intermediates\\dex\\debug\\mergeLibDexDebug\\0\\classes.dex
 base.2=C\:\\Users\\alvaro\\Documents\\GitHub\\healthy-way-front\\android\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
