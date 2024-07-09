@@ -1,23 +1,26 @@
 .fab-button-custom {
-    bottom: 20vw !important;
+  position: fixed; /* Fijar el botón en la pantalla */
+  bottom: 60px; /* Distancia desde el borde inferior */
+  right: 20px; /* Distancia desde el borde derecho */
+  z-index: 1000; /* Asegura que esté sobre otros elementos */
+}
 
-  }
-  
-  .fab-button-custom ion-fab-button {
-    --background: rgb(27, 89, 61);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 70px;
-    height: 70px;
-  }
-  
-  .fab-button-custom-label {
-    font-size: 8px;
-    text-align: center;
-    color: #FFFFFF; /* o puedes usar 'white' */
-  }
+.fab-button-custom ion-fab-button {
+  --background: #00915b; /* Color de fondo del botón */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 70px; /* Ancho del botón */
+  height: 70px; /* Altura del botón */
+}
+
+.fab-button-custom-label {
+  font-size: 8px; /* Tamaño de la fuente */
+  text-align: center; /* Alineación del texto */
+  color: #FFFFFF; /* Color del texto */
+}
+
   .eje-button {
     --background: #00915b;
     margin-top: 1em;
